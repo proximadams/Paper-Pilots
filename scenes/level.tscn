@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cag2pq2wvu8rw"]
+
+[ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
+
+[sub_resource type="Environment" id="Environment_2q6dc"]
+background_mode = 1
+background_color = Color(0.786676, 0.215059, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2q6dc"]
+top_radius = 10000.0
+bottom_radius = 10000.0
+height = 0.001
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2q6dc"]
+albedo_color = Color(0.956129, 0.144655, 1.54018e-06, 1)
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_2q6dc")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2q6dc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.31326, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
+mesh = SubResource("CylinderMesh_2q6dc")
+surface_material_override/0 = SubResource("ORMMaterial3D_2q6dc")
