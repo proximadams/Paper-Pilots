@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://b58w5vg0q13f8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+height = 6.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
+size = Vector3(1, 0, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
+size = Vector3(0, 1, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
+size = Vector3(5, 0, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qhqgy"]
+size = Vector3(1, 0, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
+size = Vector3(0.5, 0, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qlg0r"]
+size = Vector3(3, 0.2, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tuyoq"]
+size = Vector3(0, 1.25, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjrip"]
+size = Vector3(1.5, 0, 0.35)
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="Rectangles" type="Node3D" parent="."]
+
+[node name="MainBody" type="Node3D" parent="Rectangles"]
+
+[node name="MainBodyHorizontal" type="MeshInstance3D" parent="Rectangles/MainBody"]
+mesh = SubResource("BoxMesh_u8vuu")
+skeleton = NodePath("../../..")
+
+[node name="MainBodyVertical" type="MeshInstance3D" parent="Rectangles/MainBody"]
+mesh = SubResource("BoxMesh_3vyb7")
+skeleton = NodePath("../../..")
+
+[node name="Wings" type="Node3D" parent="Rectangles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="MainWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+mesh = SubResource("BoxMesh_g2els")
+skeleton = NodePath("../../..")
+
+[node name="LeftMoveableWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.375)
+mesh = SubResource("BoxMesh_qhqgy")
+skeleton = NodePath("../../..")
+
+[node name="LeftOuterWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -0.375)
+mesh = SubResource("BoxMesh_dqkch")
+skeleton = NodePath("../../..")
+
+[node name="LeftInnerWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.375)
+mesh = SubResource("BoxMesh_dqkch")
+skeleton = NodePath("../../..")
+
+[node name="RightMoveableWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -0.375)
+mesh = SubResource("BoxMesh_qhqgy")
+skeleton = NodePath("../../..")
+
+[node name="RightInnerWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.375)
+mesh = SubResource("BoxMesh_dqkch")
+skeleton = NodePath("../../..")
+
+[node name="RightOuterWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.375)
+mesh = SubResource("BoxMesh_dqkch")
+skeleton = NodePath("../../..")
+
+[node name="Properller" type="MeshInstance3D" parent="Rectangles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+mesh = SubResource("BoxMesh_qlg0r")
+skeleton = NodePath("../../..")
+
+[node name="Tail" type="Node3D" parent="Rectangles"]
+
+[node name="Vertical" type="MeshInstance3D" parent="Rectangles/Tail"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.17, -3.1)
+mesh = SubResource("BoxMesh_tuyoq")
+skeleton = NodePath("../../..")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Rectangles/Tail"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -3.3)
+mesh = SubResource("BoxMesh_fjrip")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -4.05553e-08, 0.885888, 0.463899, 7.74468e-08, 0.463899, -0.885888, 0, 3.46756, -7.59958)
