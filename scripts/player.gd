@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 const GRAVITY               : float = -200.0
 const MAX_PROPELLOR_SPEED   : float = 20.0
+const MAX_PROPULSION_SPEED  : float = 10000.0
 const MOVE_ACCELERATION     : float = 100.0
 const PROPELLOR_ACCELERATION: float = 50.0
 const SHOOT_DECCELERATION   : float = 5000.0
@@ -39,6 +40,7 @@ func handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
 	propulsionSpeed = max(0.0, propulsionSpeed + (accdeccMult * delta * MOVE_ACCELERATION))
 	propulsionSpeed -= (global_basis.z.normalized().y - 0.5) * delta * 70.0
+	propulsionSpeed = min(MAX_PROPULSION_SPEED, propulsionSpeed)
 
 	velocity = Vector3(propulsionSpeed, propulsionSpeed, propulsionSpeed)
 	velocity *= delta * global_basis.z.normalized()
