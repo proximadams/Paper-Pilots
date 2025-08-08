@@ -4,7 +4,7 @@ const GRAVITY               : float = -200.0
 const MAX_PROPELLOR_SPEED   : float = 20.0
 const MOVE_ACCELERATION     : float = 100.0
 const PROPELLOR_ACCELERATION: float = 50.0
-const SHOOT_DECCELERATION   : float = 1000.0
+const SHOOT_DECCELERATION   : float = 5000.0
 const TILT_DOWN_SPEED       : float = 100.0
 const WING_DEGREES          : float = 45.0
 
@@ -45,11 +45,12 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func handle_rotation(delta: float) -> void:
+	var speedMultX = 0.6 + (0.001 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultY = 0.5 + (0.0007 * (sqrt(propulsionSpeed * abs(fallSpeed))))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
-		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y)
-	rotate_object_local(Vector3.FORWARD, delta * inputDirection.x)
-	# rotate_object_local(Vector3.RIGHT, delta * (TILT_DOWN_SPEED/max(1.0, propulsionSpeed) * (1.0 - sqrt(abs(global_basis.z.normalized().y)))))
+		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
+	rotate_object_local(Vector3.FORWARD, delta * inputDirection.x * speedMultX)
 	if rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotation.x += delta * max(0.0, max(0.0, TILT_DOWN_SPEED/propulsionSpeed) - 0.1)
 
