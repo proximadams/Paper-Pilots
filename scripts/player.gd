@@ -33,11 +33,12 @@ func _get_acceleration_decceleration_mult() -> float:
 	return result
 
 func handle_gravity() -> void:
-	fallSpeed = GRAVITY * (abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y))
+	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y)
 
 func handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
 	propulsionSpeed = max(0.0, propulsionSpeed + (accdeccMult * delta * MOVE_ACCELERATION))
+	propulsionSpeed -= (global_basis.z.normalized().y - 0.5) * delta * 70.0
 
 	velocity = Vector3(propulsionSpeed, propulsionSpeed, propulsionSpeed)
 	velocity *= delta * global_basis.z.normalized()
