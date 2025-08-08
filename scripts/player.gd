@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
-const ACCELERATION       : float = 100.0
-const MAX_PROPELLOR_SPEED: float = 20.0
-const SHOOT_DECCELERATION: float = 300.0
-const WING_DEGREES       : float = 45.0
+const MAX_PROPELLOR_SPEED   : float = 20.0
+const MOVE_ACCELERATION     : float = 100.0
+const PROPELLOR_ACCELERATION: float = 50.0
+const SHOOT_DECCELERATION   : float = 300.0
+const WING_DEGREES          : float = 45.0
 
 @export var leftMoveableWing : Node3D
 @export var rightMoveableWing: Node3D
@@ -27,7 +28,7 @@ func _get_acceleration_decceleration_mult() -> float:
 
 func handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
-	moveSpeed = max(0.0, moveSpeed + (accdeccMult * delta * ACCELERATION))
+	moveSpeed = max(0.0, moveSpeed + (accdeccMult * delta * MOVE_ACCELERATION))
 
 	velocity = Vector3(moveSpeed, moveSpeed, moveSpeed)
 	velocity *= delta * global_basis.z.normalized()
@@ -40,7 +41,7 @@ func handle_rotation(delta: float) -> void:
 
 func handle_spin_propellor(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
-	propellorSpeed = max(0.0, min(MAX_PROPELLOR_SPEED, propellorSpeed + (accdeccMult * delta * ACCELERATION)))
+	propellorSpeed = max(0.0, min(MAX_PROPELLOR_SPEED, propellorSpeed + (accdeccMult * delta * PROPELLOR_ACCELERATION)))
 	propellor.rotation.z += delta * propellorSpeed
 
 func handle_input_wing_angles() -> void:
