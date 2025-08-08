@@ -46,25 +46,25 @@ mesh = SubResource("CylinderMesh_2q6dc")
 surface_material_override/0 = SubResource("ORMMaterial3D_2q6dc")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
 mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 mesh = SubResource("BoxMesh_2q6dc")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 mesh = SubResource("BoxMesh_2q6dc")

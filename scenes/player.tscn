@@ -30,6 +30,7 @@ size = Vector3(0, 1.25, 0.5)
 size = Vector3(1.5, 0, 0.35)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("leftMoveableWing", "rightMoveableWing", "propellor")]
+motion_mode = 1
 script = ExtResource("1_3vyb7")
 leftMoveableWing = NodePath("Rectangles/Wings/LeftMoveableWing")
 rightMoveableWing = NodePath("Rectangles/Wings/RightMoveableWing")
