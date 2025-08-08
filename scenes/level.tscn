@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=7 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="1_w7c3h"]
 
 [sub_resource type="Environment" id="Environment_2q6dc"]
 background_mode = 1
@@ -21,7 +22,17 @@ albedo_color = Color(0.956129, 0.144655, 1.54018e-06, 1)
 
 [node name="Level" type="Node3D"]
 
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("followTarget", "lookAtTarget")]
+transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 3.5, -7.5)
+current = true
+script = ExtResource("1_w7c3h")
+followTarget = NodePath("../Player/CameraFollow")
+lookAtTarget = NodePath("../Player")
+
 [node name="Player" parent="." instance=ExtResource("1_2q6dc")]
+
+[node name="CameraFollow" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2q6dc")

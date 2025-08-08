@@ -110,6 +110,3 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -3.3)
 mesh = SubResource("BoxMesh_fjrip")
 skeleton = NodePath("../../..")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -4.05553e-08, 0.885888, 0.463899, 7.74468e-08, 0.463899, -0.885888, 0, 3.46756, -7.59958)
