@@ -46,8 +46,8 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func handle_rotation(delta: float) -> void:
-	var speedMultX = 0.6 + (0.001 * (sqrt(propulsionSpeed * abs(fallSpeed))))
-	var speedMultY = 0.5 + (0.0007 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultX = 0.3 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultY = 0.4 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
