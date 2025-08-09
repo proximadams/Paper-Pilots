@@ -11,6 +11,7 @@ const WING_DEGREES          : float = 45.0
 
 @export var enemyPlayer: CharacterBody3D
 
+@export var gunShots    : Node3D
 @export var gunShotsAnim: AnimationPlayer
 
 @export var leftMoveableWing : Node3D
@@ -39,6 +40,15 @@ func _process(delta: float) -> void:
 	handle_rotation(delta)
 	handle_gravity()
 	handle_movement(delta)
+	aim_gun_shot()
+
+func aim_gun_shot() -> void:
+	if enemyPlayer.isHitable:
+		gunShots.look_at(enemyPlayer.global_position)
+		gunShots.scale = Vector3(-1.0, -1.0, -1.0)
+	else:
+		gunShots.look_at(global_position)
+		gunShots.scale = Vector3(1.0, 1.0, 1.0)
 
 func _get_recursive_children(node) -> Array[Node]:
 	var nodeArr: Array[Node] = []

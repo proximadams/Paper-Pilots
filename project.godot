@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Paper Pilot"
+config/name="Paper Pilots"
 run/main_scene="uid://cag2pq2wvu8rw"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=120
