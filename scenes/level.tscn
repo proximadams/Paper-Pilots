@@ -5,7 +5,7 @@
 
 [sub_resource type="Environment" id="Environment_2q6dc"]
 background_mode = 1
-background_color = Color(0.786676, 0.215059, 0, 1)
+background_color = Color(0, 0.612687, 0.494344, 1)
 fog_mode = 1
 fog_light_energy = 0.0
 fog_density = 1.0
@@ -16,7 +16,7 @@ bottom_radius = 10000.0
 height = 0.001
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2q6dc"]
-albedo_color = Color(0.956129, 0.144655, 1.54018e-06, 1)
+albedo_color = Color(0, 0.563549, 0.421103, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
 blend_mode = 1
