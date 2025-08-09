@@ -13,6 +13,7 @@ config_version=5
 config/name="Paper Pilot"
 run/main_scene="uid://cag2pq2wvu8rw"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=120
 
 [display]
 
