@@ -1,33 +1,39 @@
-[gd_scene load_steps=16 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=20 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
+[ext_resource type="Material" uid="uid://cgiog6wwt3bhg" path="res://materials/unsafe.tres" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 6.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+radius = 0.3
+height = 5.5
+
 [sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
-size = Vector3(0.9, 0, 6)
+size = Vector3(0.9, 0.9, 6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
 size = Vector3(0, 0.9, 6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
-size = Vector3(6, 0, 0.5)
+size = Vector3(6, 0.1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qhqgy"]
-size = Vector3(1, 0, 0.25)
+size = Vector3(1, 0.05, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
-size = Vector3(0.55, 0, 0.25)
+size = Vector3(0.55, 0.05, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qlg0r"]
-size = Vector3(3, 0.2, 0)
+size = Vector3(3, 0.2, 0.01)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tuyoq"]
-size = Vector3(0, 1.25, 0.5)
+size = Vector3(0.3, 1.25, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fjrip"]
-size = Vector3(1.6, 0, 0.35)
+size = Vector3(1.6, 0.1, 0.35)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 blend_mode = 1
@@ -124,18 +130,30 @@ _data = {
 &"shooting": SubResource("Animation_3vyb7")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qhqgy"]
+points = PackedVector3Array(0, 0, 10000, 0, 1000, 10000, 0, -1000, 10000, 1000, 0, 10000, -1000, 0, 10000, 707, 707, 10000, 707, -707, 10000, -707, 707, 10000, -707, -707, 10000, 0, 0, 0)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles")]
 motion_mode = 1
 script = ExtResource("1_3vyb7")
 gunShotsAnim = NodePath("GunShots/AnimationPlayer")
 leftMoveableWing = NodePath("Rectangles/Wings/LeftMoveableWing")
 rightMoveableWing = NodePath("Rectangles/Wings/RightMoveableWing")
+materialSafe = ExtResource("2_g2els")
+materialUnsafe = ExtResource("3_qhqgy")
 propellor = NodePath("Rectangles/Properller")
+rectangles = NodePath("Rectangles")
 playerID = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="WingArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WingArea3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0.4)
+shape = SubResource("CapsuleShape3D_3vyb7")
 
 [node name="Rectangles" type="Node3D" parent="."]
 
@@ -144,10 +162,12 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 [node name="MainBodyHorizontal" type="MeshInstance3D" parent="Rectangles/MainBody"]
 mesh = SubResource("BoxMesh_u8vuu")
 skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_g2els")
 
 [node name="MainBodyVertical" type="MeshInstance3D" parent="Rectangles/MainBody"]
 mesh = SubResource("BoxMesh_3vyb7")
 skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_g2els")
 
 [node name="Wings" type="Node3D" parent="Rectangles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
@@ -219,3 +239,14 @@ size = Vector3(0.2, 0.2, 1000)
 libraries = {
 &"": SubResource("AnimationLibrary_g2els")
 }
+
+[node name="GunShotArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GunShotArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.07897)
+shape = SubResource("ConvexPolygonShape3D_qhqgy")
+
+[connection signal="area_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_entered"]
+[connection signal="area_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_exited"]
+[connection signal="body_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_body_entered"]
+[connection signal="body_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_body_exited"]

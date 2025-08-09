@@ -9,18 +9,28 @@ const SHOOT_DECCELERATION   : float = 1000.0
 const TILT_DOWN_SPEED       : float = 100.0
 const WING_DEGREES          : float = 45.0
 
+@export var enemyPlayer: CharacterBody3D
+
 @export var gunShotsAnim: AnimationPlayer
 
 @export var leftMoveableWing : Node3D
 @export var rightMoveableWing: Node3D
 
+@export var materialSafe  : Material
+@export var materialUnsafe: Material
+
 @export var propellor: MeshInstance3D
+@export var rectangles: Node3D
 
 @export var playerID: int
 
-var fallSpeed      : float = 0.0# negative is fall direction
-var propulsionSpeed: float = 200.0
-var propellorSpeed : float = 0.0
+var enemyHitableCount: int   = 0
+var fallSpeed        : float = 0.0# negative is fall direction
+var isHitable        : bool  = true
+var propulsionSpeed  : float = 200.0
+var propellorSpeed   : float = 0.0
+
+@onready var allBodyVisuals: Array[MeshInstance3D] = _get_all_body_visuals()
 
 func _process(delta: float) -> void:
 	handle_input_wing_angles()
@@ -29,6 +39,26 @@ func _process(delta: float) -> void:
 	handle_rotation(delta)
 	handle_gravity()
 	handle_movement(delta)
+
+func _get_recursive_children(node) -> Array[Node]:
+	var nodeArr: Array[Node] = []
+
+	for currChild in node.get_children():
+		if currChild.get_child_count() > 0:
+			nodeArr.append(currChild)
+			nodeArr.append_array(_get_recursive_children(currChild))
+		else:
+			nodeArr.append(currChild)
+
+	return nodeArr
+
+func _get_all_body_visuals() -> Array[MeshInstance3D]:
+	var result: Array[MeshInstance3D] = []
+	var allRectanglesRecursiveChildren: Array[Node] = _get_recursive_children(rectangles)
+	for currNode in allRectanglesRecursiveChildren:
+		if currNode is MeshInstance3D:
+			result.append(currNode)
+	return result
 
 func _get_acceleration_decceleration_mult() -> float:
 	var result = 1.0
@@ -88,3 +118,31 @@ func get_input_direction() -> Vector2:
 	result.x = (Input.get_action_strength('move_left_p%d' % playerID) - Input.get_action_strength('move_right_p%d' % playerID))
 	result.y = (Input.get_action_strength('move_up_p%d' % playerID) - Input.get_action_strength('move_down_p%d' % playerID))
 	return result
+
+func _on_gun_shot_area_3d_area_entered(area: Area3D) -> void:
+	if area.name == 'WingArea3D':
+		enemyHitableCount += 1
+		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+
+func _on_gun_shot_area_3d_area_exited(area: Area3D) -> void:
+	if area.name == 'WingArea3D':
+		enemyHitableCount -= 1
+		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+
+func _on_gun_shot_area_3d_body_entered(body: Node3D) -> void:
+	if body.name.begins_with('Player'):
+		enemyHitableCount += 1
+		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+
+func _on_gun_shot_area_3d_body_exited(body: Node3D) -> void:
+	if body.name.begins_with('Player'):
+		enemyHitableCount -= 1
+		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+
+func set_is_hittable(valueGiven: bool) -> void:
+	var newMaterial = materialSafe
+	isHitable = valueGiven
+	if isHitable:
+		newMaterial = materialUnsafe
+	for currMesh in allBodyVisuals:
+		currMesh.set_surface_override_material(0, newMaterial)

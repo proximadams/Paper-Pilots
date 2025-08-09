@@ -1,0 +1,4 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cnc35h3nsvuct"]
+
+[resource]
+vertex_color_is_srgb = true

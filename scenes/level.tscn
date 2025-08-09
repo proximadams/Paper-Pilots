@@ -32,6 +32,11 @@ environment = SubResource("Environment_2q6dc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.31326, 0)
+light_energy = 2.0
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.31326, 0)
+light_energy = 0.1
 
 [node name="Floor" type="MeshInstance3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
@@ -44,28 +49,25 @@ material_override = SubResource("StandardMaterial3D_w7c3h")
 radius = 10.0
 height = 10000.0
 
-[node name="PlayerHolder1" type="Node3D" parent="."]
-
-[node name="Player" parent="PlayerHolder1" instance=ExtResource("1_2q6dc")]
+[node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
+enemyPlayer = NodePath("../Player2")
 
-[node name="CameraFollow" type="Node3D" parent="PlayerHolder1/Player"]
+[node name="CameraFollow" type="Node3D" parent="Player1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
 
-[node name="CameraLookAt" type="Node3D" parent="PlayerHolder1/Player"]
+[node name="CameraLookAt" type="Node3D" parent="Player1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="PlayerHolder2" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Player" parent="PlayerHolder2" instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
+[node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.62268e-06, 0, -30)
+enemyPlayer = NodePath("../Player1")
 playerID = 2
 
-[node name="CameraFollow" type="Node3D" parent="PlayerHolder2/Player"]
+[node name="CameraFollow" type="Node3D" parent="Player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
 
-[node name="CameraLookAt" type="Node3D" parent="PlayerHolder2/Player"]
+[node name="CameraLookAt" type="Node3D" parent="Player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -83,14 +85,16 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(1150, 1296)
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget")]
 transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 3.5, 37.5)
 current = true
 script = ExtResource("1_w7c3h")
-followTarget = NodePath("../../../../PlayerHolder1/Player/CameraFollow")
-lookAtTarget = NodePath("../../../../PlayerHolder1/Player/CameraLookAt")
+followTarget = NodePath("../../../../Player1/CameraFollow")
+lookAtTarget = NodePath("../../../../Player1/CameraLookAt")
 
 [node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -99,11 +103,13 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(1150, 1296)
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget")]
 transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, -3.27835e-06, 3.5, -37.5)
 current = true
 script = ExtResource("1_w7c3h")
-followTarget = NodePath("../../../../PlayerHolder2/Player/CameraFollow")
-lookAtTarget = NodePath("../../../../PlayerHolder2/Player/CameraLookAt")
+followTarget = NodePath("../../../../Player2/CameraFollow")
+lookAtTarget = NodePath("../../../../Player2/CameraLookAt")
