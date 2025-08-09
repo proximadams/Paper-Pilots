@@ -134,6 +134,7 @@ _data = {
 points = PackedVector3Array(0, 0, 10000, 0, 1000, 10000, 0, -1000, 10000, 1000, 0, 10000, -1000, 0, 10000, 707, 707, 10000, 707, -707, 10000, -707, 707, 10000, -707, -707, 10000, 0, 0, 0)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles")]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
 gunShots = NodePath("GunShots")
