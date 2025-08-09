@@ -9,6 +9,8 @@ const SHOOT_DECCELERATION   : float = 1000.0
 const TILT_DOWN_SPEED       : float = 100.0
 const WING_DEGREES          : float = 45.0
 
+var explosionRes = preload('res://scenes/explosion.tscn')
+
 @export var enemyPlayer: CharacterBody3D
 
 @export var gunShots    : Node3D
@@ -32,6 +34,9 @@ var propulsionSpeed  : float = 200.0
 var propellorSpeed   : float = 0.0
 
 @onready var allBodyVisuals: Array[MeshInstance3D] = _get_all_body_visuals()
+
+# TODO: edge of screen tells you where enemy is
+# TODO: slightly random hit location on plane
 
 func _process(delta: float) -> void:
 	handle_input_wing_angles()
@@ -156,3 +161,9 @@ func set_is_hittable(valueGiven: bool) -> void:
 		newMaterial = materialUnsafe
 	for currMesh in allBodyVisuals:
 		currMesh.set_surface_override_material(0, newMaterial)
+
+func _on_gun_shot_animation_started(animationName: StringName) -> void:
+	if animationName == 'shooting' and enemyPlayer.isHitable:
+		var explosionInst: Node3D = explosionRes.instantiate()
+		get_parent().add_child(explosionInst)
+		explosionInst.global_position = enemyPlayer.global_position
