@@ -212,7 +212,7 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 503)
 visible = false
 material_override = SubResource("StandardMaterial3D_3vyb7")
-size = Vector3(0.1, 0.1, 1000)
+size = Vector3(0.2, 0.2, 1000)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GunShots"]
 libraries = {
