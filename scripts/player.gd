@@ -16,6 +16,8 @@ const WING_DEGREES          : float = 45.0
 
 @export var propellor: MeshInstance3D
 
+@export var playerID: int
+
 var fallSpeed      : float = 0.0# negative is fall direction
 var propulsionSpeed: float = 200.0
 var propellorSpeed : float = 0.0
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 
 func _get_acceleration_decceleration_mult() -> float:
 	var result = 1.0
-	if Input.is_action_pressed('shoot'):
+	if Input.is_action_pressed('shoot_p%d' % playerID):
 		result = -1.0
 	if result < 0.0:
 		result *= SHOOT_DECCELERATION
@@ -39,9 +41,9 @@ func _get_acceleration_decceleration_mult() -> float:
 	return result
 
 func handle_gun_fire() -> void:
-	if Input.is_action_just_pressed('shoot'):
+	if Input.is_action_just_pressed('shoot_p%d' % playerID):
 		gunShotsAnim.play('shooting')
-	elif Input.is_action_just_released('shoot'):
+	elif Input.is_action_just_released('shoot_p%d' % playerID):
 		gunShotsAnim.play('not_shooting')
 
 func handle_gravity() -> void:
@@ -83,6 +85,6 @@ func handle_input_wing_angles() -> void:
 
 func get_input_direction() -> Vector2:
 	var result = Vector2()
-	result.x = (Input.get_action_strength('move_left') - Input.get_action_strength('move_right'))
-	result.y = (Input.get_action_strength('move_up') - Input.get_action_strength('move_down'))
+	result.x = (Input.get_action_strength('move_left_p%d' % playerID) - Input.get_action_strength('move_right_p%d' % playerID))
+	result.y = (Input.get_action_strength('move_up_p%d' % playerID) - Input.get_action_strength('move_down_p%d' % playerID))
 	return result
