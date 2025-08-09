@@ -27,22 +27,6 @@ backlight_enabled = true
 
 [node name="Level" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("followTarget", "lookAtTarget")]
-transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 3.5, 37.5)
-current = true
-script = ExtResource("1_w7c3h")
-followTarget = NodePath("../Player/CameraFollow")
-lookAtTarget = NodePath("../Player/CameraLookAt")
-
-[node name="Player" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
-
-[node name="CameraFollow" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
-
-[node name="CameraLookAt" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2q6dc")
 
@@ -59,3 +43,67 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4900, 0)
 material_override = SubResource("StandardMaterial3D_w7c3h")
 radius = 10.0
 height = 10000.0
+
+[node name="PlayerHolder1" type="Node3D" parent="."]
+
+[node name="Player" parent="PlayerHolder1" instance=ExtResource("1_2q6dc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
+
+[node name="CameraFollow" type="Node3D" parent="PlayerHolder1/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
+
+[node name="CameraLookAt" type="Node3D" parent="PlayerHolder1/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="PlayerHolder2" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Player" parent="PlayerHolder2" instance=ExtResource("1_2q6dc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
+playerID = 2
+
+[node name="CameraFollow" type="Node3D" parent="PlayerHolder2/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
+
+[node name="CameraLookAt" type="Node3D" parent="PlayerHolder2/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="p1SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
+size = Vector2i(1150, 1296)
+
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget")]
+transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 3.5, 37.5)
+current = true
+script = ExtResource("1_w7c3h")
+followTarget = NodePath("../../../../PlayerHolder1/Player/CameraFollow")
+lookAtTarget = NodePath("../../../../PlayerHolder1/Player/CameraLookAt")
+
+[node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
+size = Vector2i(1150, 1296)
+
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget")]
+transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, -3.27835e-06, 3.5, -37.5)
+current = true
+script = ExtResource("1_w7c3h")
+followTarget = NodePath("../../../../PlayerHolder2/Player/CameraFollow")
+lookAtTarget = NodePath("../../../../PlayerHolder2/Player/CameraLookAt")
