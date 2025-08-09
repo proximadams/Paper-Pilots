@@ -9,7 +9,7 @@ const SHOOT_DECCELERATION   : float = 1000.0
 const TILT_DOWN_SPEED       : float = 100.0
 const WING_DEGREES          : float = 45.0
 
-# TODO coast decline speed (engine off)
+@export var gunShotsAnim: AnimationPlayer
 
 @export var leftMoveableWing : Node3D
 @export var rightMoveableWing: Node3D
@@ -23,6 +23,7 @@ var propellorSpeed : float = 0.0
 func _process(delta: float) -> void:
 	handle_input_wing_angles()
 	handle_spin_propellor(delta)
+	handle_gun_fire()
 	handle_rotation(delta)
 	handle_gravity()
 	handle_movement(delta)
@@ -36,6 +37,12 @@ func _get_acceleration_decceleration_mult() -> float:
 	else:
 		result *= MOVE_ACCELERATION
 	return result
+
+func handle_gun_fire() -> void:
+	if Input.is_action_just_pressed('shoot'):
+		gunShotsAnim.play('shooting')
+	elif Input.is_action_just_released('shoot'):
+		gunShotsAnim.play('not_shooting')
 
 func handle_gravity() -> void:
 	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y)

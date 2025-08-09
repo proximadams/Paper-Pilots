@@ -18,18 +18,24 @@ height = 0.001
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2q6dc"]
 albedo_color = Color(0.956129, 0.144655, 1.54018e-06, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2q6dc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
+blend_mode = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+backlight_enabled = true
 
 [node name="Level" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("followTarget", "lookAtTarget")]
-transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 3.5, -7.5)
+transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 3.5, 37.5)
 current = true
 script = ExtResource("1_w7c3h")
 followTarget = NodePath("../Player/CameraFollow")
 lookAtTarget = NodePath("../Player/CameraLookAt")
 
 [node name="Player" parent="." instance=ExtResource("1_2q6dc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
 
 [node name="CameraFollow" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -7.5)
@@ -43,31 +49,13 @@ environment = SubResource("Environment_2q6dc")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.31326, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
+[node name="Floor" type="MeshInstance3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 mesh = SubResource("CylinderMesh_2q6dc")
 surface_material_override/0 = SubResource("ORMMaterial3D_2q6dc")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-mesh = SubResource("BoxMesh_2q6dc")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-mesh = SubResource("BoxMesh_2q6dc")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
-mesh = SubResource("BoxMesh_2q6dc")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
-mesh = SubResource("BoxMesh_2q6dc")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
-mesh = SubResource("BoxMesh_2q6dc")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
-mesh = SubResource("BoxMesh_2q6dc")
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4900, 0)
+material_override = SubResource("StandardMaterial3D_w7c3h")
+radius = 10.0
+height = 10000.0
