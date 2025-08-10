@@ -251,6 +251,9 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.07897)
 shape = SubResource("ConvexPolygonShape3D_qhqgy")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.838245, 3.76665)
+
 [connection signal="animation_started" from="GunShots/Visual/AnimationPlayer" to="." method="_on_gun_shot_animation_started"]
 [connection signal="area_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_entered"]
 [connection signal="area_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_exited"]

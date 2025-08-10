@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cen3owr6ivv1w"]
+
+[ext_resource type="Texture2D" uid="uid://nwk24myqq2qb" path="res://icons/arrow fill.svg" id="1_xn6ub"]
+[ext_resource type="Texture2D" uid="uid://bi8urb80j8llu" path="res://icons/arrow outline.svg" id="2_vxlop"]
+
+[node name="EnemyIndicatorArrow" type="Control"]
+modulate = Color(1, 1, 1, 0.745098)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+
+[node name="FillTexture" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_xn6ub")
+
+[node name="OutlineTexture" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_vxlop")
