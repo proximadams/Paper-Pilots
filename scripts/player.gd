@@ -107,8 +107,8 @@ func _handle_movement(delta: float) -> void:
 	transform = transform.orthonormalized()
 
 func _handle_rotation(delta: float) -> void:
-	var speedMultX = 1.0 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
-	var speedMultY = 0.8 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultX = 1.5 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultY = 1.2 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
