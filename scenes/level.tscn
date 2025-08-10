@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=9 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="4_mx8sn"]
 
 [sub_resource type="Environment" id="Environment_2q6dc"]
 background_mode = 1
@@ -90,7 +91,7 @@ handle_input_locally = false
 size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyArrow")]
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
 transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 3.5, 35)
 current = true
 fov = 135.0
@@ -98,9 +99,12 @@ script = ExtResource("1_w7c3h")
 followTarget = NodePath("../../../../Player1/CameraFollow")
 lookAtTarget = NodePath("../../../../Player1/CameraLookAt")
 player = NodePath("../../../../Player1")
-enemyArrow = NodePath("../EnemyIndicatorArrow")
+enemyOffscreen = NodePath("../EnemyIndicatorArrow")
+enemyOnscreen = NodePath("../Target")
 
 [node name="EnemyIndicatorArrow" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("3_w8frs")]
+
+[node name="Target" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("4_mx8sn")]
 
 [node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -113,7 +117,7 @@ handle_input_locally = false
 size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyArrow")]
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
 transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 3.5, -35)
 current = true
 fov = 135.0
@@ -121,6 +125,9 @@ script = ExtResource("1_w7c3h")
 followTarget = NodePath("../../../../Player2/CameraFollow")
 lookAtTarget = NodePath("../../../../Player2/CameraLookAt")
 player = NodePath("../../../../Player2")
-enemyArrow = NodePath("../EnemyIndicatorArrow")
+enemyOffscreen = NodePath("../EnemyIndicatorArrow")
+enemyOnscreen = NodePath("../Target")
 
 [node name="EnemyIndicatorArrow" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("3_w8frs")]
+
+[node name="Target" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("4_mx8sn")]
