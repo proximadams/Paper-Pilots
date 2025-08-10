@@ -12,7 +12,7 @@ radius = 0.3
 height = 5.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
-size = Vector3(0.9, 0.9, 6)
+size = Vector3(0.9, 0.9, 5.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
 size = Vector3(0, 0.9, 6)
@@ -30,10 +30,10 @@ size = Vector3(0.55, 0.05, 0.25)
 size = Vector3(3, 0.2, 0.01)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tuyoq"]
-size = Vector3(0.3, 1.25, 0.5)
+size = Vector3(0.1, 2, 0.3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fjrip"]
-size = Vector3(1.6, 0.1, 0.35)
+size = Vector3(1.7, 0.2, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 blend_mode = 1
@@ -176,6 +176,7 @@ shape = SubResource("CapsuleShape3D_3vyb7")
 [node name="MainBody" type="Node3D" parent="Rectangles"]
 
 [node name="MainBodyHorizontal" type="MeshInstance3D" parent="Rectangles/MainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
 mesh = SubResource("BoxMesh_u8vuu")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("2_g2els")
@@ -235,13 +236,18 @@ skeleton = NodePath("../../..")
 
 [node name="Tail" type="Node3D" parent="Rectangles"]
 
-[node name="Vertical" type="MeshInstance3D" parent="Rectangles/Tail"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.17, -3.1)
+[node name="Vertical1" type="MeshInstance3D" parent="Rectangles/Tail"]
+transform = Transform3D(0.913574, 0.406673, -1.49012e-08, -0.352189, 0.791178, 0.5, 0.203337, -0.456787, 0.866025, 0.677, 0.553, -2.85)
+mesh = SubResource("BoxMesh_tuyoq")
+skeleton = NodePath("../../..")
+
+[node name="Vertical2" type="MeshInstance3D" parent="Rectangles/Tail"]
+transform = Transform3D(0.913545, -0.406736, 0, 0.352244, 0.791153, 0.5, -0.203368, -0.456773, 0.866025, -0.677, 0.553, -2.85)
 mesh = SubResource("BoxMesh_tuyoq")
 skeleton = NodePath("../../..")
 
 [node name="Horizontal" type="MeshInstance3D" parent="Rectangles/Tail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -3.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -2.75)
 mesh = SubResource("BoxMesh_fjrip")
 skeleton = NodePath("../../..")
 
