@@ -162,8 +162,8 @@ func set_is_hittable(valueGiven: bool) -> void:
 	for currMesh in allBodyVisuals:
 		currMesh.set_surface_override_material(0, newMaterial)
 
-func _on_gun_shot_animation_started(animationName: StringName) -> void:
-	if animationName == 'shooting' and enemyPlayer.isHitable:
+func _on_gun_shot() -> void:
+	if enemyPlayer.isHitable:
 		var explosionInst: Node3D = explosionRes.instantiate()
 		get_parent().add_child(explosionInst)
 		explosionInst.global_position = enemyPlayer.global_position
