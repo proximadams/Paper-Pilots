@@ -39,15 +39,15 @@ var propellorSpeed   : float = 0.0
 # TODO: slightly random hit location on plane
 
 func _process(delta: float) -> void:
-	handle_input_wing_angles()
-	handle_spin_propellor(delta)
-	handle_gun_fire()
-	handle_rotation(delta)
-	handle_gravity()
-	handle_movement(delta)
-	aim_gun_shot()
+	_handle_input_wing_angles()
+	_handle_spin_propellor(delta)
+	_handle_gun_fire()
+	_handle_rotation(delta)
+	_handle_gravity()
+	_handle_movement(delta)
+	_aim_gun_shot()
 
-func aim_gun_shot() -> void:
+func _aim_gun_shot() -> void:
 	if enemyPlayer.isHitable:
 		gunShots.look_at(enemyPlayer.global_position)
 		gunShots.scale = Vector3(-1.0, -1.0, -1.0)
@@ -85,16 +85,16 @@ func _get_acceleration_decceleration_mult() -> float:
 		result *= MOVE_ACCELERATION
 	return result
 
-func handle_gun_fire() -> void:
+func _handle_gun_fire() -> void:
 	if Input.is_action_just_pressed('shoot_p%d' % playerID):
 		gunShotsAnim.play('shooting')
 	elif Input.is_action_just_released('shoot_p%d' % playerID):
 		gunShotsAnim.play('not_shooting')
 
-func handle_gravity() -> void:
+func _handle_gravity() -> void:
 	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y)
 
-func handle_movement(delta: float) -> void:
+func _handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
 	propulsionSpeed = max(0.0, propulsionSpeed + (accdeccMult * delta))
 	propulsionSpeed -= (global_basis.z.normalized().y - 0.5) * delta * 70.0
@@ -106,9 +106,9 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 	transform = transform.orthonormalized()
 
-func handle_rotation(delta: float) -> void:
-	var speedMultX = 0.5 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
-	var speedMultY = 0.4 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+func _handle_rotation(delta: float) -> void:
+	var speedMultX = 1.0 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultY = 0.8 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
@@ -118,12 +118,12 @@ func handle_rotation(delta: float) -> void:
 			propulsionSpeed = 0.001
 		rotation.x += delta * min(1.0, max(0.0, max(0.0, TILT_DOWN_SPEED/propulsionSpeed) - 0.1))
 
-func handle_spin_propellor(delta: float) -> void:
+func _handle_spin_propellor(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
 	propellorSpeed = max(0.0, min(MAX_PROPELLOR_SPEED, propellorSpeed + (accdeccMult * delta * PROPELLOR_ACCELERATION)))
 	propellor.rotation.z += delta * propellorSpeed
 
-func handle_input_wing_angles() -> void:
+func _handle_input_wing_angles() -> void:
 	var inputDirection = get_input_direction()
 	leftMoveableWing.rotation.x  = deg_to_rad(inputDirection.x - inputDirection.y) * WING_DEGREES
 	rightMoveableWing.rotation.x = deg_to_rad(-inputDirection.x - inputDirection.y) * WING_DEGREES
