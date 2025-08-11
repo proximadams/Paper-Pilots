@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bl8xuisdgewo1" path="res://icons/target_hitable.svg" id="2_b5a2r"]
 
 [node name="Target" type="Control"]
-modulate = Color(1, 1, 1, 0.745098)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0

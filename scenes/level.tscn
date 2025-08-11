@@ -1,16 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=12 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
 [ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scenes/physical_world_elements_follow.gd" id="1_ppgk2"]
 [ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="4_mx8sn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
 shader = ExtResource("1_2r41h")
-shader_parameter/horizonColor = Color(0.150078, 0.486328, 0.395698, 1)
-shader_parameter/skyColor = Color(0.164749, 0.714844, 0.547237, 1)
+shader_parameter/horizonColor = Color(0, 0, 0, 1)
+shader_parameter/skyColor = Color(0.573338, 0.697266, 0.643531, 1)
+shader_parameter/skyTexture = ExtResource("2_klq6b")
 
 [sub_resource type="Sky" id="Sky_ppgk2"]
 sky_material = SubResource("ShaderMaterial_ppgk2")
