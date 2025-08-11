@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
-[ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scenes/physical_world_elements_follow.gd" id="1_ppgk2"]
+[ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scripts/physical_world_elements_follow.gd" id="1_ppgk2"]
 [ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="1_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="3_w8frs"]
@@ -94,7 +94,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1150, 1296)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
@@ -121,7 +121,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1150, 1296)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]

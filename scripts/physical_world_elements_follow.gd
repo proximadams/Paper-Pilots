@@ -7,4 +7,4 @@ func _process(_delta: float) -> void:
 	for currPlayer in playerArr:
 		if currPlayer.global_position.y < bottomY:
 			bottomY = currPlayer.global_position.y
-	global_position.y = bottomY - 1000.0
+	global_position.y = bottomY - 5000.0

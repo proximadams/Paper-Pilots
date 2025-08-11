@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const GRAVITY               : float = -200.0
+const GRAVITY               : float = -2000.0
 const MAX_PROPELLOR_SPEED   : float = 20.0
 const MAX_PROPULSION_SPEED  : float = 10000.0
 const MOVE_ACCELERATION     : float = 400.0
@@ -38,7 +38,7 @@ var propellorSpeed   : float = 0.0
 # TODO: edge of screen tells you where enemy is
 # TODO: slightly random hit location on plane
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_handle_input_wing_angles()
 	_handle_spin_propellor(delta)
 	_handle_gun_fire()
@@ -92,7 +92,7 @@ func _handle_gun_fire() -> void:
 		gunShotsAnim.play('not_shooting')
 
 func _handle_gravity() -> void:
-	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y)
+	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y) * velocity.y
 
 func _handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
@@ -107,8 +107,8 @@ func _handle_movement(delta: float) -> void:
 	transform = transform.orthonormalized()
 
 func _handle_rotation(delta: float) -> void:
-	var speedMultX = 1.5 + (0.003 * (sqrt(propulsionSpeed * abs(fallSpeed))))
-	var speedMultY = 1.2 + (0.0008 * (sqrt(propulsionSpeed * abs(fallSpeed))))
+	var speedMultX = 1.5 + (0.003 * (sqrt(propulsionSpeed)))
+	var speedMultY = 1.2 + (0.0008 * (sqrt(propulsionSpeed)))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
