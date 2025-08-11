@@ -35,7 +35,6 @@ var propellorSpeed   : float = 0.0
 
 @onready var allBodyVisuals: Array[MeshInstance3D] = _get_all_body_visuals()
 
-# TODO: edge of screen tells you where enemy is
 # TODO: slightly random hit location on plane
 
 func _physics_process(delta: float) -> void:

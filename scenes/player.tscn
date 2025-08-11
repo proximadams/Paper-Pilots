@@ -294,7 +294,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 [node name="Trail" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
 
-[node name="Trail3D" type="MeshInstance3D" parent="Trail"]
+[node name="Trail3DVertical" type="MeshInstance3D" parent="Trail"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dqkch")
 skeleton = NodePath("../..")
@@ -306,7 +306,7 @@ _startColor = Color(1, 1, 1, 0.196078)
 _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 
-[node name="Trail3D2" type="MeshInstance3D" parent="Trail"]
+[node name="Trail3DHorizontal" type="MeshInstance3D" parent="Trail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dqkch")
 skeleton = NodePath("../..")
