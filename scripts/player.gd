@@ -116,7 +116,7 @@ func _handle_rotation(delta: float) -> void:
 	if rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		if propulsionSpeed == 0.0:
 			propulsionSpeed = 0.001
-		rotation.x += delta * min(1.0, max(0.0, max(0.0, TILT_DOWN_SPEED/propulsionSpeed) - 0.1))
+		rotation.x += delta * min(2.0, max(0.0, max(0.0, TILT_DOWN_SPEED/propulsionSpeed) - 0.1))
 
 func _handle_spin_propellor(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()

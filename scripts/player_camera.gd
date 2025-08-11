@@ -11,7 +11,7 @@ var reticleOffset := Vector2(32.0, 32.0)
 @onready var viewport = get_parent()
 
 func _physics_process(_delta: float) -> void:
-	global_position = lerp(global_position, followTarget.global_position, 0.15)
+	global_position = lerp(global_position, followTarget.global_position, 0.22)
 	look_at(lookAtTarget.global_position)
 	if is_position_in_frustum(player.enemyPlayer.global_position):
 		var screenPosition    := unproject_position(player.enemyPlayer.global_position)

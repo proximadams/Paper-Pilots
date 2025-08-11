@@ -14,26 +14,27 @@ height = 5.5
 [sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
 size = Vector3(0.9, 0.9, 5.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
-size = Vector3(0, 0.9, 6)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
+transparency = 1
+albedo_color = Color(0.762403, 0.762404, 0.762403, 0.392157)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
-size = Vector3(6, 0.1, 0.5)
+size = Vector3(6, 0.1, 0.6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qhqgy"]
-size = Vector3(1, 0.05, 0.25)
+size = Vector3(1, 0.05, 0.35)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
-size = Vector3(0.55, 0.05, 0.25)
+size = Vector3(0.55, 0.05, 0.35)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qlg0r"]
 size = Vector3(3, 0.2, 0.01)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tuyoq"]
-size = Vector3(0.1, 2, 0.3)
+size = Vector3(0.1, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fjrip"]
-size = Vector3(1.7, 0.2, 0.5)
+size = Vector3(2, 0.2, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 blend_mode = 1
@@ -181,15 +182,20 @@ mesh = SubResource("BoxMesh_u8vuu")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("2_g2els")
 
-[node name="MainBodyVertical" type="MeshInstance3D" parent="Rectangles/MainBody"]
-mesh = SubResource("BoxMesh_3vyb7")
-skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_g2els")
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Rectangles/MainBody"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1.5, 0, 0.45, 0.5)
+material_override = SubResource("StandardMaterial3D_qhqgy")
+radius = 0.45
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Rectangles/MainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 3)
+radius = 0.2
 
 [node name="Wings" type="Node3D" parent="Rectangles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 1)
 
 [node name="MainWing" type="MeshInstance3D" parent="Rectangles/Wings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
 mesh = SubResource("BoxMesh_g2els")
 skeleton = NodePath("../../..")
 
@@ -197,17 +203,17 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.25)
 
 [node name="Rectangle" type="MeshInstance3D" parent="Rectangles/Wings/LeftMoveableWing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
 mesh = SubResource("BoxMesh_qhqgy")
 skeleton = NodePath("../../../..")
 
 [node name="LeftOuterWing" type="MeshInstance3D" parent="Rectangles/Wings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.275, 0, -0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.275, 0, -0.425)
 mesh = SubResource("BoxMesh_dqkch")
 skeleton = NodePath("../../..")
 
 [node name="LeftInnerWing" type="MeshInstance3D" parent="Rectangles/Wings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725, 0, -0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725, 0, -0.425)
 mesh = SubResource("BoxMesh_dqkch")
 skeleton = NodePath("../../..")
 
@@ -215,17 +221,17 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -0.25)
 
 [node name="Rectangle" type="MeshInstance3D" parent="Rectangles/Wings/RightMoveableWing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
 mesh = SubResource("BoxMesh_qhqgy")
 skeleton = NodePath("../../../..")
 
 [node name="RightInnerWing" type="MeshInstance3D" parent="Rectangles/Wings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725, 0, -0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725, 0, -0.425)
 mesh = SubResource("BoxMesh_dqkch")
 skeleton = NodePath("../../..")
 
 [node name="RightOuterWing" type="MeshInstance3D" parent="Rectangles/Wings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.275, 0, -0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.275, 0, -0.425)
 mesh = SubResource("BoxMesh_dqkch")
 skeleton = NodePath("../../..")
 
@@ -237,17 +243,12 @@ skeleton = NodePath("../../..")
 [node name="Tail" type="Node3D" parent="Rectangles"]
 
 [node name="Vertical1" type="MeshInstance3D" parent="Rectangles/Tail"]
-transform = Transform3D(0.913574, 0.406673, -1.49012e-08, -0.352189, 0.791178, 0.5, 0.203337, -0.456787, 0.866025, 0.677, 0.553, -2.85)
-mesh = SubResource("BoxMesh_tuyoq")
-skeleton = NodePath("../../..")
-
-[node name="Vertical2" type="MeshInstance3D" parent="Rectangles/Tail"]
-transform = Transform3D(0.913545, -0.406736, 0, 0.352244, 0.791153, 0.5, -0.203368, -0.456773, 0.866025, -0.677, 0.553, -2.85)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.553, -2.85)
 mesh = SubResource("BoxMesh_tuyoq")
 skeleton = NodePath("../../..")
 
 [node name="Horizontal" type="MeshInstance3D" parent="Rectangles/Tail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2.75)
 mesh = SubResource("BoxMesh_fjrip")
 skeleton = NodePath("../../..")
 
