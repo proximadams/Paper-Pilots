@@ -8,6 +8,7 @@ const MAX_PROPELLOR_SPEED   : float = 20.0
 const MAX_PROPULSION_SPEED  : float = 10000.0
 const MOVE_ACCELERATION     : float = 400.0
 const PROPELLOR_ACCELERATION: float = 50.0
+const SHOOT_COOL_DOWN_TIME  : float = 0.4
 const SHOOT_DECCELERATION   : float = 1000.0
 const TILT_DOWN_SPEED       : float = 100.0
 const WING_DEGREES          : float = 45.0
@@ -35,6 +36,7 @@ var fallSpeed        : float = 0.0# negative is fall direction
 var isHitable        : bool  = true
 var propulsionSpeed  : float = 200.0
 var propellorSpeed   : float = 0.0
+var shootCoolDownTime: float = 0.0
 
 @onready var allBodyVisuals: Array[MeshInstance3D] = _get_all_body_visuals()
 
@@ -43,7 +45,7 @@ var propellorSpeed   : float = 0.0
 func _physics_process(delta: float) -> void:
 	_handle_input_wing_angles()
 	_handle_spin_propellor(delta)
-	_handle_gun_fire()
+	_handle_gun_fire(delta)
 	_handle_rotation(delta)
 	_handle_gravity()
 	_handle_movement(delta)
@@ -79,7 +81,7 @@ func _get_all_body_visuals() -> Array[MeshInstance3D]:
 
 func _get_acceleration_decceleration_mult() -> float:
 	var result = 1.0
-	if Input.is_action_pressed('shoot_p%d' % playerID):
+	if Input.is_action_pressed('shoot_p%d' % playerID) or 0.0 < shootCoolDownTime:
 		result = -1.0
 	if result < 0.0:
 		result *= SHOOT_DECCELERATION
@@ -87,11 +89,18 @@ func _get_acceleration_decceleration_mult() -> float:
 		result *= MOVE_ACCELERATION
 	return result
 
-func _handle_gun_fire() -> void:
-	if Input.is_action_just_pressed('shoot_p%d' % playerID):
+func _handle_gun_fire(delta: float) -> void:
+	if Input.is_action_just_pressed('shoot_p%d' % playerID) and shootCoolDownTime == 0.0:
 		gunShotsAnim.play('shooting')
 	elif Input.is_action_just_released('shoot_p%d' % playerID):
 		gunShotsAnim.play('not_shooting')
+		if shootCoolDownTime == 0.0:
+			shootCoolDownTime = SHOOT_COOL_DOWN_TIME
+	if 0.0 < shootCoolDownTime:
+		shootCoolDownTime -= delta
+	if shootCoolDownTime < 0.0 and Input.is_action_pressed('shoot_p%d' % playerID):
+		shootCoolDownTime = 0.0
+		gunShotsAnim.play('shooting')
 
 func _handle_gravity() -> void:
 	fallSpeed = GRAVITY * abs(global_basis.z.normalized().y) + abs(global_basis.x.normalized().y) * velocity.y
