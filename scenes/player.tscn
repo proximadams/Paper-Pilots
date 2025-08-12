@@ -156,10 +156,11 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
+enemyPlayer = NodePath(".")
 gunShots = NodePath("GunShots")
 gunShotsAnim = NodePath("GunShots/Visual/AnimationPlayer")
 leftMoveableWing = NodePath("Rectangles/Wings/LeftMoveableWing")
@@ -307,7 +308,6 @@ _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 
 [node name="Trail3DHorizontal" type="MeshInstance3D" parent="Trail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dqkch")
 skeleton = NodePath("../..")
 script = ExtResource("4_dqkch")

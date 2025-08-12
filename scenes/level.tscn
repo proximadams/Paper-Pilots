@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=14 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="4_mx8sn"]
+[ext_resource type="AudioStream" uid="uid://bits4ry4ql80r" path="res://audio/242740__marlonhj__engine.wav" id="8_b121j"]
+[ext_resource type="Script" uid="uid://mn6y46c3xorx" path="res://scripts/engine_sounds.gd" id="9_8c41q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
 shader = ExtResource("1_2r41h")
@@ -68,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.62268e-06, 0, -30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62268e-06, 0, -30)
 enemyPlayer = NodePath("../Player1")
 playerID = 2
 
@@ -94,7 +96,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
@@ -121,7 +123,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
@@ -139,3 +141,10 @@ enemyOnscreen = NodePath("../Target")
 [node name="EnemyIndicatorArrow" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("3_w8frs")]
 
 [node name="Target" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("4_mx8sn")]
+
+[node name="EngineSounds" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player1", "player2")]
+stream = ExtResource("8_b121j")
+autoplay = true
+script = ExtResource("9_8c41q")
+player1 = NodePath("../Player1")
+player2 = NodePath("../Player2")
