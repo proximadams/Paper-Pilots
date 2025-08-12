@@ -144,6 +144,7 @@ enemyOnscreen = NodePath("../Target")
 
 [node name="EngineSounds" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player1", "player2")]
 stream = ExtResource("8_b121j")
+volume_db = -10.0
 autoplay = true
 script = ExtResource("9_8c41q")
 player1 = NodePath("../Player1")

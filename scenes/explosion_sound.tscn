@@ -4,7 +4,7 @@
 
 [node name="explosionSound" type="AudioStreamPlayer"]
 stream = ExtResource("1_8hbce")
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 
 [connection signal="finished" from="." to="." method="queue_free"]

@@ -4,7 +4,7 @@
 
 [node name="shootSound" type="AudioStreamPlayer"]
 stream = ExtResource("1_hqiem")
-volume_db = -15.0
+volume_db = -20.0
 autoplay = true
 
 [connection signal="finished" from="." to="." method="queue_free"]
