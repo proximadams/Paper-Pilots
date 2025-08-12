@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
+var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
+
 const GRAVITY               : float = -2000.0
 const MAX_PROPELLOR_SPEED   : float = 20.0
 const MAX_PROPULSION_SPEED  : float = 10000.0
@@ -166,3 +169,7 @@ func _on_gun_shot() -> void:
 		var explosionInst: Node3D = explosionRes.instantiate()
 		get_parent().add_child(explosionInst)
 		explosionInst.global_position = enemyPlayer.global_position
+		var explosionSoundInst: AudioStreamPlayer = explosionSoundRes.instantiate()
+		add_child(explosionSoundInst)
+	var shootSoundInst: AudioStreamPlayer = shootSoundRes.instantiate()
+	add_child(shootSoundInst)
