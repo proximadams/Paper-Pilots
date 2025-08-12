@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=24 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
@@ -149,6 +149,13 @@ _data = {
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qhqgy"]
 points = PackedVector3Array(0, 0, 10000, 0, 4000, 10000, 0, -4000, 10000, 4000, 0, 10000, -4000, 0, 10000, 2828, 2828, 10000, 2828, -2828, 10000, -2828, 2828, 10000, -2828, -2828, 10000, 0, 0, 0)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
 transparency = 1
 blend_mode = 1
@@ -156,7 +163,14 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
@@ -169,6 +183,10 @@ materialSafe = ExtResource("2_g2els")
 materialUnsafe = ExtResource("3_qhqgy")
 propellor = NodePath("Rectangles/Properller")
 rectangles = NodePath("Rectangles")
+trailHorizontalAdd = NodePath("TrailAdd/Trail3DHorizontal")
+trailVerticalAdd = NodePath("TrailAdd/Trail3DVertical")
+trailHorizontalSub = NodePath("TrailSubtract/Trail3DHorizontal")
+trailVerticalSub = NodePath("TrailSubtract/Trail3DVertical")
 playerID = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -292,10 +310,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
 [node name="Front" type="OmniLight3D" parent="OmniLight3Ds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 
-[node name="Trail" type="Node3D" parent="."]
+[node name="TrailAdd" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
 
-[node name="Trail3DVertical" type="MeshInstance3D" parent="Trail"]
+[node name="Trail3DHorizontal" type="MeshInstance3D" parent="TrailAdd"]
+material_override = SubResource("StandardMaterial3D_qlg0r")
+skeleton = NodePath("../..")
+script = ExtResource("4_dqkch")
+_fromWidth = 0.1
+_toWidth = 2.0
+_lifespan = 20.0
+_startColor = Color(1, 1, 1, 0.196078)
+_endColor = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
+
+[node name="Trail3DVertical" type="MeshInstance3D" parent="TrailAdd"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dqkch")
 skeleton = NodePath("../..")
@@ -308,14 +337,30 @@ _startColor = Color(1, 1, 1, 0.196078)
 _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 
-[node name="Trail3DHorizontal" type="MeshInstance3D" parent="Trail"]
-material_override = SubResource("StandardMaterial3D_dqkch")
+[node name="TrailSubtract" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+
+[node name="Trail3DHorizontal" type="MeshInstance3D" parent="TrailSubtract"]
+material_override = SubResource("StandardMaterial3D_tuyoq")
 skeleton = NodePath("../..")
 script = ExtResource("4_dqkch")
 _fromWidth = 0.1
 _toWidth = 2.0
 _lifespan = 20.0
-_startColor = Color(1, 1, 1, 0.196078)
+_startColor = Color(0, 0, 0, 0)
+_endColor = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
+
+[node name="Trail3DVertical" type="MeshInstance3D" parent="TrailSubtract"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tuyoq")
+skeleton = NodePath("../..")
+script = ExtResource("4_dqkch")
+_fromWidth = 0.1
+_toWidth = 5.0
+_scaleAcceleration = 0.5
+_lifespan = 20.0
+_startColor = Color(0, 0, 0, 0)
 _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 

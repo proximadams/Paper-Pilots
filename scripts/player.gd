@@ -4,6 +4,7 @@ var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
 var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 
 const GRAVITY               : float = -2000.0
+const MAX_HEALTH            : int   = 20
 const MAX_PROPELLOR_SPEED   : float = 20.0
 const MAX_PROPULSION_SPEED  : float = 10000.0
 const MOVE_ACCELERATION     : float = 400.0
@@ -26,13 +27,18 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var materialSafe  : Material
 @export var materialUnsafe: Material
 
-@export var propellor: MeshInstance3D
-@export var rectangles: Node3D
+@export var propellor         : MeshInstance3D
+@export var rectangles        : Node3D
+@export var trailHorizontalAdd: MeshInstance3D
+@export var trailVerticalAdd  : MeshInstance3D
+@export var trailHorizontalSub: MeshInstance3D
+@export var trailVerticalSub  : MeshInstance3D
 
 @export var playerID: int
 
 var enemyHitableCount: int   = 0
 var fallSpeed        : float = 0.0# negative is fall direction
+var health           : int = MAX_HEALTH
 var isHitable        : bool  = true
 var propulsionSpeed  : float = 200.0
 var propellorSpeed   : float = 0.0
@@ -180,5 +186,19 @@ func _on_gun_shot() -> void:
 		explosionInst.global_position = enemyPlayer.global_position
 		var explosionSoundInst: AudioStreamPlayer = explosionSoundRes.instantiate()
 		add_child(explosionSoundInst)
+		enemyPlayer.get_hit()
 	var shootSoundInst: AudioStreamPlayer = shootSoundRes.instantiate()
 	add_child(shootSoundInst)
+
+func get_hit() -> void:
+	if 0 < health:
+		health -= 1
+	var greyValue: float = float(health) / float(MAX_HEALTH)
+	trailHorizontalAdd._startColor.r = greyValue
+	trailHorizontalAdd._startColor.g = greyValue
+	trailHorizontalAdd._startColor.b = greyValue
+	trailVerticalAdd._startColor.r   = greyValue
+	trailVerticalAdd._startColor.g   = greyValue
+	trailVerticalAdd._startColor.b   = greyValue
+	trailHorizontalSub._startColor.a = 1.0 - greyValue
+	trailVerticalSub._startColor.a = 1.0 - greyValue
