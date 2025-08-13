@@ -245,7 +245,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1150, 1296)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
@@ -278,7 +278,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1150, 1296)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]

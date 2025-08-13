@@ -226,8 +226,10 @@ func _die() -> void:
 	trailVerticalSub.visible = false
 	isHitable = false
 	state = LOST
+	gunShotsAnim.play('not_shooting')
 	enemyPlayer.state = WON
 	enemyPlayer.gunShotsAnim.play('not_shooting')
+	enemyPlayer.isHitable = false
 	emit_signal('game_over', playerID)
 
 func restart() -> void:
@@ -237,6 +239,8 @@ func restart() -> void:
 	isHitable = true
 	state = FIGHTING
 	health = MAX_HEALTH
+	velocity = Vector3()
+	propulsionSpeed = INIT_PROPULSION_SPEED
 	global_position = initPosition
 	global_rotation = initRotation
 	trailHorizontalAdd._startColor.r = 1.0

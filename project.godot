@@ -11,15 +11,21 @@ config_version=5
 [application]
 
 config/name="Paper Pilots"
-run/main_scene="uid://cag2pq2wvu8rw"
+run/main_scene="uid://qokfy0id8ysr"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=120
+
+[autoload]
+
+Music="*res://scenes/music.tscn"
 
 [display]
 
 window/size/viewport_width=2304
 window/size/viewport_height=1296
 window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
