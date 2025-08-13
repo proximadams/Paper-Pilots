@@ -369,7 +369,7 @@ metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 
 [node name="EngineStartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qlg0r")
-volume_db = -8.0
+volume_db = -10.0
 
 [connection signal="area_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_entered"]
 [connection signal="area_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_exited"]
