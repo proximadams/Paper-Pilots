@@ -45,3 +45,7 @@ func restart() -> void:
 	camera2.gameOver = false
 	winLabel2.hide()
 	loseLabel2.hide()
+
+func go_to_main_menu() -> void:
+	Music.volume_db = 0.0
+	get_tree().change_scene_to_file('res://scenes/main_menu.tscn')

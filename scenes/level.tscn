@@ -416,5 +416,6 @@ disabled = true
 [connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="." method="restart"]
 [connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="GameOverUI/AudioStreamPlayer" method="stop"]
 [connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="GameOverUI/AnimationPlayer" method="play" binds= ["RESET"]]
+[connection signal="pressed" from="GameOverUI/HBoxContainer/Cancel" to="." method="go_to_main_menu"]
 [connection signal="pressed" from="GameOverUI/HBoxContainer/Cancel" to="GameOverUI/AudioStreamPlayer" method="stop"]
 [connection signal="pressed" from="GameOverUI/HBoxContainer/Cancel" to="GameOverUI/AnimationPlayer" method="play" binds= ["RESET"]]
