@@ -16,7 +16,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Images/TextureRect7:visible")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Images/TextureRect6:visible")
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +40,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Images/TextureRect5:visible")
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -52,7 +52,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Images/TextureRect1:visible")
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -64,7 +64,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Images/TextureRect2:visible")
+tracks/4/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -76,7 +76,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Images/TextureRect3:visible")
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -88,7 +88,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Images/TextureRect4:visible")
+tracks/6/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -100,7 +100,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Images/TextureRect7:modulate")
+tracks/7/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -112,7 +112,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Images/TextureRect1:modulate")
+tracks/8/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -124,7 +124,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Images/TextureRect2:modulate")
+tracks/9/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -136,7 +136,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Images/TextureRect3:modulate")
+tracks/10/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:modulate")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -148,7 +148,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Images/TextureRect4:modulate")
+tracks/11/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -160,7 +160,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Images/TextureRect5:modulate")
+tracks/12/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -172,7 +172,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Images/TextureRect6:modulate")
+tracks/13/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -190,7 +190,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Images/TextureRect7:modulate")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -202,7 +202,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Images/TextureRect1:modulate")
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -214,7 +214,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Images/TextureRect2:modulate")
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -226,7 +226,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Images/TextureRect3:modulate")
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -238,7 +238,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Images/TextureRect4:modulate")
+tracks/4/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -250,7 +250,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Images/TextureRect5:modulate")
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -262,7 +262,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Images/TextureRect6:modulate")
+tracks/6/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -274,7 +274,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Images/TextureRect7:visible")
+tracks/7/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -286,7 +286,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Images/TextureRect1:visible")
+tracks/8/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -298,7 +298,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Images/TextureRect2:visible")
+tracks/9/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -310,7 +310,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Images/TextureRect3:visible")
+tracks/10/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -322,7 +322,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Images/TextureRect4:visible")
+tracks/11/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -334,7 +334,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Images/TextureRect5:visible")
+tracks/12/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -346,7 +346,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Images/TextureRect6:visible")
+tracks/13/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -371,15 +371,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbmy8")
 
-[node name="Images" type="Control" parent="."]
+[node name="FocusButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_left = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_neighbor_top = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_neighbor_right = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_neighbor_bottom = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_next = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_previous = NodePath("../SubViewportContainer/SubViewport/StartButton")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
 
-[node name="TextureRect1" type="TextureRect" parent="Images"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(2304, 1296)
+render_target_update_mode = 4
+
+[node name="Images" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect1" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -394,7 +420,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_l6cm7")
 
-[node name="TextureRect2" type="TextureRect" parent="Images"]
+[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -410,7 +436,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("2_ekxnf")
 
-[node name="TextureRect3" type="TextureRect" parent="Images"]
+[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -426,7 +452,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("3_bqqt6")
 
-[node name="TextureRect4" type="TextureRect" parent="Images"]
+[node name="TextureRect4" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -442,7 +468,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("4_wu84c")
 
-[node name="TextureRect5" type="TextureRect" parent="Images"]
+[node name="TextureRect5" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -458,7 +484,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("5_8ln24")
 
-[node name="TextureRect6" type="TextureRect" parent="Images"]
+[node name="TextureRect6" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -474,7 +500,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("6_rtw2f")
 
-[node name="TextureRect7" type="TextureRect" parent="Images"]
+[node name="TextureRect7" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -490,61 +516,23 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_oa1go")
 
-[node name="Borders" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Borders"]
-layout_mode = 0
-offset_left = -12520.0
-offset_top = -8594.0
-offset_right = 10985.0
-color = Color(0.332031, 0, 0, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="Borders"]
-layout_mode = 0
-offset_left = -12534.0
-offset_top = 1296.0
-offset_right = 12134.0
-offset_bottom = 11709.0
-color = Color(0.332031, 0, 0, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="Borders"]
-layout_mode = 0
-offset_left = 2304.0
-offset_top = -476.0
-offset_right = 11741.0
-offset_bottom = 2005.0
-color = Color(0.332031, 0, 0, 1)
-
-[node name="ColorRect4" type="ColorRect" parent="Borders"]
-layout_mode = 0
-offset_left = -10294.0
-offset_top = -429.0
-offset_bottom = 2052.0
-color = Color(0.332031, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
+root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_tbmy8")
 }
 autoplay = "animate"
 
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 1
+[node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = 352.0
-offset_right = 95.0
-offset_bottom = 440.0
+offset_left = 97.0
+offset_top = 460.0
+offset_right = 287.0
+offset_bottom = 548.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
@@ -556,8 +544,7 @@ focus_previous = NodePath(".")
 theme = ExtResource("9_5dd4i")
 text = "Start"
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 0
+[node name="TitleLabel" type="Label" parent="SubViewportContainer/SubViewport"]
 offset_left = 48.0
 offset_top = 48.0
 offset_right = 984.0
@@ -565,17 +552,5 @@ offset_bottom = 223.0
 theme = ExtResource("9_jk1qb")
 text = "Paper Pilots"
 
-[node name="FocusButton" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-focus_neighbor_left = NodePath("../StartButton")
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_right = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../StartButton")
-focus_next = NodePath("../StartButton")
-focus_previous = NodePath("../StartButton")
-
-[connection signal="pressed" from="StartButton" to="." method="start_game"]
 [connection signal="ready" from="FocusButton" to="FocusButton" method="grab_focus"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/StartButton" to="." method="start_game"]
