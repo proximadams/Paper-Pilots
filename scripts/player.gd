@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		_handle_gravity()
 		_handle_movement(delta)
 		_aim_gun_shot()
-	else:
+	elif state == WON:
 		_handle_spin_propellor(delta)
 		move_and_slide()
 
@@ -229,8 +229,6 @@ func get_hit() -> void:
 
 func _die() -> void:
 	rectangles.visible = false
-	trailHorizontalSub.visible = false
-	trailVerticalSub.visible = false
 	isHitable = false
 	state = LOST
 	gunShotsAnim.play('not_shooting')
