@@ -22,6 +22,10 @@ func _ready():
 	_oldPos = get_global_transform().origin
 	mesh = ImmediateMesh.new()
 
+func restart():
+	_points = []
+	_widths = []
+
 func AppendPoint():
 	_points.append(get_global_transform().origin)
 	_widths.append([

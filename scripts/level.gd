@@ -20,19 +20,19 @@ func player_died(playerId: int) -> void:
 	gameOverSound.play()
 	gameOverUiAnim.play('CountDown')
 	if playerId == 1:
-		player_win(camera2, winLabel2, loseLabel2)
-		player_lose(camera1, winLabel1, loseLabel1)
+		player_win(camera2, winLabel2)
+		player_lose(camera1, loseLabel1)
 	elif playerId == 2:
-		player_win(camera1, winLabel1, loseLabel1)
-		player_lose(camera2, winLabel2, loseLabel2)
+		player_win(camera1, winLabel1)
+		player_lose(camera2, loseLabel2)
 	else:
 		print('ERROR: player ID is invalid. playerId = ' + str(playerId))
 
-func player_win(camera: Camera3D, winLabel: Label, loseLabel: Label):
+func player_win(camera: Camera3D, winLabel: Label):
 	camera.gameOver = true
 	winLabel.show()
 
-func player_lose(camera: Camera3D, winLabel: Label, loseLabel: Label):
+func player_lose(camera: Camera3D, loseLabel: Label):
 	camera.gameOver = true
 	loseLabel.show()
 

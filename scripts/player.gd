@@ -251,3 +251,8 @@ func restart() -> void:
 	trailVerticalAdd._startColor.b   = 1.0
 	trailHorizontalSub._startColor.a = 0.0
 	trailVerticalSub._startColor.a   = 0.0
+
+	trailHorizontalAdd.restart()
+	trailVerticalAdd.restart()
+	trailHorizontalSub.restart()
+	trailVerticalSub.restart()
