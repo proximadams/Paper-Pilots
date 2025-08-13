@@ -1,14 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=24 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
+[ext_resource type="Script" uid="uid://d2vfon4ssiidg" path="res://scripts/level.gd" id="1_8iemx"]
 [ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scripts/physical_world_elements_follow.gd" id="1_ppgk2"]
 [ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="1_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="4_mx8sn"]
-[ext_resource type="AudioStream" uid="uid://bits4ry4ql80r" path="res://audio/242740__marlonhj__engine.wav" id="8_b121j"]
+[ext_resource type="AudioStream" uid="uid://bits4ry4ql80r" path="res://audio/engine.wav" id="8_b121j"]
+[ext_resource type="PackedScene" uid="uid://c2dtbo51c2et7" path="res://scenes/win_label.tscn" id="8_t1rx8"]
 [ext_resource type="Script" uid="uid://mn6y46c3xorx" path="res://scripts/engine_sounds.gd" id="9_8c41q"]
+[ext_resource type="PackedScene" uid="uid://cr70q6kngxwgm" path="res://scenes/lose_label.tscn" id="9_8iemx"]
+[ext_resource type="AudioStream" uid="uid://c3swb0fgdwdyw" path="res://audio/trumpet_fanfare.mp3" id="13_64w2a"]
+[ext_resource type="Theme" uid="uid://b12pxo34d4wpv" path="res://themes/big_number_label.tres" id="14_fpun6"]
+[ext_resource type="AudioStream" uid="uid://ba1cafhaai5ns" path="res://audio/count_down.wav" id="15_wc255"]
+[ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="16_arp2o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
 shader = ExtResource("1_2r41h")
@@ -35,7 +42,149 @@ emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.5
 backlight_enabled = true
 
-[node name="Level" type="Node3D"]
+[sub_resource type="Animation" id="Animation_fpun6"]
+resource_name = "CountDown"
+length = 14.0
+step = 1.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelHolder/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 2.96667, 3.96667, 4.96667, 5.96667, 6.96667, 7.96667, 8.96667, 9.96667, 10.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "Restarting in...", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FocusGrabberButton")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.966667, 12),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}, {
+"args": [],
+"method": &"grab_focus"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.966667, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LabelHolder:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wc255"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelHolder/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LabelHolder:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wc255"]
+_data = {
+&"CountDown": SubResource("Animation_fpun6"),
+&"RESET": SubResource("Animation_wc255")
+}
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "gameOverSound", "gameOverUiAnim")]
+script = ExtResource("1_8iemx")
+player1 = NodePath("Player1")
+camera1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/Camera3D")
+winLabel1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/WinLabel")
+loseLabel1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/LoseLabel")
+player2 = NodePath("Player2")
+camera2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/Camera3D")
+winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel")
+loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
+gameOverSound = NodePath("GameOverSound")
+gameOverUiAnim = NodePath("GameOverUI/AnimationPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2q6dc")
@@ -115,6 +264,12 @@ enemyOnscreen = NodePath("../Target")
 
 [node name="Target" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("4_mx8sn")]
 
+[node name="WinLabel" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("8_t1rx8")]
+visible = false
+
+[node name="LoseLabel" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("9_8iemx")]
+visible = false
+
 [node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -142,6 +297,14 @@ enemyOnscreen = NodePath("../Target")
 
 [node name="Target" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("4_mx8sn")]
 
+[node name="WinLabel" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("8_t1rx8")]
+visible = false
+offset_left = -382.0
+offset_right = 382.0
+
+[node name="LoseLabel" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("9_8iemx")]
+visible = false
+
 [node name="EngineSounds" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player1", "player2")]
 stream = ExtResource("8_b121j")
 volume_db = -10.0
@@ -149,3 +312,109 @@ autoplay = true
 script = ExtResource("9_8c41q")
 player1 = NodePath("../Player1")
 player2 = NodePath("../Player2")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_64w2a")
+volume_db = 10.0
+
+[node name="GameOverUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelHolder" type="Control" parent="GameOverUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverUI/LabelHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -892.0
+offset_top = -174.5
+offset_right = 892.0
+offset_bottom = 174.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_fpun6")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_wc255")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverUI"]
+stream = ExtResource("15_wc255")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -296.0
+offset_right = 20.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayButton" type="Button" parent="GameOverUI/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Cancel")
+focus_neighbor_top = NodePath("../Cancel")
+focus_neighbor_right = NodePath("../Cancel")
+focus_neighbor_bottom = NodePath("../Cancel")
+focus_next = NodePath("../Cancel")
+focus_previous = NodePath("../Cancel")
+theme = ExtResource("16_arp2o")
+text = "Play again"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverUI/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="GameOverUI/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_right = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
+theme = ExtResource("16_arp2o")
+text = "Cancel"
+
+[node name="FocusGrabberButton" type="Button" parent="GameOverUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_left = NodePath("../HBoxContainer/PlayButton")
+focus_neighbor_top = NodePath("../HBoxContainer/PlayButton")
+focus_neighbor_right = NodePath("../HBoxContainer/PlayButton")
+focus_neighbor_bottom = NodePath("../HBoxContainer/PlayButton")
+focus_next = NodePath("../HBoxContainer/PlayButton")
+focus_previous = NodePath("../HBoxContainer/PlayButton")
+disabled = true
+
+[connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="." method="restart"]
+[connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="GameOverUI/AudioStreamPlayer" method="stop"]
+[connection signal="pressed" from="GameOverUI/HBoxContainer/PlayButton" to="GameOverUI/AnimationPlayer" method="play" binds= ["RESET"]]
+[connection signal="pressed" from="GameOverUI/HBoxContainer/Cancel" to="GameOverUI/AudioStreamPlayer" method="stop"]
+[connection signal="pressed" from="GameOverUI/HBoxContainer/Cancel" to="GameOverUI/AnimationPlayer" method="play" binds= ["RESET"]]

@@ -6,6 +6,7 @@ extends Camera3D
 @export var enemyOffscreen: Control
 @export var enemyOnscreen : Control
 
+var gameOver      := false
 var reticleOffset := Vector2(32.0, 32.0)
 
 @onready var viewport = get_parent()
@@ -13,23 +14,27 @@ var reticleOffset := Vector2(32.0, 32.0)
 func _physics_process(_delta: float) -> void:
 	global_position = lerp(global_position, followTarget.global_position, 0.3)
 	look_at(lookAtTarget.global_position)
-	if is_position_in_frustum(player.enemyPlayer.global_position):
-		var screenPosition    := unproject_position(player.enemyPlayer.global_position)
-		enemyOnscreen.global_position = Vector2(screenPosition - reticleOffset)
-		enemyOnscreen.set_hitable(player.enemyPlayer.isHitable)
-		enemyOffscreen.hide()
-		enemyOnscreen.show()
+	if gameOver:
+		enemyOffscreen.visible = false
+		enemyOnscreen.visible = false
 	else:
-		var viewportCentre    := Vector2(viewport.size) / 2.0
-		var localToCamera     := to_local(player.enemyPlayer.global_position)
-		var screenPosition    := Vector2(localToCamera.x, -localToCamera.y)
-		var maxScreenPosition := viewportCentre - reticleOffset
-		if screenPosition.abs().aspect() > maxScreenPosition.abs().aspect():
-			screenPosition.x *= maxScreenPosition.x / abs(screenPosition.x)
+		if is_position_in_frustum(player.enemyPlayer.global_position):
+			var screenPosition    := unproject_position(player.enemyPlayer.global_position)
+			enemyOnscreen.global_position = Vector2(screenPosition - reticleOffset)
+			enemyOnscreen.set_hitable(player.enemyPlayer.isHitable)
+			enemyOffscreen.hide()
+			enemyOnscreen.show()
 		else:
-			screenPosition.y *= maxScreenPosition.y / abs(screenPosition.y)
-		enemyOffscreen.global_position = Vector2(viewportCentre + screenPosition - reticleOffset)
-		var angle = Vector2.LEFT.angle_to(screenPosition)
-		enemyOffscreen.rotation = angle
-		enemyOffscreen.show()
-		enemyOnscreen.hide()
+			var viewportCentre    := Vector2(viewport.size) / 2.0
+			var localToCamera     := to_local(player.enemyPlayer.global_position)
+			var screenPosition    := Vector2(localToCamera.x, -localToCamera.y)
+			var maxScreenPosition := viewportCentre - reticleOffset
+			if screenPosition.abs().aspect() > maxScreenPosition.abs().aspect():
+				screenPosition.x *= maxScreenPosition.x / abs(screenPosition.x)
+			else:
+				screenPosition.y *= maxScreenPosition.y / abs(screenPosition.y)
+			enemyOffscreen.global_position = Vector2(viewportCentre + screenPosition - reticleOffset)
+			var angle = Vector2.LEFT.angle_to(screenPosition)
+			enemyOffscreen.rotation = angle
+			enemyOffscreen.show()
+			enemyOnscreen.hide()

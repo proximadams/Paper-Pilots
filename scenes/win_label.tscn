@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2dtbo51c2et7"]
+
+[ext_resource type="Theme" uid="uid://bdep7d1wip201" path="res://themes/win_lose_label.tres" id="1_d4mi3"]
+
+[node name="WinLabel" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -224.0
+offset_top = 100.0
+offset_right = 224.0
+offset_bottom = 275.0
+grow_horizontal = 2
+theme = ExtResource("1_d4mi3")
+text = "You WIN!"

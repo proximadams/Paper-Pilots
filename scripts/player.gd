@@ -3,16 +3,19 @@ extends CharacterBody3D
 var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
 var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 
-const GRAVITY               : float = -2000.0
-const MAX_HEALTH            : int   = 20
-const MAX_PROPELLOR_SPEED   : float = 20.0
-const MAX_PROPULSION_SPEED  : float = 10000.0
-const MOVE_ACCELERATION     : float = 400.0
-const PROPELLOR_ACCELERATION: float = 50.0
-const SHOOT_COOL_DOWN_TIME  : float = 0.4
-const SHOOT_DECCELERATION   : float = 1000.0
-const TILT_DOWN_SPEED       : float = 100.0
-const WING_DEGREES          : float = 45.0
+signal game_over(playerId: int)
+
+const INIT_PROPULSION_SPEED  := 200.0
+const GRAVITY                := -2000.0
+const MAX_HEALTH             := 20
+const MAX_PROPELLOR_SPEED    := 20.0
+const MAX_PROPULSION_SPEED   := 10000.0
+const MOVE_ACCELERATION      := 400.0
+const PROPELLOR_ACCELERATION := 50.0
+const SHOOT_COOL_DOWN_TIME   := 0.4
+const SHOOT_DECCELERATION    := 1000.0
+const TILT_DOWN_SPEED        := 100.0
+const WING_DEGREES           := 45.0
 
 var explosionRes = preload('res://scenes/explosion.tscn')
 
@@ -36,26 +39,38 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 
 @export var playerID: int
 
-var enemyHitableCount: int   = 0
-var fallSpeed        : float = 0.0# negative is fall direction
-var health           : int = MAX_HEALTH
-var isHitable        : bool  = true
-var propulsionSpeed  : float = 200.0
-var propellorSpeed   : float = 0.0
-var shootCoolDownTime: float = 0.0
+var enemyHitableCount := 0
+var fallSpeed         := 0.0# negative is fall direction
+var health            := MAX_HEALTH
+var isHitable         := true
+var propulsionSpeed   := INIT_PROPULSION_SPEED
+var propellorSpeed    := 0.0
+var shootCoolDownTime := 0.0
+
+var state := FIGHTING
+
+enum {
+	FIGHTING,
+	WON,
+	LOST
+}
 
 @onready var allBodyVisuals: Array[MeshInstance3D] = _get_all_body_visuals()
-
-# TODO: slightly random hit location on plane
+@onready var initPosition  := global_position
+@onready var initRotation  := global_rotation
 
 func _physics_process(delta: float) -> void:
-	_handle_input_wing_angles()
-	_handle_spin_propellor(delta)
-	_handle_gun_fire(delta)
-	_handle_rotation(delta)
-	_handle_gravity()
-	_handle_movement(delta)
-	_aim_gun_shot()
+	if state == FIGHTING:
+		_handle_input_wing_angles()
+		_handle_spin_propellor(delta)
+		_handle_gun_fire(delta)
+		_handle_rotation(delta)
+		_handle_gravity()
+		_handle_movement(delta)
+		_aim_gun_shot()
+	else:
+		_handle_spin_propellor(delta)
+		move_and_slide()
 
 func _aim_gun_shot() -> void:
 	if enemyPlayer.isHitable:
@@ -193,6 +208,8 @@ func _on_gun_shot() -> void:
 func get_hit() -> void:
 	if 0 < health:
 		health -= 1
+	else:
+		_die()
 	var greyValue: float = float(health) / float(MAX_HEALTH)
 	trailHorizontalAdd._startColor.r = greyValue
 	trailHorizontalAdd._startColor.g = greyValue
@@ -201,4 +218,32 @@ func get_hit() -> void:
 	trailVerticalAdd._startColor.g   = greyValue
 	trailVerticalAdd._startColor.b   = greyValue
 	trailHorizontalSub._startColor.a = 1.0 - greyValue
-	trailVerticalSub._startColor.a = 1.0 - greyValue
+	trailVerticalSub._startColor.a   = 1.0 - greyValue
+
+func _die() -> void:
+	rectangles.visible = false
+	trailHorizontalSub.visible = false
+	trailVerticalSub.visible = false
+	isHitable = false
+	state = LOST
+	enemyPlayer.state = WON
+	enemyPlayer.gunShotsAnim.play('not_shooting')
+	emit_signal('game_over', playerID)
+
+func restart() -> void:
+	rectangles.visible = true
+	trailHorizontalSub.visible = true
+	trailVerticalSub.visible = true
+	isHitable = true
+	state = FIGHTING
+	health = MAX_HEALTH
+	global_position = initPosition
+	global_rotation = initRotation
+	trailHorizontalAdd._startColor.r = 1.0
+	trailHorizontalAdd._startColor.g = 1.0
+	trailHorizontalAdd._startColor.b = 1.0
+	trailVerticalAdd._startColor.r   = 1.0
+	trailVerticalAdd._startColor.g   = 1.0
+	trailVerticalAdd._startColor.b   = 1.0
+	trailHorizontalSub._startColor.a = 0.0
+	trailVerticalSub._startColor.a   = 0.0
