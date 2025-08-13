@@ -47,6 +47,7 @@ var isHitable         := true
 var propulsionSpeed   := INIT_PROPULSION_SPEED
 var propellorSpeed    := 0.0
 var shootCoolDownTime := 0.0
+var timeWithNoEngine  := 0.0
 
 var state := FIGHTING
 
@@ -106,7 +107,7 @@ func _get_acceleration_decceleration_mult() -> float:
 	if Input.is_action_pressed('shoot_p%d' % playerID) or 0.0 < shootCoolDownTime:
 		result = -1.0
 	if result < 0.0:
-		result *= SHOOT_DECCELERATION
+		result *= SHOOT_DECCELERATION + 2000.0 * timeWithNoEngine
 	else:
 		result *= MOVE_ACCELERATION
 	return result
@@ -132,6 +133,11 @@ func _handle_movement(delta: float) -> void:
 	propulsionSpeed = max(0.0, propulsionSpeed + (accdeccMult * delta))
 	propulsionSpeed -= (global_basis.z.normalized().y - 0.5) * delta * 70.0
 	propulsionSpeed = min(MAX_PROPULSION_SPEED, max(0.0, propulsionSpeed))
+
+	if accdeccMult < 0.0:
+		timeWithNoEngine += delta
+	else:
+		timeWithNoEngine = 0.0
 
 	velocity = Vector3(propulsionSpeed, propulsionSpeed, propulsionSpeed)
 	velocity *= delta * global_basis.z.normalized()
