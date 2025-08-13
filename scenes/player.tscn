@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=25 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
 [ext_resource type="Material" uid="uid://cgiog6wwt3bhg" path="res://materials/unsafe.tres" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_dqkch"]
+[ext_resource type="AudioStream" uid="uid://doneugn3ajoan" path="res://audio/engine_start.mp3" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 6.0
@@ -170,7 +171,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "propellor", "rectangles", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "rectangles", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
@@ -181,6 +182,7 @@ leftMoveableWing = NodePath("Rectangles/Wings/LeftMoveableWing")
 rightMoveableWing = NodePath("Rectangles/Wings/RightMoveableWing")
 materialSafe = ExtResource("2_g2els")
 materialUnsafe = ExtResource("3_qhqgy")
+engineStartSound = NodePath("EngineStartSound")
 propellor = NodePath("Rectangles/Properller")
 rectangles = NodePath("Rectangles")
 trailHorizontalAdd = NodePath("TrailAdd/Trail3DHorizontal")
@@ -364,6 +366,10 @@ _lifespan = 30.0
 _startColor = Color(0, 0, 0, 0)
 _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
+
+[node name="EngineStartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qlg0r")
+volume_db = -8.0
 
 [connection signal="area_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_entered"]
 [connection signal="area_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_exited"]

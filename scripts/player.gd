@@ -30,6 +30,7 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var materialSafe  : Material
 @export var materialUnsafe: Material
 
+@export var engineStartSound  : AudioStreamPlayer
 @export var propellor         : MeshInstance3D
 @export var rectangles        : Node3D
 @export var trailHorizontalAdd: MeshInstance3D
@@ -152,8 +153,14 @@ func _handle_rotation(delta: float) -> void:
 
 func _handle_spin_propellor(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
+	var oldPropellorSpeed = propellorSpeed
 	propellorSpeed = max(0.0, min(MAX_PROPELLOR_SPEED, propellorSpeed + (accdeccMult * delta * PROPELLOR_ACCELERATION)))
 	propellor.rotation.z += delta * propellorSpeed
+	if propellorSpeed != oldPropellorSpeed:
+		if oldPropellorSpeed == 0.0:
+			engineStartSound.play()
+		else:
+			engineStartSound.stop()
 
 func _handle_input_wing_angles() -> void:
 	var inputDirection = get_input_direction()
