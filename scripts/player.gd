@@ -9,7 +9,7 @@ const INIT_PROPULSION_SPEED  := 200.0
 const GRAVITY                := -2000.0
 const MAX_HEALTH             := 20
 const MAX_PROPELLOR_SPEED    := 20.0
-const MAX_PROPULSION_SPEED   := 10000.0
+const MAX_PROPULSION_SPEED   := 100000.0
 const MOVE_ACCELERATION      := 400.0
 const PROPELLOR_ACCELERATION := 0.01
 const SHOOT_COOL_DOWN_TIME   := 0.4
@@ -32,7 +32,7 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 
 @export var engineStartSound  : AudioStreamPlayer
 @export var propellor         : MeshInstance3D
-@export var rectangles        : Node3D
+@export var planeModel        : Node3D
 @export var trailHorizontalAdd: MeshInstance3D
 @export var trailVerticalAdd  : MeshInstance3D
 @export var trailHorizontalSub: MeshInstance3D
@@ -43,7 +43,7 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 var enemyHitableCount := 0
 var fallSpeed         := 0.0# negative is fall direction
 var health            := MAX_HEALTH
-var isHitable         := true
+var isHitable         := false
 var propulsionSpeed   := INIT_PROPULSION_SPEED
 var propellorSpeed    := 0.0
 var shootCoolDownTime := 0.0
@@ -96,8 +96,8 @@ func _get_recursive_children(node) -> Array[Node]:
 
 func _get_all_body_visuals() -> Array[MeshInstance3D]:
 	var result: Array[MeshInstance3D] = []
-	var allRectanglesRecursiveChildren: Array[Node] = _get_recursive_children(rectangles)
-	for currNode in allRectanglesRecursiveChildren:
+	var allPlaneModelsRecursiveChildren: Array[Node] = _get_recursive_children(planeModel)
+	for currNode in allPlaneModelsRecursiveChildren:
 		if currNode is MeshInstance3D:
 			result.append(currNode)
 	return result
@@ -234,7 +234,7 @@ func get_hit() -> void:
 	trailVerticalSub._startColor.a   = 1.0 - greyValue
 
 func _die() -> void:
-	rectangles.visible = false
+	planeModel.visible = false
 	isHitable = false
 	state = LOST
 	gunShotsAnim.play('not_shooting')
@@ -244,10 +244,10 @@ func _die() -> void:
 	emit_signal('game_over', playerID)
 
 func restart() -> void:
-	rectangles.visible = true
+	planeModel.visible = true
 	trailHorizontalSub.visible = true
 	trailVerticalSub.visible = true
-	isHitable = true
+	isHitable = false
 	state = FIGHTING
 	health = MAX_HEALTH
 	velocity = Vector3()

@@ -209,7 +209,7 @@ radius = 10.0
 height = 10000.0
 
 [node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 30)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 100)
 enemyPlayer = NodePath("../Player2")
 
 [node name="CameraFollow" type="Node3D" parent="Player1"]
@@ -219,7 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62268e-06, 0, -30)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, 4.37114e-06)
 enemyPlayer = NodePath("../Player1")
 playerID = 2
 

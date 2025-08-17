@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=26 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
 [ext_resource type="Material" uid="uid://cgiog6wwt3bhg" path="res://materials/unsafe.tres" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://doneugn3ajoan" path="res://audio/engine_start.mp3" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
@@ -171,7 +172,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "rectangles", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "planeModel", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
@@ -184,7 +185,7 @@ materialSafe = ExtResource("2_g2els")
 materialUnsafe = ExtResource("3_qhqgy")
 engineStartSound = NodePath("EngineStartSound")
 propellor = NodePath("Rectangles/Properller")
-rectangles = NodePath("Rectangles")
+planeModel = NodePath("AirplaneModel")
 trailHorizontalAdd = NodePath("TrailAdd/Trail3DHorizontal")
 trailVerticalAdd = NodePath("TrailAdd/Trail3DVertical")
 trailHorizontalSub = NodePath("TrailSubtract/Trail3DHorizontal")
@@ -202,6 +203,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 shape = SubResource("CapsuleShape3D_3vyb7")
 
 [node name="Rectangles" type="Node3D" parent="."]
+visible = false
 
 [node name="MainBody" type="Node3D" parent="Rectangles"]
 
@@ -280,6 +282,9 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2.75)
 mesh = SubResource("BoxMesh_fjrip")
 skeleton = NodePath("../../..")
+
+[node name="AirplaneModel" parent="." instance=ExtResource("4_tuyoq")]
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, -4, 0, 4, -1.74846e-07, 0, 0, -0.5)
 
 [node name="GunShots" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 3)
