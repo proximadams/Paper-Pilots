@@ -6,7 +6,7 @@ var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 signal game_over(playerId: int)
 signal entered_item_cylander(playerId: int)
 
-const INIT_PROPULSION_SPEED  := 200.0
+const INIT_PROPULSION_SPEED  := 2000.0
 const GRAVITY                := -2000.0
 const MAX_HEALTH             := 20
 const MAX_PROPELLOR_SPEED    := 20.0
