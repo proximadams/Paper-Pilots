@@ -1,367 +1,36 @@
-[gd_scene load_steps=15 format=3 uid="uid://qokfy0id8ysr"]
+[gd_scene load_steps=13 format=3 uid="uid://qokfy0id8ysr"]
 
-[ext_resource type="Texture2D" uid="uid://cgqx16xjr4xae" path="res://images/Curtiss_P-40M_Warhawk_'2104590_-_44'_(G-KITT)_(26830598751).jpg" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://dam8yhrbqbusu" path="res://scripts/main_menu.gd" id="1_tbmy8"]
-[ext_resource type="Texture2D" uid="uid://cojnnbteeawrt" path="res://images/Douglas_A-20G_Havoc.jpg" id="2_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://b2pi4t71ao0mr" path="res://images/Ilyushin_Il-10M_Soviet_AF_Monino_29.08.94_edited-3.jpg" id="3_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://blcwjfjta1hak" path="res://images/MiG-3_at_Mochishche.jpg" id="4_wu84c"]
-[ext_resource type="Texture2D" uid="uid://c4hs5fx2yvcuf" path="res://images/P47_Thunderbolt_-_Chino_2014_(cropped).jpg" id="5_8ln24"]
-[ext_resource type="Texture2D" uid="uid://blsgc2y71b1am" path="res://images/P-39N_Airacobra_of_the_357th_Fighter_Group_at_Hamilton_Field_in_July_1943.jpg" id="6_rtw2f"]
-[ext_resource type="Texture2D" uid="uid://chr8mvxwhxmjh" path="res://images/Polikarpov_I-16_republicano.jpg" id="7_oa1go"]
+[ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_8ln24"]
+[ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="5_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="6_jk1qb"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="9_5dd4i"]
 [ext_resource type="Theme" uid="uid://bdep7d1wip201" path="res://themes/win_lose_label.tres" id="9_jk1qb"]
 [ext_resource type="AudioStream" uid="uid://bj4rp3d31u6fj" path="res://audio/initial_game_song.wav" id="11_lgwnu"]
 
-[sub_resource type="Animation" id="Animation_tbmy8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:modulate")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:modulate")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:modulate")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:modulate")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
+albedo_color = Color(0.977364, 1, 0.748047, 1)
 
-[sub_resource type="Animation" id="Animation_oa1go"]
-resource_name = "animate"
-length = 36.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 5, 34, 35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 34, 35),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 29, 30, 35, 36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 24, 25, 35, 36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 19, 20, 35, 36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 14, 15, 35, 36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 9, 10, 35, 36),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect7:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect1:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect2:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect3:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect4:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect5:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("SubViewportContainer/SubViewport/Images/TextureRect6:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmy8"]
+albedo_color = Color(0.976471, 1, 0.74902, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbmy8"]
-_data = {
-&"RESET": SubResource("Animation_tbmy8"),
-&"animate": SubResource("Animation_oa1go")
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa1go"]
+shader = ExtResource("5_tbmy8")
+shader_parameter/horizonColor = Color(0.0378265, 0, 0.130859, 1)
+shader_parameter/skyColor = Color(0.724609, 0.579021, 0.400517, 1)
+shader_parameter/skyTexture = ExtResource("6_jk1qb")
+
+[sub_resource type="Sky" id="Sky_ppgk2"]
+sky_material = SubResource("ShaderMaterial_oa1go")
+
+[sub_resource type="Environment" id="Environment_flqon"]
+background_mode = 2
+background_color = Color(0, 0.612687, 0.494344, 1)
+sky = SubResource("Sky_ppgk2")
+ambient_light_source = 3
+fog_mode = 1
+fog_light_energy = 0.0
+fog_density = 1.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -398,132 +67,6 @@ handle_input_locally = false
 size = Vector2i(2304, 1296)
 render_target_update_mode = 4
 
-[node name="Images" type="Control" parent="SubViewportContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect1" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1158.0
-offset_top = -788.5
-offset_right = 1158.0
-offset_bottom = 788.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_l6cm7")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1164.0
-offset_top = -691.5
-offset_right = 636.0
-offset_bottom = 403.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("2_ekxnf")
-
-[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1164.0
-offset_top = -699.5
-offset_right = 636.0
-offset_bottom = 395.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("3_bqqt6")
-
-[node name="TextureRect4" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1164.0
-offset_top = -723.5
-offset_right = 636.0
-offset_bottom = 371.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("4_wu84c")
-
-[node name="TextureRect5" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1179.0
-offset_top = -691.5
-offset_right = 621.0
-offset_bottom = 403.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("5_8ln24")
-
-[node name="TextureRect6" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1172.0
-offset_top = -683.5
-offset_right = 628.0
-offset_bottom = 411.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("6_rtw2f")
-
-[node name="TextureRect7" type="TextureRect" parent="SubViewportContainer/SubViewport/Images"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1172.0
-offset_top = -770.5
-offset_right = 3540.0
-offset_bottom = 2370.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_oa1go")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
-root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_tbmy8")
-}
-autoplay = "animate"
-
 [node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -543,6 +86,7 @@ focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
 theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 128
 text = "Start"
 
 [node name="TitleLabel" type="Label" parent="SubViewportContainer/SubViewport"]
@@ -551,7 +95,32 @@ offset_top = 48.0
 offset_right = 984.0
 offset_bottom = 223.0
 theme = ExtResource("9_jk1qb")
-text = "Paper Pilots"
+theme_override_font_sizes/font_size = 200
+text = " Paper Pilots "
+
+[node name="Composition" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
+
+[node name="airplane1" parent="SubViewportContainer/SubViewport/Composition" instance=ExtResource("4_8ln24")]
+transform = Transform3D(0.73442, -0.654613, 0.179187, -0.142073, -0.406451, -0.902559, 0.663658, 0.637401, -0.391508, 2.76814, 0.973089, -4.69037)
+
+[node name="Airplane2" parent="SubViewportContainer/SubViewport/Composition/airplane1/Sketchfab_model/Root/Airplane" index="0"]
+material_override = SubResource("StandardMaterial3D_oa1go")
+
+[node name="airplane2" parent="SubViewportContainer/SubViewport/Composition" instance=ExtResource("4_8ln24")]
+transform = Transform3D(-0.83966, 0.0878421, -0.535961, 0.54162, 0.208531, -0.814348, 0.0402305, -0.974063, -0.222672, -1.68529, -0.807878, -2.30603)
+
+[node name="Airplane2" parent="SubViewportContainer/SubViewport/Composition/airplane2/Sketchfab_model/Root/Airplane" index="0"]
+material_override = SubResource("StandardMaterial3D_tbmy8")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Composition"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Composition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558977, -3.32183)
+light_energy = 2.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_flqon")
 
 [node name="InitialSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_lgwnu")
@@ -559,3 +128,6 @@ stream = ExtResource("11_lgwnu")
 [connection signal="ready" from="FocusButton" to="FocusButton" method="grab_focus"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/StartButton" to="." method="start_game"]
 [connection signal="finished" from="InitialSong" to="." method="start_default_music"]
+
+[editable path="SubViewportContainer/SubViewport/Composition/airplane1"]
+[editable path="SubViewportContainer/SubViewport/Composition/airplane2"]

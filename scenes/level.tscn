@@ -19,17 +19,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
 shader = ExtResource("1_2r41h")
-shader_parameter/horizonColor = Color(0, 0, 0, 1)
-shader_parameter/skyColor = Color(0.573338, 0.697266, 0.643531, 1)
+shader_parameter/horizonColor = Color(0.0392157, 0, 0.129412, 1)
+shader_parameter/skyColor = Color(0.72549, 0.580392, 0.4, 1)
 shader_parameter/skyTexture = ExtResource("2_klq6b")
 
-[sub_resource type="Sky" id="Sky_ppgk2"]
+[sub_resource type="Sky" id="Sky_arp2o"]
 sky_material = SubResource("ShaderMaterial_ppgk2")
 
 [sub_resource type="Environment" id="Environment_2q6dc"]
 background_mode = 2
 background_color = Color(0, 0.612687, 0.494344, 1)
-sky = SubResource("Sky_ppgk2")
+sky = SubResource("Sky_arp2o")
 ambient_light_source = 3
 fog_mode = 1
 fog_light_energy = 0.0
@@ -206,7 +206,7 @@ playerArr = [NodePath("../../Player1"), NodePath("../../Player2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5000, 0)
 material_override = SubResource("StandardMaterial3D_w7c3h")
 radius = 10.0
-height = 10000.0
+height = 100000.0
 
 [node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 100)
@@ -252,7 +252,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 5, 37.5)
 current = true
 fov = 135.0
-far = 20000.0
+far = 200000.0
 script = ExtResource("1_w7c3h")
 followTarget = NodePath("../../../../Player1/CameraFollow")
 lookAtTarget = NodePath("../../../../Player1/CameraLookAt")
@@ -285,7 +285,7 @@ render_target_update_mode = 4
 transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 5, -37.5)
 current = true
 fov = 135.0
-far = 20000.0
+far = 200000.0
 script = ExtResource("1_w7c3h")
 followTarget = NodePath("../../../../Player2/CameraFollow")
 lookAtTarget = NodePath("../../../../Player2/CameraLookAt")

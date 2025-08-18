@@ -1,0 +1,27 @@
+improve main menu
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	deleted:    images/Curtiss_P-40M_Warhawk_'2104590_-_44'_(G-KITT)_(26830598751).jpg
+#	deleted:    images/Curtiss_P-40M_Warhawk_'2104590_-_44'_(G-KITT)_(26830598751).jpg.import
+#	deleted:    images/Douglas_A-20G_Havoc.jpg
+#	deleted:    images/Douglas_A-20G_Havoc.jpg.import
+#	deleted:    images/Ilyushin_Il-10M_Soviet_AF_Monino_29.08.94_edited-3.jpg
+#	deleted:    images/Ilyushin_Il-10M_Soviet_AF_Monino_29.08.94_edited-3.jpg.import
+#	deleted:    images/MiG-3_at_Mochishche.jpg
+#	deleted:    images/MiG-3_at_Mochishche.jpg.import
+#	deleted:    images/P-39N_Airacobra_of_the_357th_Fighter_Group_at_Hamilton_Field_in_July_1943.jpg
+#	deleted:    images/P-39N_Airacobra_of_the_357th_Fighter_Group_at_Hamilton_Field_in_July_1943.jpg.import
+#	deleted:    images/P47_Thunderbolt_-_Chino_2014_(cropped).jpg
+#	deleted:    images/P47_Thunderbolt_-_Chino_2014_(cropped).jpg.import
+#	deleted:    images/Polikarpov_I-16_republicano.jpg
+#	deleted:    images/Polikarpov_I-16_republicano.jpg.import
+#	modified:   scenes/level.tscn
+#	modified:   scenes/main_menu.tscn
+#	modified:   scripts/physical_world_elements_follow.gd
+#
