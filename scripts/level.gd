@@ -9,12 +9,24 @@ extends Node3D
 @export var winLabel2 : Label
 @export var loseLabel2: Label
 
+@export var cylanderAnim: AnimationPlayer
+
 @export var gameOverSound : AudioStreamPlayer
 @export var gameOverUiAnim: AnimationPlayer
+
+@export var isItemReady := false
 
 func _ready() -> void:
 	player1.connect('game_over', player_died)
 	player2.connect('game_over', player_died)
+	player1.connect('entered_item_cylander', entered_item_cylander)
+	player2.connect('entered_item_cylander', entered_item_cylander)
+
+func entered_item_cylander(playerId: int) -> void:
+	if isItemReady:
+		isItemReady = false
+		cylanderAnim.play('grow')
+		cylanderAnim.seek(0.0)
 
 func player_died(playerId: int) -> void:
 	gameOverSound.play()
@@ -45,6 +57,9 @@ func restart() -> void:
 	camera2.gameOver = false
 	winLabel2.hide()
 	loseLabel2.hide()
+	cylanderAnim.play('grow')
+	cylanderAnim.seek(0.0)
+	isItemReady = false
 
 func go_to_main_menu() -> void:
 	Music.volume_db = 0.0

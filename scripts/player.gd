@@ -4,12 +4,13 @@ var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
 var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 
 signal game_over(playerId: int)
+signal entered_item_cylander(playerId: int)
 
 const INIT_PROPULSION_SPEED  := 200.0
 const GRAVITY                := -2000.0
 const MAX_HEALTH             := 20
 const MAX_PROPELLOR_SPEED    := 20.0
-const MAX_PROPULSION_SPEED   := 100000.0
+const MAX_PROPULSION_SPEED   := 50000.0
 const MOVE_ACCELERATION      := 400.0
 const PROPELLOR_ACCELERATION := 0.01
 const SHOOT_COOL_DOWN_TIME   := 0.4
@@ -44,6 +45,7 @@ var enemyHitableCount := 0
 var fallSpeed         := 0.0# negative is fall direction
 var health            := MAX_HEALTH
 var isHitable         := false
+var isInItemCylander  := false
 var propulsionSpeed   := INIT_PROPULSION_SPEED
 var propellorSpeed    := 0.0
 var shootCoolDownTime := 0.0
@@ -70,9 +72,20 @@ func _physics_process(delta: float) -> void:
 		_handle_gravity()
 		_handle_movement(delta)
 		_aim_gun_shot()
+		_handle_item_cylander()
 	elif state == WON:
 		_handle_spin_propellor(delta)
 		move_and_slide()
+
+func _handle_item_cylander():
+	var position2D := Vector2(global_position.x, global_position.z)
+	var withinRadius: bool = position2D.distance_to(Vector2(0.0, 0.0)) < 50.0
+
+	if not isInItemCylander and withinRadius:
+		emit_signal('entered_item_cylander', playerID)
+		isInItemCylander = true
+	elif isInItemCylander and not withinRadius:
+		isInItemCylander = false
 
 func _aim_gun_shot() -> void:
 	if enemyPlayer.isHitable:
@@ -248,6 +261,7 @@ func restart() -> void:
 	trailHorizontalSub.visible = true
 	trailVerticalSub.visible = true
 	isHitable = false
+	isInItemCylander = false
 	state = FIGHTING
 	health = MAX_HEALTH
 	velocity = Vector3()

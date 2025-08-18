@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://u2ew77t74om8"]
+
+[ext_resource type="Texture2D" uid="uid://cew52eqat06oy" path="res://icons/speed.svg" id="1_5lrue"]
+[ext_resource type="Texture2D" uid="uid://bt4lhcnmbhklc" path="res://icons/heart.svg" id="2_kl2j7"]
+[ext_resource type="Texture2D" uid="uid://p0fqnntvry31" path="res://icons/missle.svg" id="3_tjrvy"]
+[ext_resource type="Texture2D" uid="uid://qvexg00e4yul" path="res://icons/shield.svg" id="4_i7lex"]
+
+[node name="ItemDiamond" type="ColorRect"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 155.0
+grow_horizontal = 0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="SpeedItem" type="TextureRect" parent="."]
+visible = false
+offset_left = -14.8493
+offset_top = 72.8321
+offset_right = 113.151
+offset_bottom = 200.832
+rotation = 5.49779
+texture = ExtResource("1_5lrue")
+
+[node name="HealthItem" type="TextureRect" parent="."]
+visible = false
+offset_left = -14.8493
+offset_top = 72.8321
+offset_right = 113.151
+offset_bottom = 200.832
+rotation = 5.49779
+texture = ExtResource("2_kl2j7")
+
+[node name="MissleItem" type="TextureRect" parent="."]
+visible = false
+offset_left = -14.8493
+offset_top = 72.8321
+offset_right = 113.151
+offset_bottom = 200.832
+rotation = 5.49779
+texture = ExtResource("3_tjrvy")
+
+[node name="SpaceFiller" type="TextureRect" parent="MissleItem"]
+offset_left = 58.1506
+offset_top = 44.832
+offset_right = 186.151
+offset_bottom = 172.832
+rotation = 5.49779
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_kl2j7")
+
+[node name="shieldItem" type="TextureRect" parent="."]
+visible = false
+offset_left = -14.8493
+offset_top = 72.8321
+offset_right = 113.151
+offset_bottom = 200.832
+rotation = 5.49779
+texture = ExtResource("4_i7lex")
