@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm871tyqmkeqf"]
+[gd_scene load_steps=9 format=3 uid="uid://dm871tyqmkeqf"]
 
-[ext_resource type="Material" uid="uid://c6lcwsg26jcw3" path="res://materials/missile_red.tres" id="1_a2dmp"]
-[ext_resource type="Material" uid="uid://cgeajdvgcl1oh" path="res://materials/missile_black.tres" id="2_3peva"]
+[ext_resource type="Script" uid="uid://cs0dji5vsccsn" path="res://scripts/missile.gd" id="1_35udt"]
+[ext_resource type="Material" path="res://materials/missile_red.tres" id="1_a2dmp"]
+[ext_resource type="Material" path="res://materials/missile_black.tres" id="2_3peva"]
+[ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_2swxv"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_u0r5p"]
 top_radius = 0.0
@@ -13,54 +15,101 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.1
 
-[node name="missile" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bd00w"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flxc2"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[node name="missile" type="Node3D"]
+script = ExtResource("1_35udt")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Model"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 material = ExtResource("2_3peva")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.365888)
 material_override = ExtResource("1_a2dmp")
 size = Vector3(0.3, 0.3, 0.3)
 
-[node name="Wings" type="Node3D" parent="."]
+[node name="Wings" type="Node3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
 
-[node name="Wing1" type="Node3D" parent="Wings"]
+[node name="Wing1" type="Node3D" parent="Model/Wings"]
 transform = Transform3D(-2.18557e-08, -1, 1.89276e-08, 0.5, -4.37114e-08, -0.433013, 0.866025, 0, 0.25, 1.09278e-08, -0.25, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wings/Wing1"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/Wings/Wing1"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 size = Vector3(0.3, 0.05, 0.3)
 
-[node name="Wing2" type="Node3D" parent="Wings"]
+[node name="Wing2" type="Node3D" parent="Model/Wings"]
 transform = Transform3D(0.5, 0, -0.433013, 0, 1, 0, 0.866025, 0, 0.25, -0.25, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wings/Wing2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/Wings/Wing2"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 size = Vector3(0.3, 0.05, 0.3)
 
-[node name="Wing3" type="Node3D" parent="Wings"]
+[node name="Wing3" type="Node3D" parent="Model/Wings"]
 transform = Transform3D(-0.5, -3.17865e-08, 0.433013, 1.58933e-08, -1, -1.3764e-08, 0.866025, 0, 0.25, 0.25, -7.94663e-09, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wings/Wing3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/Wings/Wing3"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 size = Vector3(0.3, 0.05, 0.3)
 
-[node name="Wing4" type="Node3D" parent="Wings"]
+[node name="Wing4" type="Node3D" parent="Model/Wings"]
 transform = Transform3D(3.77489e-08, 1, -3.26915e-08, -0.5, 7.54979e-08, 0.433013, 0.866025, 0, 0.25, -1.88745e-08, 0.25, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wings/Wing4"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/Wings/Wing4"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 size = Vector3(0.3, 0.05, 0.3)
 
-[node name="Cone" type="MeshInstance3D" parent="."]
+[node name="Cone" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
 material_override = ExtResource("1_a2dmp")
 mesh = SubResource("CylinderMesh_u0r5p")
+skeleton = NodePath("../..")
 
-[node name="Cylander" type="MeshInstance3D" parent="."]
+[node name="Cylander" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
 material_override = ExtResource("2_3peva")
 mesh = SubResource("CylinderMesh_a2dmp")
+skeleton = NodePath("../..")
+
+[node name="TrailAdd" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.561761)
+
+[node name="Trail3DHorizontal" type="MeshInstance3D" parent="TrailAdd"]
+material_override = SubResource("StandardMaterial3D_bd00w")
+skeleton = NodePath("../..")
+script = ExtResource("4_2swxv")
+_fromWidth = 0.1
+_toWidth = 4.0
+_lifespan = 30.0
+_startColor = Color(1, 1, 1, 0.196078)
+_endColor = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
+
+[node name="Trail3DVertical" type="MeshInstance3D" parent="TrailAdd"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_flxc2")
+skeleton = NodePath("../..")
+script = ExtResource("4_2swxv")
+_fromWidth = 0.1
+_toWidth = 4.0
+_scaleAcceleration = 0.5
+_lifespan = 30.0
+_startColor = Color(1, 1, 1, 0.196078)
+_endColor = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://c2hn5t2b4irdp"

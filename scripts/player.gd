@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
+var missileRes        = preload('res://scenes/missile.tscn')
 var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 
 signal game_over(playerId: int)
@@ -243,6 +244,22 @@ func _on_gun_shot() -> void:
 	var shootSoundInst: AudioStreamPlayer = shootSoundRes.instantiate()
 	add_child(shootSoundInst)
 
+func explode_missile() -> void:
+	var explosionInst: Node3D = explosionRes.instantiate()
+	add_child(explosionInst)
+	explosionInst.global_position = global_position
+	var explosionSoundInst: AudioStreamPlayer = explosionSoundRes.instantiate()
+	add_child(explosionSoundInst)
+	explosionInst.scale *= 3.0
+	if not shield.visible:
+		get_hit()
+		get_hit()
+		get_hit()
+		get_hit()
+		get_hit()
+	var shootSoundInst: AudioStreamPlayer = shootSoundRes.instantiate()
+	add_child(shootSoundInst)
+
 func get_hit() -> void:
 	if 0 < health:
 		health -= 1
@@ -302,7 +319,11 @@ func use_item_health() -> void:
 	_refresh_trail_colors()
 
 func use_item_missile() -> void:
-	pass
+	var missileInst: Node3D = missileRes.instantiate()
+	get_parent().add_child(missileInst)
+	missileInst.global_position = global_position
+	missileInst.sourcePlayer = self
+	missileInst.targetPlayer = enemyPlayer
 
 func use_item_shield() -> void:
 	shield.scale = Vector3(1.0, 1.0, 1.0)
