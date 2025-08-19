@@ -15,7 +15,7 @@ const MAX_PROPELLOR_SPEED    := 20.0
 const MAX_PROPULSION_SPEED   := 30000.0
 const MOVE_ACCELERATION      := 1000.0
 const PROPELLOR_ACCELERATION := 0.01
-const SHIELD_DECREASE_MULT   := 0.1
+const SHIELD_DECREASE_MULT   := 0.05
 const SHOOT_COOL_DOWN_TIME   := 0.4
 const SHOOT_DECCELERATION    := 1000.0
 const TILT_DOWN_SPEED        := 100.0
@@ -208,33 +208,33 @@ func get_input_direction() -> Vector2:
 func _on_gun_shot_area_3d_area_entered(area: Area3D) -> void:
 	if area.name == 'WingArea3D':
 		enemyHitableCount += 1
-		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
+		enemyPlayer.set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_area_exited(area: Area3D) -> void:
 	if area.name == 'WingArea3D':
 		enemyHitableCount -= 1
-		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
+		enemyPlayer.set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_body_entered(body: Node3D) -> void:
 	if body.name.begins_with('Player'):
 		enemyHitableCount += 1
-		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
+		enemyPlayer.set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_body_exited(body: Node3D) -> void:
 	if body.name.begins_with('Player'):
 		enemyHitableCount -= 1
-		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
+		enemyPlayer.set_is_hitable(enemyHitableCount != 0)
 
-func try_set_is_hitable(valueGiven: bool) -> void:
+func set_is_hitable(valueGiven: bool) -> void:
 	var newMaterial = materialSafe
-	isHitable = (valueGiven and not shield.visible)
+	isHitable = valueGiven
 	if isHitable:
 		newMaterial = materialUnsafe
 	for currMesh in allBodyVisuals:
 		currMesh.set_surface_override_material(0, newMaterial)
 
 func _on_gun_shot() -> void:
-	if enemyPlayer.isHitable:
+	if enemyPlayer.isHitable and not enemyPlayer.shield.visible:
 		var explosionInst: Node3D = explosionRes.instantiate()
 		get_parent().add_child(explosionInst)
 		explosionInst.global_position = enemyPlayer.global_position
