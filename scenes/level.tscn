@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=29 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c2dtbo51c2et7" path="res://scenes/win_label.tscn" id="8_t1rx8"]
 [ext_resource type="Script" uid="uid://mn6y46c3xorx" path="res://scripts/engine_sounds.gd" id="9_8c41q"]
 [ext_resource type="PackedScene" uid="uid://cr70q6kngxwgm" path="res://scenes/lose_label.tscn" id="9_8iemx"]
+[ext_resource type="PackedScene" uid="uid://bfklb06n0e5er" path="res://scenes/item_effects.tscn" id="12_82cfe"]
 [ext_resource type="AudioStream" uid="uid://c3swb0fgdwdyw" path="res://audio/trumpet_fanfare.mp3" id="13_64w2a"]
 [ext_resource type="Theme" uid="uid://b12pxo34d4wpv" path="res://themes/big_number_label.tres" id="14_fpun6"]
 [ext_resource type="AudioStream" uid="uid://ba1cafhaai5ns" path="res://audio/count_down.wav" id="15_wc255"]
@@ -259,7 +260,7 @@ _data = {
 &"RESET": SubResource("Animation_wc255")
 }
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "gameOverSound", "gameOverUiAnim")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "itemEffectsArr", "gameOverSound", "gameOverUiAnim")]
 script = ExtResource("1_8iemx")
 player1 = NodePath("Player1")
 camera1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/Camera3D")
@@ -271,6 +272,7 @@ winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel"
 loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
 cylanderAnim = NodePath("WorldEnvironment/Physical/AnimationPlayer")
 itemDiamondArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")]
+itemEffectsArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemEffects"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemEffects")]
 gameOverSound = NodePath("GameOverSound")
 gameOverUiAnim = NodePath("GameOverUI/AnimationPlayer")
 
@@ -375,6 +377,8 @@ visible = false
 [node name="LoseLabel" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("9_8iemx")]
 visible = false
 
+[node name="ItemEffects" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("12_82cfe")]
+
 [node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -411,6 +415,8 @@ offset_right = 382.0
 
 [node name="LoseLabel" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("9_8iemx")]
 visible = false
+
+[node name="ItemEffects" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("12_82cfe")]
 
 [node name="EngineSounds" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player1", "player2")]
 stream = ExtResource("8_b121j")

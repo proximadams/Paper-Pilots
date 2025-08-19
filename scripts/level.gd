@@ -12,6 +12,7 @@ extends Node3D
 @export var cylanderAnim: AnimationPlayer
 
 @export var itemDiamondArr: Array[ColorRect]
+@export var itemEffectsArr: Array[Control]
 
 @export var gameOverSound : AudioStreamPlayer
 @export var gameOverUiAnim: AnimationPlayer
@@ -71,3 +72,23 @@ func restart() -> void:
 func go_to_main_menu() -> void:
 	Music.volume_db = 0.0
 	get_tree().change_scene_to_file('res://scenes/main_menu.tscn')
+
+func _input(event: InputEvent) -> void:
+	if (event is InputEventJoypadMotion or event is InputEventKey) and event.pressed:
+		_try_handle_use_item(event, 1)
+		_try_handle_use_item(event, 2)
+
+func _try_handle_use_item(event: InputEvent, playerId: int) -> void:
+	var itemDiamond = itemDiamondArr[playerId -1]
+	var itemEffects = itemEffectsArr[playerId -1]
+	if event.is_action('item_p' + str(playerId)) and itemDiamond.state != itemDiamond.EMPTY:
+		match itemDiamond.state:
+			itemDiamond.HEALTH:
+				itemEffects.play_health()
+			itemDiamond.MISSILE:
+				itemEffects.play_missile()
+			itemDiamond.SHIELD:
+				itemEffects.play_shield()
+			itemDiamond.SPEED:
+				itemEffects.play_speed()
+		itemDiamond.discard_item()

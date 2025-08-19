@@ -17,7 +17,7 @@ enum {
 }
 
 func pick_random_item() -> void:
-	var itemStateArr = [HEALTH, SHIELD, SPEED, MISSILE]
+	var itemStateArr = [HEALTH, MISSILE, SHIELD, SPEED]
 	state = itemStateArr[Global.rng.randi_range(0, 3)]
 	animationPlayer.play('glow_outline')
 	healthItem.visible  = false
@@ -34,3 +34,10 @@ func pick_random_item() -> void:
 			shieldItem.visible  = true
 		SPEED:
 			speedItem.visible   = true
+
+func discard_item() -> void:
+	animationPlayer.play('RESET')
+	healthItem.visible  = false
+	missileItem.visible = false
+	shieldItem.visible  = false
+	speedItem.visible   = false

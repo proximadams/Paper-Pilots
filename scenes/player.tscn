@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=28 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
@@ -171,6 +171,16 @@ cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.235294)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tuyoq"]
+radius = 6.0
+height = 12.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "planeModel", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
 collision_layer = 0
@@ -375,6 +385,11 @@ metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 [node name="EngineStartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qlg0r")
 volume_db = -10.0
+
+[node name="Shield" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_fjrip")
+mesh = SubResource("SphereMesh_tuyoq")
 
 [connection signal="area_entered" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_entered"]
 [connection signal="area_exited" from="GunShotArea3D" to="." method="_on_gun_shot_area_3d_area_exited"]
