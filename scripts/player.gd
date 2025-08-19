@@ -10,7 +10,7 @@ signal entered_item_cylander(playerId: int)
 const INIT_PROPULSION_SPEED  := 2000.0
 const ITEM_HEALTH_INCREASE   := 5
 const GRAVITY                := -2000.0
-const MAX_HEALTH             := 20
+const MAX_HEALTH             := 30
 const MAX_PROPELLOR_SPEED    := 20.0
 const MAX_PROPULSION_SPEED   := 30000.0
 const MOVE_ACCELERATION      := 1000.0

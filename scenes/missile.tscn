@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm871tyqmkeqf"]
+[gd_scene load_steps=12 format=3 uid="uid://dm871tyqmkeqf"]
 
 [ext_resource type="Script" uid="uid://cs0dji5vsccsn" path="res://scripts/missile.gd" id="1_35udt"]
 [ext_resource type="Material" path="res://materials/missile_red.tres" id="1_a2dmp"]
@@ -28,6 +28,66 @@ blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
+
+[sub_resource type="Animation" id="Animation_2swxv"]
+resource_name = "animate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrailAdd/Trail3DHorizontal:_trailEnabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrailAdd/Trail3DVertical:_trailEnabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bd00w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrailAdd/Trail3DHorizontal:_trailEnabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrailAdd/Trail3DVertical:_trailEnabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bd00w"]
+_data = {
+&"RESET": SubResource("Animation_bd00w"),
+&"animate": SubResource("Animation_2swxv")
+}
 
 [node name="missile" type="Node3D"]
 script = ExtResource("1_35udt")
@@ -94,6 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.561761)
 material_override = SubResource("StandardMaterial3D_bd00w")
 skeleton = NodePath("../..")
 script = ExtResource("4_2swxv")
+_trailEnabled = false
 _fromWidth = 0.1
 _toWidth = 20.0
 _lifespan = 30.0
@@ -106,6 +167,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 material_override = SubResource("StandardMaterial3D_flxc2")
 skeleton = NodePath("../..")
 script = ExtResource("4_2swxv")
+_trailEnabled = false
 _fromWidth = 0.1
 _toWidth = 20.0
 _scaleAcceleration = 0.5
@@ -113,3 +175,9 @@ _lifespan = 30.0
 _startColor = Color(1, 1, 1, 0.196078)
 _endColor = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bd00w")
+}
+autoplay = "animate"
