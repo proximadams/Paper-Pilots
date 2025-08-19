@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm871tyqmkeqf"]
+[gd_scene load_steps=13 format=3 uid="uid://dm871tyqmkeqf"]
 
 [ext_resource type="Script" uid="uid://cs0dji5vsccsn" path="res://scripts/missile.gd" id="1_35udt"]
 [ext_resource type="Material" path="res://materials/missile_red.tres" id="1_a2dmp"]
 [ext_resource type="Material" path="res://materials/missile_black.tres" id="2_3peva"]
 [ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_2swxv"]
+[ext_resource type="AudioStream" uid="uid://cvqtm4fdy2n0f" path="res://audio/missile_near.mp3" id="5_bd00w"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_u0r5p"]
 top_radius = 0.0
@@ -181,3 +182,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_bd00w")
 }
 autoplay = "animate"
+
+[node name="MissileNearSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bd00w")

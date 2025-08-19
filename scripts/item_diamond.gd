@@ -18,7 +18,7 @@ enum {
 
 func pick_random_item() -> void:
 	var itemStateArr = [HEALTH, MISSILE, SHIELD, SPEED]
-	state = itemStateArr[2]#Global.rng.randi_range(0, 3)]
+	state = itemStateArr[Global.rng.randi_range(0, 3)]
 	animationPlayer.play('glow_outline')
 	healthItem.visible  = false
 	missileItem.visible = false
