@@ -18,10 +18,7 @@ func _physics_process(_delta: float) -> void:
 		enemyOffscreen.visible = false
 		enemyOnscreen.visible = false
 	else:
-		if player.enemyPlayer.shield.visible:
-			enemyOnscreen.scale.x = 0.0
-		else:
-			enemyOnscreen.scale.x = 1.0
+		enemyOnscreen.set_shielded(player.enemyPlayer.shield.visible)
 		if is_position_in_frustum(player.enemyPlayer.global_position):
 			var screenPosition    := unproject_position(player.enemyPlayer.global_position)
 			enemyOnscreen.global_position = Vector2(screenPosition - reticleOffset)

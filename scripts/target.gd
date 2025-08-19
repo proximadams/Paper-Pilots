@@ -1,6 +1,7 @@
 extends Control
 
 @onready var hitableTexture  : TextureRect = $HitableTexture
+@onready var shieldedTexture : TextureRect = $ShieldedTexture
 @onready var unhitableTexture: TextureRect = $UnhitableTexture
 
 func set_hitable(valueGiven: bool) -> void:
@@ -11,6 +12,8 @@ func set_shielded(valueGiven: bool) -> void:
 	if valueGiven:
 		hitableTexture.scale.x = 0.0
 		unhitableTexture.scale.x = 0.0
+		shieldedTexture.visible = true
 	else:
 		hitableTexture.scale.x = 1.0
 		unhitableTexture.scale.x = 1.0
+		shieldedTexture.visible = false

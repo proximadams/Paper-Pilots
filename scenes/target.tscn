@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctruhln5g3qvm"]
+[gd_scene load_steps=5 format=3 uid="uid://ctruhln5g3qvm"]
 
 [ext_resource type="Texture2D" uid="uid://cmqbe88xurbie" path="res://icons/target.svg" id="1_b37e2"]
 [ext_resource type="Script" uid="uid://7ts2swdpqyoe" path="res://scripts/target.gd" id="1_nlbrr"]
 [ext_resource type="Texture2D" uid="uid://bl8xuisdgewo1" path="res://icons/target_hitable.svg" id="2_b5a2r"]
+[ext_resource type="Texture2D" uid="uid://b685glaycs7c8" path="res://icons/circle.svg" id="3_kuto0"]
 
 [node name="Target" type="Control"]
 layout_mode = 3
@@ -30,3 +31,13 @@ offset_top = -32.0
 offset_right = 96.0
 offset_bottom = 96.0
 texture = ExtResource("2_b5a2r")
+
+[node name="ShieldedTexture" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("3_kuto0")
