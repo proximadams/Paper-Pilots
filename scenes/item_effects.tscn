@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfklb06n0e5er"]
+[gd_scene load_steps=10 format=3 uid="uid://bfklb06n0e5er"]
 
 [ext_resource type="Texture2D" uid="uid://bt4lhcnmbhklc" path="res://icons/heart.svg" id="1_gnm63"]
 [ext_resource type="Script" uid="uid://bqeq27g0vwr18" path="res://scripts/item_effects.gd" id="1_y2meu"]
 [ext_resource type="Texture2D" uid="uid://qvexg00e4yul" path="res://icons/shield.svg" id="2_y2meu"]
 [ext_resource type="Texture2D" uid="uid://p0fqnntvry31" path="res://icons/missile.svg" id="3_e6tw8"]
 [ext_resource type="Texture2D" uid="uid://cew52eqat06oy" path="res://icons/speed.svg" id="4_kuvpl"]
+[ext_resource type="Texture2D" uid="uid://b685glaycs7c8" path="res://icons/circle.svg" id="5_e6tw8"]
 
 [sub_resource type="Animation" id="Animation_d2wvv"]
 length = 0.001
@@ -141,7 +142,6 @@ grow_vertical = 2
 texture = ExtResource("2_y2meu")
 
 [node name="Missile" type="Control" parent="CentreAnchor"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -165,6 +165,15 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_e6tw8")
+
+[node name="SpaceFiller" type="TextureRect" parent="CentreAnchor/Missile/TextureRect"]
+offset_left = 69.0
+offset_top = 45.0
+offset_right = 197.0
+offset_bottom = 173.0
+rotation = 5.49779
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("5_e6tw8")
 
 [node name="Speed" type="Control" parent="CentreAnchor"]
 visible = false

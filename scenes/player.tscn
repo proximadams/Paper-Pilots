@@ -182,7 +182,7 @@ albedo_color = Color(1, 1, 1, 0.235294)
 radius = 6.0
 height = 12.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "planeModel", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("enemyPlayer", "gunShots", "gunShotsAnim", "leftMoveableWing", "rightMoveableWing", "engineStartSound", "propellor", "planeModel", "shield", "trailHorizontalAdd", "trailVerticalAdd", "trailHorizontalSub", "trailVerticalSub")]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_3vyb7")
@@ -196,6 +196,7 @@ materialUnsafe = ExtResource("3_qhqgy")
 engineStartSound = NodePath("EngineStartSound")
 propellor = NodePath("Rectangles/Properller")
 planeModel = NodePath("AirplaneModel")
+shield = NodePath("Shield")
 trailHorizontalAdd = NodePath("TrailAdd/Trail3DHorizontal")
 trailVerticalAdd = NodePath("TrailAdd/Trail3DVertical")
 trailHorizontalSub = NodePath("TrailSubtract/Trail3DHorizontal")

@@ -81,14 +81,20 @@ func _input(event: InputEvent) -> void:
 func _try_handle_use_item(event: InputEvent, playerId: int) -> void:
 	var itemDiamond = itemDiamondArr[playerId -1]
 	var itemEffects = itemEffectsArr[playerId -1]
+	var playerArr = [player1, player2]
+	var player = playerArr[playerId -1]
 	if event.is_action('item_p' + str(playerId)) and itemDiamond.state != itemDiamond.EMPTY:
 		match itemDiamond.state:
 			itemDiamond.HEALTH:
 				itemEffects.play_health()
+				player.use_item_health()
 			itemDiamond.MISSILE:
 				itemEffects.play_missile()
+				player.use_item_missile()
 			itemDiamond.SHIELD:
 				itemEffects.play_shield()
+				player.use_item_shield()
 			itemDiamond.SPEED:
 				itemEffects.play_speed()
+				player.use_item_speed()
 		itemDiamond.discard_item()

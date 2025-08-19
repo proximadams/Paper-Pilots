@@ -36,6 +36,7 @@ func pick_random_item() -> void:
 			speedItem.visible   = true
 
 func discard_item() -> void:
+	state = EMPTY
 	animationPlayer.play('RESET')
 	healthItem.visible  = false
 	missileItem.visible = false

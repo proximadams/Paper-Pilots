@@ -7,12 +7,14 @@ signal game_over(playerId: int)
 signal entered_item_cylander(playerId: int)
 
 const INIT_PROPULSION_SPEED  := 2000.0
+const ITEM_HEALTH_INCREASE   := 5
 const GRAVITY                := -2000.0
 const MAX_HEALTH             := 20
 const MAX_PROPELLOR_SPEED    := 20.0
 const MAX_PROPULSION_SPEED   := 50000.0
 const MOVE_ACCELERATION      := 400.0
 const PROPELLOR_ACCELERATION := 0.01
+const SHIELD_DECREASE_MULT   := 0.1
 const SHOOT_COOL_DOWN_TIME   := 0.4
 const SHOOT_DECCELERATION    := 1000.0
 const TILT_DOWN_SPEED        := 100.0
@@ -34,6 +36,7 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var engineStartSound  : AudioStreamPlayer
 @export var propellor         : MeshInstance3D
 @export var planeModel        : Node3D
+@export var shield            : MeshInstance3D
 @export var trailHorizontalAdd: MeshInstance3D
 @export var trailVerticalAdd  : MeshInstance3D
 @export var trailHorizontalSub: MeshInstance3D
@@ -73,9 +76,18 @@ func _physics_process(delta: float) -> void:
 		_handle_movement(delta)
 		_aim_gun_shot()
 		_handle_item_cylander()
+		_handle_shield(delta)
 	elif state == WON:
 		_handle_spin_propellor(delta)
 		move_and_slide()
+
+func _handle_shield(delta: float) -> void:
+	if shield.visible:
+		shield.scale.x -= delta * SHIELD_DECREASE_MULT
+		shield.scale.y -= delta * SHIELD_DECREASE_MULT
+		shield.scale.z -= delta * SHIELD_DECREASE_MULT
+		if shield.scale.x < 0.5:
+			shield.visible = false
 
 func _handle_item_cylander():
 	var position2D := Vector2(global_position.x, global_position.z)
@@ -195,26 +207,26 @@ func get_input_direction() -> Vector2:
 func _on_gun_shot_area_3d_area_entered(area: Area3D) -> void:
 	if area.name == 'WingArea3D':
 		enemyHitableCount += 1
-		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_area_exited(area: Area3D) -> void:
 	if area.name == 'WingArea3D':
 		enemyHitableCount -= 1
-		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_body_entered(body: Node3D) -> void:
 	if body.name.begins_with('Player'):
 		enemyHitableCount += 1
-		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
 
 func _on_gun_shot_area_3d_body_exited(body: Node3D) -> void:
 	if body.name.begins_with('Player'):
 		enemyHitableCount -= 1
-		enemyPlayer.set_is_hittable(enemyHitableCount != 0)
+		enemyPlayer.try_set_is_hitable(enemyHitableCount != 0)
 
-func set_is_hittable(valueGiven: bool) -> void:
+func try_set_is_hitable(valueGiven: bool) -> void:
 	var newMaterial = materialSafe
-	isHitable = valueGiven
+	isHitable = (valueGiven and not shield.visible)
 	if isHitable:
 		newMaterial = materialUnsafe
 	for currMesh in allBodyVisuals:
@@ -236,6 +248,9 @@ func get_hit() -> void:
 		health -= 1
 	else:
 		_die()
+	_refresh_trail_colors()
+
+func _refresh_trail_colors() -> void:
 	var greyValue: float = float(health) / float(MAX_HEALTH)
 	trailHorizontalAdd._startColor.r = greyValue
 	trailHorizontalAdd._startColor.g = greyValue
@@ -281,3 +296,17 @@ func restart() -> void:
 	trailVerticalAdd.restart()
 	trailHorizontalSub.restart()
 	trailVerticalSub.restart()
+
+func use_item_health() -> void:
+	health = min(MAX_HEALTH, health + ITEM_HEALTH_INCREASE)
+	_refresh_trail_colors()
+
+func use_item_missile() -> void:
+	pass
+
+func use_item_shield() -> void:
+	shield.scale = Vector3(1.0, 1.0, 1.0)
+	shield.visible = true
+
+func use_item_speed() -> void:
+	propulsionSpeed = MAX_PROPULSION_SPEED
