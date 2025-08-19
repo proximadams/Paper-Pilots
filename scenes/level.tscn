@@ -259,7 +259,7 @@ _data = {
 &"RESET": SubResource("Animation_wc255")
 }
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "gameOverSound", "gameOverUiAnim")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "gameOverSound", "gameOverUiAnim")]
 script = ExtResource("1_8iemx")
 player1 = NodePath("Player1")
 camera1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/Camera3D")
@@ -270,6 +270,7 @@ camera2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/Camera3D")
 winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel")
 loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
 cylanderAnim = NodePath("WorldEnvironment/Physical/AnimationPlayer")
+itemDiamondArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")]
 gameOverSound = NodePath("GameOverSound")
 gameOverUiAnim = NodePath("GameOverUI/AnimationPlayer")
 

@@ -149,7 +149,7 @@ _data = {
 }
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qhqgy"]
-points = PackedVector3Array(0, 0, 10000, 0, 4000, 10000, 0, -4000, 10000, 4000, 0, 10000, -4000, 0, 10000, 2828, 2828, 10000, 2828, -2828, 10000, -2828, 2828, 10000, -2828, -2828, 10000, 0, 0, 0)
+points = PackedVector3Array(0, 0, 100000, 0, 40000, 100000, 0, -40000, 100000, 40000, 0, 100000, -40000, 0, 100000, 28280, 28280, 100000, 28280, -28280, 100000, -28280, 28280, 100000, -28280, -28280, 100000, 0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
 transparency = 1

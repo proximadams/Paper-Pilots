@@ -18,6 +18,7 @@ run/max_fps=120
 [autoload]
 
 Music="*res://scenes/music.tscn"
+Global="*res://scripts/global.gd"
 
 [display]
 

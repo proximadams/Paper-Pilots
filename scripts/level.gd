@@ -11,6 +11,8 @@ extends Node3D
 
 @export var cylanderAnim: AnimationPlayer
 
+@export var itemDiamondArr: Array[ColorRect]
+
 @export var gameOverSound : AudioStreamPlayer
 @export var gameOverUiAnim: AnimationPlayer
 
@@ -27,6 +29,11 @@ func entered_item_cylander(playerId: int) -> void:
 		isItemReady = false
 		cylanderAnim.play('grow')
 		cylanderAnim.seek(0.0)
+		var playerIndex = playerId -1
+		if 0 <= playerIndex and playerIndex < itemDiamondArr.size():
+			itemDiamondArr[playerIndex].pick_random_item()
+		else:
+			print('ERROR in entered_item_cylander(playerId). playerId is out of bounds')
 
 func player_died(playerId: int) -> void:
 	gameOverSound.play()

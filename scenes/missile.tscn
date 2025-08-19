@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm871tyqmkeqf"]
 
-[ext_resource type="Material" uid="uid://c6lcwsg26jcw3" path="res://materials/missle_red.tres" id="1_a2dmp"]
-[ext_resource type="Material" uid="uid://cgeajdvgcl1oh" path="res://materials/missle_black.tres" id="2_3peva"]
+[ext_resource type="Material" uid="uid://c6lcwsg26jcw3" path="res://materials/missile_red.tres" id="1_a2dmp"]
+[ext_resource type="Material" uid="uid://cgeajdvgcl1oh" path="res://materials/missile_black.tres" id="2_3peva"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_u0r5p"]
 top_radius = 0.0
@@ -13,7 +13,7 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.1
 
-[node name="Missle" type="Node3D"]
+[node name="missile" type="Node3D"]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
