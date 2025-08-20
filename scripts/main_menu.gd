@@ -45,3 +45,6 @@ func set_sfx_volume(value: float) -> void:
 func save_sfx_volume(valueChanged: bool) -> void:
 	if valueChanged:
 		Global.save_settings()
+
+func on_quit_pressed() -> void:
+	get_tree().quit()

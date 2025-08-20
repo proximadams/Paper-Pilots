@@ -118,6 +118,7 @@ grow_vertical = 0
 
 [node name="HowToPlayButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 text = "How to play"
@@ -128,6 +129,7 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 text = "Start"
@@ -138,6 +140,7 @@ layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 text = "Settings"
@@ -148,6 +151,7 @@ layout_mode = 2
 
 [node name="Quit" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 text = "Quit"
@@ -172,6 +176,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
 [node name="SettingsLabel" type="Label" parent="SubViewportContainer/SubViewport/SettingsMenu"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 48.0
 offset_right = 1502.0
@@ -196,6 +201,7 @@ grow_vertical = 2
 
 [node name="MusicToggle" type="Button" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 toggle_mode = true
@@ -213,6 +219,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_vertical = 1
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_tbmy8")
 step = 5.0
 value = 50.0
@@ -228,6 +235,7 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_5dd4i")
 theme_override_font_sizes/font_size = 100
 text = "Save and close"
@@ -264,6 +272,7 @@ stream = ExtResource("11_lgwnu")
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="FocusSettingsButton" method="grab_focus"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="SubViewportContainer/SubViewport/MainButtons" method="set_visible" binds= [false]]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="SubViewportContainer/SubViewport/SettingsMenu" method="set_visible" binds= [true]]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/Quit" to="." method="on_quit_pressed"]
 [connection signal="toggled" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle" to="." method="on_music_toggled"]
 [connection signal="drag_ended" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume/HSlider" to="." method="save_sfx_volume"]
 [connection signal="value_changed" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume/HSlider" to="." method="set_sfx_volume"]

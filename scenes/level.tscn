@@ -506,6 +506,7 @@ focus_neighbor_right = NodePath("../Cancel")
 focus_neighbor_bottom = NodePath("../Cancel")
 focus_next = NodePath("../Cancel")
 focus_previous = NodePath("../Cancel")
+mouse_default_cursor_shape = 2
 theme = ExtResource("16_arp2o")
 text = "Play again"
 
@@ -521,6 +522,7 @@ focus_neighbor_right = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../PlayButton")
 focus_next = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
+mouse_default_cursor_shape = 2
 theme = ExtResource("16_arp2o")
 text = "Cancel"
 
