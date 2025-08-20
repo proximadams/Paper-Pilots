@@ -265,6 +265,8 @@ stream = ExtResource("11_lgwnu")
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="SubViewportContainer/SubViewport/MainButtons" method="set_visible" binds= [false]]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="SubViewportContainer/SubViewport/SettingsMenu" method="set_visible" binds= [true]]
 [connection signal="toggled" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle" to="." method="on_music_toggled"]
+[connection signal="drag_ended" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume/HSlider" to="." method="save_sfx_volume"]
+[connection signal="value_changed" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume/HSlider" to="." method="set_sfx_volume"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/StartButton" to="FocusMainButton" method="grab_focus"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/StartButton" to="SubViewportContainer/SubViewport/MainButtons" method="set_visible" binds= [true]]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/StartButton" to="SubViewportContainer/SubViewport/SettingsMenu" method="set_visible" binds= [false]]

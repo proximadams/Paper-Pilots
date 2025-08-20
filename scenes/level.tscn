@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cag2pq2wvu8rw"]
+[gd_scene load_steps=32 format=3 uid="uid://cag2pq2wvu8rw"]
 
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="1_2r41h"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://c3swb0fgdwdyw" path="res://audio/trumpet_fanfare.mp3" id="13_64w2a"]
 [ext_resource type="Theme" uid="uid://b12pxo34d4wpv" path="res://themes/big_number_label.tres" id="14_fpun6"]
 [ext_resource type="AudioStream" uid="uid://ba1cafhaai5ns" path="res://audio/count_down.wav" id="15_wc255"]
+[ext_resource type="Script" uid="uid://cjx84h08pgp41" path="res://scripts/extra_music.gd" id="16_8gofh"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="16_arp2o"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="16_gunhw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
 shader = ExtResource("1_2r41h")
@@ -436,6 +438,7 @@ player2 = NodePath("../Player2")
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_64w2a")
 volume_db = 10.0
+script = ExtResource("16_8gofh")
 
 [node name="GameOverUI" type="Control" parent="."]
 visible = false
@@ -479,6 +482,7 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOverUI"]
 stream = ExtResource("15_wc255")
+script = ExtResource("16_gunhw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameOverUI"]
 layout_mode = 1

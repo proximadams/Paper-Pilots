@@ -5,7 +5,7 @@ const SAVE_FILE_PATH = 'user://settings.json'
 var rng
 var settingsData = {
 	'musicOn': true,
-	'sfxVolume': 0.0
+	'sfxVolume': 50
 }
 
 func _ready():
@@ -32,3 +32,9 @@ func save_settings():
 	var jsonString = JSON.stringify(settingsData)
 
 	settingsFile.store_line(jsonString)
+
+func convert_volume_setting_to_db() -> float:
+	var result = (4.0 * pow(settingsData.sfxVolume, 0.5)) -40.0
+	if result == -40.0:
+		result = -80.0
+	return result

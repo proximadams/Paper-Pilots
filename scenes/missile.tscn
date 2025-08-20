@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm871tyqmkeqf"]
+[gd_scene load_steps=14 format=3 uid="uid://dm871tyqmkeqf"]
 
 [ext_resource type="Script" uid="uid://cs0dji5vsccsn" path="res://scripts/missile.gd" id="1_35udt"]
 [ext_resource type="Material" path="res://materials/missile_red.tres" id="1_a2dmp"]
 [ext_resource type="Material" path="res://materials/missile_black.tres" id="2_3peva"]
 [ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_2swxv"]
 [ext_resource type="AudioStream" uid="uid://cvqtm4fdy2n0f" path="res://audio/missile_near.mp3" id="5_bd00w"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="6_flxc2"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_u0r5p"]
 top_radius = 0.0
@@ -29,33 +30,6 @@ blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-
-[sub_resource type="Animation" id="Animation_2swxv"]
-resource_name = "animate"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TrailAdd/Trail3DHorizontal:_trailEnabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TrailAdd/Trail3DVertical:_trailEnabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_bd00w"]
 length = 0.001
@@ -82,6 +56,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2swxv"]
+resource_name = "animate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrailAdd/Trail3DHorizontal:_trailEnabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrailAdd/Trail3DVertical:_trailEnabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bd00w"]
@@ -185,3 +186,4 @@ autoplay = "animate"
 
 [node name="MissileNearSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bd00w")
+script = ExtResource("6_flxc2")

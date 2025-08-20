@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3duj7m3hnvo0"]
+[gd_scene load_steps=3 format=3 uid="uid://d3duj7m3hnvo0"]
 
 [ext_resource type="AudioStream" uid="uid://8s6eiansh42n" path="res://audio/shoot.mp3" id="1_hqiem"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="2_lpem0"]
 
 [node name="shootSound" type="AudioStreamPlayer"]
 stream = ExtResource("1_hqiem")
 volume_db = -20.0
 autoplay = true
+script = ExtResource("2_lpem0")
+volumeOffset = -20.0
 
 [connection signal="finished" from="." to="." method="queue_free"]

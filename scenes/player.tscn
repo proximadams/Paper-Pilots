@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b58w5vg0q13f8"]
+[gd_scene load_steps=29 format=3 uid="uid://b58w5vg0q13f8"]
 
 [ext_resource type="Script" uid="uid://bbvj4iauu42wr" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Material" uid="uid://cnc35h3nsvuct" path="res://materials/safe.tres" id="2_g2els"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c2hn5t2b4irdp" path="res://scripts/trail_effect.gd" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://doneugn3ajoan" path="res://audio/engine_start.mp3" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="7_fjrip"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 6.0
@@ -386,6 +387,8 @@ metadata/_custom_type_script = "uid://c2hn5t2b4irdp"
 [node name="EngineStartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qlg0r")
 volume_db = -10.0
+script = ExtResource("7_fjrip")
+volumeOffset = -10.0
 
 [node name="Shield" type="MeshInstance3D" parent="."]
 visible = false

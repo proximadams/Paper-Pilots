@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjjvpks071cd6"]
+[gd_scene load_steps=3 format=3 uid="uid://cjjvpks071cd6"]
 
 [ext_resource type="AudioStream" uid="uid://bhowgy8aa5ih3" path="res://audio/explosion.mp3" id="1_8hbce"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="2_tsug6"]
 
 [node name="explosionSound" type="AudioStreamPlayer"]
 stream = ExtResource("1_8hbce")
 volume_db = -20.0
 autoplay = true
+script = ExtResource("2_tsug6")
+volumeOffset = -20.0
 
 [connection signal="finished" from="." to="." method="queue_free"]
