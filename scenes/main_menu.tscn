@@ -1,12 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://qokfy0id8ysr"]
+[gd_scene load_steps=16 format=3 uid="uid://qokfy0id8ysr"]
 
 [ext_resource type="Script" uid="uid://dam8yhrbqbusu" path="res://scripts/main_menu.gd" id="1_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_8ln24"]
+[ext_resource type="Theme" uid="uid://dv11w3la1bpay" path="res://themes/slider.tres" id="4_tbmy8"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="5_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="6_jk1qb"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="9_5dd4i"]
 [ext_resource type="Theme" uid="uid://bdep7d1wip201" path="res://themes/win_lose_label.tres" id="9_jk1qb"]
 [ext_resource type="AudioStream" uid="uid://bj4rp3d31u6fj" path="res://audio/initial_game_song.wav" id="11_lgwnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
+bg_color = Color(0, 0.262745, 0.129412, 0.552941)
+border_width_left = 100
+border_width_right = 100
+border_color = Color(0, 0.262745, 0.129412, 0.552941)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
+
+[sub_resource type="Theme" id="Theme_tbmy8"]
+Label/font_sizes/font_size = 100
+Label/styles/normal = SubResource("StyleBoxFlat_oa1go")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
 albedo_color = Color(0.977364, 1, 0.748047, 1)
@@ -41,17 +56,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbmy8")
 
-[node name="FocusButton" type="Button" parent="."]
+[node name="FocusMainButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-focus_neighbor_left = NodePath("../SubViewportContainer/SubViewport/StartButton")
-focus_neighbor_top = NodePath("../SubViewportContainer/SubViewport/StartButton")
-focus_neighbor_right = NodePath("../SubViewportContainer/SubViewport/StartButton")
-focus_neighbor_bottom = NodePath("../SubViewportContainer/SubViewport/StartButton")
-focus_next = NodePath("../SubViewportContainer/SubViewport/StartButton")
-focus_previous = NodePath("../SubViewportContainer/SubViewport/StartButton")
+focus_neighbor_left = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+focus_neighbor_top = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+focus_neighbor_right = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+focus_neighbor_bottom = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+focus_next = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+focus_previous = NodePath("../SubViewportContainer/SubViewport/MainButtons/HowToPlayButton")
+
+[node name="FocusSettingsButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_left = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
+focus_neighbor_top = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
+focus_neighbor_right = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
+focus_neighbor_bottom = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
+focus_next = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
+focus_previous = NodePath("../SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -67,36 +94,142 @@ handle_input_locally = false
 size = Vector2i(2304, 1296)
 render_target_update_mode = 4
 
-[node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport"]
+[node name="TitleLabel" type="Label" parent="SubViewportContainer/SubViewport"]
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 1502.0
+offset_bottom = 321.0
+theme = ExtResource("9_jk1qb")
+theme_override_font_sizes/font_size = 200
+text = " Paper Pilots "
+
+[node name="MainButtons" type="VBoxContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -845.0
+offset_top = -426.0
+offset_right = -72.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HowToPlayButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+text = "How to play"
+
+[node name="MarginContainer1" type="MarginContainer" parent="SubViewportContainer/SubViewport/MainButtons"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+text = "Start"
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewportContainer/SubViewport/MainButtons"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+text = "Settings"
+
+[node name="MarginContainer3" type="MarginContainer" parent="SubViewportContainer/SubViewport/MainButtons"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="SubViewportContainer/SubViewport/MainButtons"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+text = "Quit"
+
+[node name="SettingsMenu" type="Control" parent="SubViewportContainer/SubViewport"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="White" type="ColorRect" parent="SubViewportContainer/SubViewport/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="SettingsLabel" type="Label" parent="SubViewportContainer/SubViewport/SettingsMenu"]
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 1502.0
+offset_bottom = 321.0
+theme = ExtResource("9_jk1qb")
+theme_override_font_sizes/font_size = 200
+text = "Settings"
+
+[node name="SettingsOptions" type="VBoxContainer" parent="SubViewportContainer/SubViewport/SettingsMenu"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 97.0
-offset_top = 460.0
-offset_right = 287.0
-offset_bottom = 548.0
+offset_left = -879.5
+offset_top = -233.5
+offset_right = 879.5
+offset_bottom = 233.5
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath(".")
-focus_previous = NodePath(".")
-theme = ExtResource("9_5dd4i")
-theme_override_font_sizes/font_size = 128
-text = "Start"
 
-[node name="TitleLabel" type="Label" parent="SubViewportContainer/SubViewport"]
-offset_left = 48.0
-offset_top = 48.0
-offset_right = 984.0
-offset_bottom = 223.0
-theme = ExtResource("9_jk1qb")
-theme_override_font_sizes/font_size = 200
-text = " Paper Pilots "
+[node name="MusicToggle" type="Button" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+toggle_mode = true
+text = "Music = ON"
+
+[node name="MarginContainer1" type="MarginContainer" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SoundVolume" type="HBoxContainer" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_tbmy8")
+step = 5.0
+value = 50.0
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume"]
+layout_mode = 2
+theme = SubResource("Theme_tbmy8")
+text = "SFX volume"
+
+[node name="MarginContaine2" type="MarginContainer" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+theme_override_font_sizes/font_size = 100
+text = "Save and close"
 
 [node name="Composition" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
@@ -125,8 +258,8 @@ environment = SubResource("Environment_flqon")
 [node name="InitialSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_lgwnu")
 
-[connection signal="ready" from="FocusButton" to="FocusButton" method="grab_focus"]
-[connection signal="pressed" from="SubViewportContainer/SubViewport/StartButton" to="." method="start_game"]
+[connection signal="ready" from="FocusMainButton" to="FocusMainButton" method="grab_focus"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/StartButton" to="." method="start_game"]
 [connection signal="finished" from="InitialSong" to="." method="start_default_music"]
 
 [editable path="SubViewportContainer/SubViewport/Composition/airplane1"]

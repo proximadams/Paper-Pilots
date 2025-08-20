@@ -7,24 +7,46 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0.929688, 1, 1)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qutv"]
 bg_color = Color(0, 0.478516, 0.235687, 1)
-border_width_left = 20
-border_width_right = 20
+border_width_left = 50
+border_width_top = 5
+border_width_right = 50
+border_width_bottom = 5
 border_color = Color(0, 0.478431, 0.235294, 1)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhcl7"]
 bg_color = Color(0, 0.262745, 0.129412, 1)
-border_width_left = 20
-border_width_right = 20
+border_width_left = 50
+border_width_top = 5
+border_width_right = 50
+border_width_bottom = 5
 border_color = Color(0, 0.262745, 0.129412, 1)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywuas"]
 bg_color = Color(0, 0.173828, 0.0856168, 1)
-border_width_left = 20
-border_width_right = 20
+border_width_left = 50
+border_width_top = 5
+border_width_right = 50
+border_width_bottom = 5
 border_color = Color(0, 0.172549, 0.0862745, 1)
+corner_radius_top_left = 500
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 500
 
 [resource]
 Button/font_sizes/font_size = 64

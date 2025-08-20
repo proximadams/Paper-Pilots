@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dv11w3la1bpay"]
+
+[ext_resource type="Texture2D" uid="uid://kddogiqooty3" path="res://icons/invisible.png" id="1_n0jgm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0jgm"]
+bg_color = Color(0.809601, 0.867188, 0, 1)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.807843, 0.866667, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjd83"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16yxb"]
+bg_color = Color(0.12549, 0.309804, 0.215686, 1)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.124947, 0.310547, 0.216362, 1)
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_n0jgm")
+HSlider/icons/grabber_disabled = ExtResource("1_n0jgm")
+HSlider/icons/grabber_highlight = ExtResource("1_n0jgm")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_n0jgm")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kjd83")
+HSlider/styles/slider = SubResource("StyleBoxFlat_16yxb")
