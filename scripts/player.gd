@@ -4,8 +4,8 @@ var explosionSoundRes = preload('res://scenes/explosion_sound.tscn')
 var missileRes        = preload('res://scenes/missile.tscn')
 var shootSoundRes     = preload('res://scenes/shoot_sound.tscn')
 
-signal game_over(playerId: int)
-signal entered_item_cylander(playerId: int)
+signal game_over(playerID: int)
+signal entered_item_cylander(playerID: int)
 
 const INIT_PROPULSION_SPEED  := 2000.0
 const ITEM_HEALTH_INCREASE   := 5
@@ -324,6 +324,8 @@ func use_item_missile() -> void:
 	missileInst.global_position = global_position
 	missileInst.sourcePlayer = self
 	missileInst.targetPlayer = enemyPlayer
+	self.connect('game_over', missileInst.game_over)
+	enemyPlayer.connect('game_over', missileInst.game_over)
 
 func use_item_shield() -> void:
 	shield.scale = Vector3(1.0, 1.0, 1.0)

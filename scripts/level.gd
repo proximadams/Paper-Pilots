@@ -25,28 +25,28 @@ func _ready() -> void:
 	player1.connect('entered_item_cylander', entered_item_cylander)
 	player2.connect('entered_item_cylander', entered_item_cylander)
 
-func entered_item_cylander(playerId: int) -> void:
+func entered_item_cylander(playerID: int) -> void:
 	if isItemReady:
 		isItemReady = false
 		cylanderAnim.play('grow')
 		cylanderAnim.seek(0.0)
-		var playerIndex = playerId -1
+		var playerIndex = playerID -1
 		if 0 <= playerIndex and playerIndex < itemDiamondArr.size():
 			itemDiamondArr[playerIndex].pick_random_item()
 		else:
-			print('ERROR in entered_item_cylander(playerId). playerId is out of bounds')
+			print('ERROR in entered_item_cylander(playerID). playerID is out of bounds')
 
-func player_died(playerId: int) -> void:
+func player_died(playerID: int) -> void:
 	gameOverSound.play()
 	gameOverUiAnim.play('CountDown')
-	if playerId == 1:
+	if playerID == 1:
 		player_win(camera2, winLabel2)
 		player_lose(camera1, loseLabel1)
-	elif playerId == 2:
+	elif playerID == 2:
 		player_win(camera1, winLabel1)
 		player_lose(camera2, loseLabel2)
 	else:
-		print('ERROR: player ID is invalid. playerId = ' + str(playerId))
+		print('ERROR: player ID is invalid. playerID = ' + str(playerID))
 
 func player_win(camera: Camera3D, winLabel: Label):
 	camera.gameOver = true
@@ -78,12 +78,12 @@ func _input(event: InputEvent) -> void:
 		_try_handle_use_item(event, 1)
 		_try_handle_use_item(event, 2)
 
-func _try_handle_use_item(event: InputEvent, playerId: int) -> void:
-	var itemDiamond = itemDiamondArr[playerId -1]
-	var itemEffects = itemEffectsArr[playerId -1]
+func _try_handle_use_item(event: InputEvent, playerID: int) -> void:
+	var itemDiamond = itemDiamondArr[playerID -1]
+	var itemEffects = itemEffectsArr[playerID -1]
 	var playerArr = [player1, player2]
-	var player = playerArr[playerId -1]
-	if event.is_action('item_p' + str(playerId)) and itemDiamond.state != itemDiamond.EMPTY:
+	var player = playerArr[playerID -1]
+	if event.is_action('item_p' + str(playerID)) and itemDiamond.state != itemDiamond.EMPTY:
 		match itemDiamond.state:
 			itemDiamond.HEALTH:
 				itemEffects.play_health()

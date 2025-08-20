@@ -36,3 +36,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			global_position = sourcePlayer.global_position
 			global_position.y -= 6.0
+
+func game_over(_playerID: int):
+	queue_free()
