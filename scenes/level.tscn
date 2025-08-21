@@ -363,7 +363,7 @@ size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
-transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 5, 37.5)
+transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 0, 5, 137.5)
 current = true
 fov = 135.0
 far = 200000.0
@@ -400,7 +400,7 @@ size = Vector2i(1150, 1296)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
-transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 5, -37.5)
+transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 137.5, 5, 0)
 current = true
 fov = 135.0
 far = 200000.0

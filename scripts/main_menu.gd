@@ -16,11 +16,18 @@ func _input(_event: InputEvent) -> void:
 			musicToggle.set_pressed_no_signal(false)
 		soundSlider.value = Global.settingsData.sfxVolume
 
-func start_game() -> void:
+func _try_start_music():
 	if Global.settingsData.musicOn and not Music.playing:
 		Music.play()
 	Music.volume_db = -10.0
+
+func start_game() -> void:
+	_try_start_music()
 	get_tree().change_scene_to_file('res://scenes/level.tscn')
+
+func go_to_how_to_play() -> void:
+	_try_start_music()
+	get_tree().change_scene_to_file('res://scenes/how_to_play_level.tscn')
 
 func start_default_music() -> void:
 	if Global.settingsData.musicOn:

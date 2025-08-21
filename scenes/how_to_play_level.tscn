@@ -1,0 +1,651 @@
+[gd_scene load_steps=28 format=3 uid="uid://cah6wwl13ljom"]
+
+[ext_resource type="Script" uid="uid://d2vfon4ssiidg" path="res://scripts/level.gd" id="1_b0nsj"]
+[ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="2_u542t"]
+[ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="3_r26de"]
+[ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scripts/physical_world_elements_follow.gd" id="4_cppkn"]
+[ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="5_dgavx"]
+[ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="6_wq672"]
+[ext_resource type="PackedScene" uid="uid://u2ew77t74om8" path="res://scenes/item_diamond.tscn" id="7_cw5oy"]
+[ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="8_6o01v"]
+[ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="9_ibh5a"]
+[ext_resource type="PackedScene" uid="uid://c2dtbo51c2et7" path="res://scenes/win_label.tscn" id="10_wbl37"]
+[ext_resource type="PackedScene" uid="uid://cr70q6kngxwgm" path="res://scenes/lose_label.tscn" id="11_n8kar"]
+[ext_resource type="PackedScene" uid="uid://bfklb06n0e5er" path="res://scenes/item_effects.tscn" id="12_lgrap"]
+[ext_resource type="AudioStream" uid="uid://bits4ry4ql80r" path="res://audio/engine.wav" id="13_52h5x"]
+[ext_resource type="Script" uid="uid://mn6y46c3xorx" path="res://scripts/engine_sounds.gd" id="14_c86vc"]
+[ext_resource type="Theme" uid="uid://bpfjumgjrae43" path="res://themes/default_label.tres" id="16_8uvs1"]
+[ext_resource type="Texture2D" uid="uid://bl8xuisdgewo1" path="res://icons/target_hitable.svg" id="17_ekrn6"]
+[ext_resource type="Texture2D" uid="uid://bi8urb80j8llu" path="res://icons/arrow outline.svg" id="18_8wl8q"]
+[ext_resource type="Texture2D" uid="uid://nwk24myqq2qb" path="res://icons/arrow fill.svg" id="19_sji21"]
+[ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="20_6dkw6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
+shader = ExtResource("2_u542t")
+shader_parameter/horizonColor = Color(0.0392157, 0, 0.129412, 1)
+shader_parameter/skyColor = Color(0.72549, 0.580392, 0.4, 1)
+shader_parameter/skyTexture = ExtResource("3_r26de")
+
+[sub_resource type="Sky" id="Sky_arp2o"]
+sky_material = SubResource("ShaderMaterial_ppgk2")
+
+[sub_resource type="Environment" id="Environment_2q6dc"]
+background_mode = 2
+background_color = Color(0, 0.612687, 0.494344, 1)
+sky = SubResource("Sky_arp2o")
+ambient_light_source = 3
+fog_mode = 1
+fog_light_energy = 0.0
+fog_density = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
+blend_mode = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1
+backlight_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82cfe"]
+blend_mode = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+backlight_enabled = true
+
+[sub_resource type="Animation" id="Animation_82cfe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CylanderGrow:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CylanderDouble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:isItemReady")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ux5qa"]
+resource_name = "grow"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CylanderGrow:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.001, 50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CylanderDouble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:isItemReady")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.43333, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82cfe"]
+_data = {
+&"RESET": SubResource("Animation_82cfe"),
+&"grow": SubResource("Animation_ux5qa")
+}
+
+[node name="HowToPlayLevel" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "itemEffectsArr")]
+script = ExtResource("1_b0nsj")
+player1 = NodePath("Player1")
+camera1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/Camera3D")
+winLabel1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/WinLabel")
+loseLabel1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/LoseLabel")
+player2 = NodePath("Player2")
+camera2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/Camera3D")
+winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel")
+loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
+cylanderAnim = NodePath("WorldEnvironment/Physical/AnimationPlayer")
+itemDiamondArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")]
+itemEffectsArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemEffects"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemEffects")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2q6dc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.31326, 0)
+light_energy = 2.0
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.31326, 0)
+light_energy = 0.1
+
+[node name="Physical" type="Node3D" parent="WorldEnvironment" node_paths=PackedStringArray("playerArr")]
+script = ExtResource("4_cppkn")
+playerArr = [NodePath("../../Player1"), NodePath("../../Player2")]
+
+[node name="CylanderStatic" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
+material_override = SubResource("StandardMaterial3D_w7c3h")
+radius = 50.0
+height = 100000.0
+
+[node name="CylanderDouble" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
+visible = false
+material_override = SubResource("StandardMaterial3D_82cfe")
+radius = 50.0
+height = 100000.0
+
+[node name="CylanderGrow" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
+material_override = SubResource("StandardMaterial3D_w7c3h")
+radius = 0.001
+height = 100000.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment/Physical"]
+libraries = {
+&"": SubResource("AnimationLibrary_82cfe")
+}
+speed_scale = 4.0
+
+[node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("5_dgavx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 100)
+enemyPlayer = NodePath("../Player2")
+
+[node name="CameraFollow" type="Node3D" parent="Player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
+
+[node name="CameraLookAt" type="Node3D" parent="Player1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("5_dgavx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, 4.37114e-06)
+enemyPlayer = NodePath("../Player1")
+playerID = 2
+
+[node name="CameraFollow" type="Node3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
+
+[node name="CameraLookAt" type="Node3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="p1SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/p1SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1150, 1296)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p1SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
+transform = Transform3D(1, 0, 0, 0, 0.886204, 0.463296, 0, -0.463296, 0.886204, 137.5, 5, 0)
+current = true
+fov = 135.0
+far = 200000.0
+script = ExtResource("6_wq672")
+followTarget = NodePath("../../../../Player1/CameraFollow")
+lookAtTarget = NodePath("../../../../Player1/CameraLookAt")
+player = NodePath("../../../../Player1")
+enemyOffscreen = NodePath("../EnemyIndicatorArrow")
+enemyOnscreen = NodePath("../Target")
+
+[node name="ItemDiamond" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("7_cw5oy")]
+
+[node name="EnemyIndicatorArrow" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("8_6o01v")]
+
+[node name="Target" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("9_ibh5a")]
+
+[node name="WinLabel" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("10_wbl37")]
+visible = false
+
+[node name="LoseLabel" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("11_n8kar")]
+visible = false
+
+[node name="ItemEffects" parent="GridContainer/p1SubViewportContainer/SubViewport" instance=ExtResource("12_lgrap")]
+
+[node name="p2SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/p2SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1150, 1296)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="GridContainer/p2SubViewportContainer/SubViewport" node_paths=PackedStringArray("followTarget", "lookAtTarget", "player", "enemyOffscreen", "enemyOnscreen")]
+transform = Transform3D(-1, 4.05026e-08, -7.74744e-08, 0, 0.886204, 0.463296, 8.74228e-08, 0.463296, -0.886204, 0, 5, 137.5)
+current = true
+fov = 135.0
+far = 200000.0
+script = ExtResource("6_wq672")
+followTarget = NodePath("../../../../Player2/CameraFollow")
+lookAtTarget = NodePath("../../../../Player2/CameraLookAt")
+player = NodePath("../../../../Player2")
+enemyOffscreen = NodePath("../EnemyIndicatorArrow")
+enemyOnscreen = NodePath("../Target")
+
+[node name="ItemDiamond" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("7_cw5oy")]
+
+[node name="EnemyIndicatorArrow" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("8_6o01v")]
+
+[node name="Target" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("9_ibh5a")]
+
+[node name="WinLabel" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("10_wbl37")]
+visible = false
+offset_left = -382.0
+offset_right = 382.0
+
+[node name="LoseLabel" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("11_n8kar")]
+visible = false
+
+[node name="ItemEffects" parent="GridContainer/p2SubViewportContainer/SubViewport" instance=ExtResource("12_lgrap")]
+
+[node name="EngineSounds" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player1", "player2")]
+stream = ExtResource("13_52h5x")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("14_c86vc")
+player1 = NodePath("../Player1")
+player2 = NodePath("../Player2")
+
+[node name="HowToPlayUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextButton" type="Button" parent="HowToPlayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -178.0
+offset_right = 123.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme = ExtResource("20_6dkw6")
+text = "Next"
+
+[node name="i1_RecommendController" type="Control" parent="HowToPlayUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i1_RecommendController"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -899.5
+offset_top = 24.0
+offset_right = 899.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "It's recommended that this game
+be played with 2 controllers."
+horizontal_alignment = 1
+
+[node name="BottomLabel" type="Label" parent="HowToPlayUI/i1_RecommendController"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -403.0
+offset_top = -463.0
+offset_right = 403.0
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("16_8uvs1")
+text = "0 controllers
+detected."
+horizontal_alignment = 1
+
+[node name="i2_MovementVertical" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -876.5
+offset_top = 24.0
+offset_right = 876.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Moving the left stick up or down
+affects the tilt of your plane."
+horizontal_alignment = 1
+
+[node name="i3_MovementHorizontal" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -751.0
+offset_top = 24.0
+offset_right = 751.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Moving the left stick left
+or right rotates your plane."
+horizontal_alignment = 1
+
+[node name="i4_Health" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i4_Health"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1075.0
+offset_top = 24.0
+offset_right = 1075.0
+offset_bottom = 441.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = " The colour of the trail behind your plane
+indicates your health. White means your
+health is full, black if your health is low. "
+horizontal_alignment = 1
+
+[node name="i5_Shoot1" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -798.0
+offset_top = 24.0
+offset_right = 798.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Shoot with your right trigger."
+horizontal_alignment = 1
+
+[node name="i6_Shoot2" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i6_Shoot2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -931.0
+offset_top = 24.0
+offset_right = 932.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Shooting cuts your engine, making
+you slow down and eventually fall."
+horizontal_alignment = 1
+
+[node name="i7_Shoot3" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i7_Shoot3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -931.0
+offset_top = 24.0
+offset_right = 932.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "A red X over the other player indicates that
+they will be hit if you shoot at them."
+
+[node name="X" type="TextureRect" parent="HowToPlayUI/i7_Shoot3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 728.0
+offset_top = 88.0
+offset_right = 856.0
+offset_bottom = 216.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+texture = ExtResource("17_ekrn6")
+
+[node name="i8_Arrow" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i8_Arrow"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -931.0
+offset_top = 24.0
+offset_right = 932.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = " An arrow at the edge or your screen 
+ is an indication of where your enemy 
+ is, when they are not on screen."
+
+[node name="ArrowBlack" type="TextureRect" parent="HowToPlayUI/i8_Arrow"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 631.0
+offset_top = 230.0
+offset_right = 759.0
+offset_bottom = 358.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+texture = ExtResource("19_sji21")
+
+[node name="ArrowWhiteOutline" type="TextureRect" parent="HowToPlayUI/i8_Arrow"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 631.0
+offset_top = 230.0
+offset_right = 759.0
+offset_bottom = 358.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+texture = ExtResource("18_8wl8q")
+
+[node name="i9_Pillar" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i9_Pillar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -848.5
+offset_top = 24.0
+offset_right = 848.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "A pillar of light gives you items,
+but it takes time to reload."
+horizontal_alignment = 1
+
+[node name="i10_Pillar2" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i10_Pillar2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -848.5
+offset_top = 24.0
+offset_right = 848.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "When it is fully loaded and pure
+white, fly into it to get an item."
+horizontal_alignment = 1
+
+[node name="i11_Pillar3" type="Control" parent="HowToPlayUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -848.0
+offset_top = 24.0
+offset_right = 849.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Use your item with your left trigger."
+horizontal_alignment = 1
+
+[connection signal="ready" from="HowToPlayUI/NextButton" to="HowToPlayUI/NextButton" method="grab_focus"]

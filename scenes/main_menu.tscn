@@ -1,27 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://qokfy0id8ysr"]
+[gd_scene load_steps=15 format=3 uid="uid://qokfy0id8ysr"]
 
 [ext_resource type="Script" uid="uid://dam8yhrbqbusu" path="res://scripts/main_menu.gd" id="1_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_8ln24"]
 [ext_resource type="Theme" uid="uid://dv11w3la1bpay" path="res://themes/slider.tres" id="4_tbmy8"]
+[ext_resource type="Theme" uid="uid://bpfjumgjrae43" path="res://themes/default_label.tres" id="5_jk1qb"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="5_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="6_jk1qb"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="9_5dd4i"]
 [ext_resource type="Theme" uid="uid://bdep7d1wip201" path="res://themes/win_lose_label.tres" id="9_jk1qb"]
 [ext_resource type="AudioStream" uid="uid://bj4rp3d31u6fj" path="res://audio/initial_game_song.wav" id="11_lgwnu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
-bg_color = Color(0, 0.262745, 0.129412, 0.552941)
-border_width_left = 100
-border_width_right = 100
-border_color = Color(0, 0.262745, 0.129412, 0.552941)
-corner_radius_top_left = 500
-corner_radius_top_right = 500
-corner_radius_bottom_right = 500
-corner_radius_bottom_left = 500
-
-[sub_resource type="Theme" id="Theme_tbmy8"]
-Label/font_sizes/font_size = 100
-Label/styles/normal = SubResource("StyleBoxFlat_oa1go")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
 albedo_color = Color(0.977364, 1, 0.748047, 1)
@@ -226,7 +213,7 @@ value = 50.0
 
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/SoundVolume"]
 layout_mode = 2
-theme = SubResource("Theme_tbmy8")
+theme = ExtResource("5_jk1qb")
 text = "SFX volume"
 
 [node name="MarginContainer2" type="MarginContainer" parent="SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions"]
@@ -268,6 +255,7 @@ environment = SubResource("Environment_flqon")
 stream = ExtResource("11_lgwnu")
 
 [connection signal="ready" from="FocusMainButton" to="FocusMainButton" method="grab_focus"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/HowToPlayButton" to="." method="go_to_how_to_play"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/StartButton" to="." method="start_game"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="FocusSettingsButton" method="grab_focus"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/MainButtons/SettingsButton" to="SubViewportContainer/SubViewport/MainButtons" method="set_visible" binds= [false]]
