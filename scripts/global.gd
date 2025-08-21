@@ -5,7 +5,7 @@ const SAVE_FILE_PATH = 'user://settings.json'
 var rng
 var settingsData = {
 	'musicOn': true,
-	'sfxVolume': 50
+	'sfxVolume': 100
 }
 
 func _ready():
