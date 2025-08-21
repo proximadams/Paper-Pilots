@@ -38,7 +38,7 @@ fog_mode = 1
 fog_light_energy = 0.0
 fog_density = 1.0
 
-[node name="HowToPlayLevel" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "itemEffectsArr")]
+[node name="HowToPlayLevel" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "itemDiamondArr", "itemEffectsArr")]
 script = ExtResource("1_b0nsj")
 player1 = NodePath("Player1")
 camera1 = NodePath("GridContainer/p1SubViewportContainer/SubViewport/Camera3D")
@@ -48,7 +48,6 @@ player2 = NodePath("Player2")
 camera2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/Camera3D")
 winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel")
 loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
-cylanderAnim = NodePath("")
 itemDiamondArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")]
 itemEffectsArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemEffects"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemEffects")]
 
@@ -186,28 +185,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_b0nsj")
-
-[node name="NextButton" type="Button" parent="HowToPlayUI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -123.5
-offset_top = -178.0
-offset_right = 123.5
-offset_bottom = -80.0
-grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath(".")
-focus_previous = NodePath(".")
-theme = ExtResource("20_6dkw6")
-text = "Next"
 
 [node name="i1_RecommendController" type="Control" parent="HowToPlayUI"]
 layout_mode = 1
@@ -526,6 +503,29 @@ grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Use your item with your left trigger."
 horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="HowToPlayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -178.0
+offset_right = 123.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+mouse_default_cursor_shape = 2
+theme = ExtResource("20_6dkw6")
+text = "Next"
 
 [connection signal="pressed" from="HowToPlayUI/NextButton" to="HowToPlayUI" method="on_next_button_pressed"]
 [connection signal="ready" from="HowToPlayUI/NextButton" to="HowToPlayUI/NextButton" method="grab_focus"]
