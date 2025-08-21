@@ -43,7 +43,8 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var trailHorizontalSub: MeshInstance3D
 @export var trailVerticalSub  : MeshInstance3D
 
-@export var playerID: int
+@export var invinsible: bool
+@export var playerID  : int
 
 var enemyHitableCount := 0
 var fallSpeed         := 0.0# negative is fall direction
@@ -264,7 +265,10 @@ func get_hit() -> void:
 	if 0 < health:
 		health -= 1
 	else:
-		_die()
+		if invinsible:
+			health = 0
+		else:
+			_die()
 	_refresh_trail_colors()
 
 func _refresh_trail_colors() -> void:

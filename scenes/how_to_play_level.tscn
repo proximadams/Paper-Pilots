@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cah6wwl13ljom"]
+[gd_scene load_steps=23 format=3 uid="uid://cah6wwl13ljom"]
 
 [ext_resource type="Script" uid="uid://d2vfon4ssiidg" path="res://scripts/level.gd" id="1_b0nsj"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="2_u542t"]
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="3_r26de"]
-[ext_resource type="Script" uid="uid://buud1dm52a4b6" path="res://scripts/physical_world_elements_follow.gd" id="4_cppkn"]
 [ext_resource type="PackedScene" uid="uid://b58w5vg0q13f8" path="res://scenes/player.tscn" id="5_dgavx"]
 [ext_resource type="Script" uid="uid://bv32pulmq6j8j" path="res://scripts/player_camera.gd" id="6_wq672"]
 [ext_resource type="PackedScene" uid="uid://u2ew77t74om8" path="res://scenes/item_diamond.tscn" id="7_cw5oy"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bfklb06n0e5er" path="res://scenes/item_effects.tscn" id="12_lgrap"]
 [ext_resource type="AudioStream" uid="uid://bits4ry4ql80r" path="res://audio/engine.wav" id="13_52h5x"]
 [ext_resource type="Script" uid="uid://mn6y46c3xorx" path="res://scripts/engine_sounds.gd" id="14_c86vc"]
+[ext_resource type="Script" uid="uid://b6bpqs1vj6mun" path="res://scripts/how_to_play_ui.gd" id="15_b0nsj"]
 [ext_resource type="Theme" uid="uid://bpfjumgjrae43" path="res://themes/default_label.tres" id="16_8uvs1"]
 [ext_resource type="Texture2D" uid="uid://bl8xuisdgewo1" path="res://icons/target_hitable.svg" id="17_ekrn6"]
 [ext_resource type="Texture2D" uid="uid://bi8urb80j8llu" path="res://icons/arrow outline.svg" id="18_8wl8q"]
@@ -38,104 +38,6 @@ fog_mode = 1
 fog_light_energy = 0.0
 fog_density = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
-blend_mode = 1
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.1
-backlight_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82cfe"]
-blend_mode = 1
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-backlight_enabled = true
-
-[sub_resource type="Animation" id="Animation_82cfe"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CylanderGrow:radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.001]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CylanderDouble:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../..:isItemReady")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ux5qa"]
-resource_name = "grow"
-length = 30.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CylanderGrow:radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 30),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.001, 50.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CylanderDouble:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 30),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../..:isItemReady")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.43333, 30),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_82cfe"]
-_data = {
-&"RESET": SubResource("Animation_82cfe"),
-&"grow": SubResource("Animation_ux5qa")
-}
-
 [node name="HowToPlayLevel" type="Node3D" node_paths=PackedStringArray("player1", "camera1", "winLabel1", "loseLabel1", "player2", "camera2", "winLabel2", "loseLabel2", "cylanderAnim", "itemDiamondArr", "itemEffectsArr")]
 script = ExtResource("1_b0nsj")
 player1 = NodePath("Player1")
@@ -146,7 +48,7 @@ player2 = NodePath("Player2")
 camera2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/Camera3D")
 winLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/WinLabel")
 loseLabel2 = NodePath("GridContainer/p2SubViewportContainer/SubViewport/LoseLabel")
-cylanderAnim = NodePath("WorldEnvironment/Physical/AnimationPlayer")
+cylanderAnim = NodePath("")
 itemDiamondArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")]
 itemEffectsArr = [NodePath("GridContainer/p1SubViewportContainer/SubViewport/ItemEffects"), NodePath("GridContainer/p2SubViewportContainer/SubViewport/ItemEffects")]
 
@@ -161,35 +63,10 @@ light_energy = 2.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.31326, 0)
 light_energy = 0.1
 
-[node name="Physical" type="Node3D" parent="WorldEnvironment" node_paths=PackedStringArray("playerArr")]
-script = ExtResource("4_cppkn")
-playerArr = [NodePath("../../Player1"), NodePath("../../Player2")]
-
-[node name="CylanderStatic" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
-material_override = SubResource("StandardMaterial3D_w7c3h")
-radius = 50.0
-height = 100000.0
-
-[node name="CylanderDouble" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
-visible = false
-material_override = SubResource("StandardMaterial3D_82cfe")
-radius = 50.0
-height = 100000.0
-
-[node name="CylanderGrow" type="CSGCylinder3D" parent="WorldEnvironment/Physical"]
-material_override = SubResource("StandardMaterial3D_w7c3h")
-radius = 0.001
-height = 100000.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment/Physical"]
-libraries = {
-&"": SubResource("AnimationLibrary_82cfe")
-}
-speed_scale = 4.0
-
 [node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("5_dgavx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 100)
 enemyPlayer = NodePath("../Player2")
+invinsible = true
 
 [node name="CameraFollow" type="Node3D" parent="Player1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
@@ -200,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 [node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("5_dgavx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, 4.37114e-06)
 enemyPlayer = NodePath("../Player1")
+invinsible = true
 playerID = 2
 
 [node name="CameraFollow" type="Node3D" parent="Player2"]
@@ -307,6 +185,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("15_b0nsj")
 
 [node name="NextButton" type="Button" parent="HowToPlayUI"]
 layout_mode = 1
@@ -648,4 +527,5 @@ theme = ExtResource("16_8uvs1")
 text = "Use your item with your left trigger."
 horizontal_alignment = 1
 
+[connection signal="pressed" from="HowToPlayUI/NextButton" to="HowToPlayUI" method="on_next_button_pressed"]
 [connection signal="ready" from="HowToPlayUI/NextButton" to="HowToPlayUI/NextButton" method="grab_focus"]
