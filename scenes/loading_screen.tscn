@@ -67,8 +67,4 @@ layout_mode = 2
 theme = ExtResource("2_hprjd")
 step = 1.0
 
-[node name="AssetHolder" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AssetHolder" type="Node3D" parent="."]
