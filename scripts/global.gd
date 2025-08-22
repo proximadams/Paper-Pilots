@@ -1,6 +1,7 @@
 extends Node
 
-const SAVE_FILE_PATH = 'user://settings.json'
+const SAVE_FILE_PATH := 'user://settings.json'
+const LOADING_RES    := preload('res://scenes/loading_screen.tscn')
 
 var numDevicesConnected := 0
 var rng

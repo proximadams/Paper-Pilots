@@ -1,0 +1,74 @@
+[gd_scene load_steps=16 format=3 uid="uid://bhir40ub3j7aa"]
+
+[ext_resource type="Theme" uid="uid://bpfjumgjrae43" path="res://themes/default_label.tres" id="1_ep5rh"]
+[ext_resource type="Script" uid="uid://dnx5whaklxp1r" path="res://scripts/loading_screen.gd" id="1_ku3bi"]
+[ext_resource type="PackedScene" uid="uid://cen3owr6ivv1w" path="res://scenes/enemy_indicator_arrow.tscn" id="2_5phy8"]
+[ext_resource type="Theme" uid="uid://d1hqt5070wxsy" path="res://themes/progress_bar.tres" id="2_hprjd"]
+[ext_resource type="PackedScene" uid="uid://bd40td44tkyep" path="res://scenes/explosion.tscn" id="3_if62a"]
+[ext_resource type="PackedScene" uid="uid://cjjvpks071cd6" path="res://scenes/explosion_sound.tscn" id="4_f7y4a"]
+[ext_resource type="PackedScene" uid="uid://cah6wwl13ljom" path="res://scenes/how_to_play_level.tscn" id="5_gcv3i"]
+[ext_resource type="PackedScene" uid="uid://u2ew77t74om8" path="res://scenes/item_diamond.tscn" id="6_amnj2"]
+[ext_resource type="PackedScene" uid="uid://bfklb06n0e5er" path="res://scenes/item_effects.tscn" id="7_f7y4a"]
+[ext_resource type="PackedScene" uid="uid://cr70q6kngxwgm" path="res://scenes/lose_label.tscn" id="8_amnj2"]
+[ext_resource type="PackedScene" uid="uid://chhsye87y2qn1" path="res://scenes/missile_model.tscn" id="9_pvqkx"]
+[ext_resource type="PackedScene" uid="uid://d3duj7m3hnvo0" path="res://scenes/shoot_sound.tscn" id="10_v1mdd"]
+[ext_resource type="PackedScene" uid="uid://ctruhln5g3qvm" path="res://scenes/target.tscn" id="11_pvqkx"]
+[ext_resource type="PackedScene" uid="uid://c2dtbo51c2et7" path="res://scenes/win_label.tscn" id="12_e7oyx"]
+[ext_resource type="PackedScene" uid="uid://bc5l88adhtvlc" path="res://scenes/missile_near_sound.tscn" id="13_e7oyx"]
+
+[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("progressBar")]
+top_level = true
+z_index = -10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ku3bi")
+assetArr = Array[Resource]([ExtResource("2_5phy8"), ExtResource("3_if62a"), ExtResource("4_f7y4a"), ExtResource("5_gcv3i"), ExtResource("6_amnj2"), ExtResource("7_f7y4a"), ExtResource("8_amnj2"), ExtResource("9_pvqkx"), ExtResource("10_v1mdd"), ExtResource("11_pvqkx"), ExtResource("12_e7oyx"), ExtResource("13_e7oyx")])
+progressBar = NodePath("VBoxContainer/ProgressBar")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.862745)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -496.0
+offset_top = -177.0
+offset_right = 496.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ep5rh")
+text = "Loading assets..."
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("2_hprjd")
+step = 1.0
+
+[node name="AssetHolder" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

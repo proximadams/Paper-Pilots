@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://qokfy0id8ysr"]
+[gd_scene load_steps=16 format=3 uid="uid://qokfy0id8ysr"]
 
 [ext_resource type="Script" uid="uid://dam8yhrbqbusu" path="res://scripts/main_menu.gd" id="1_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://gi3mnujnoxl2" path="res://scenes/paper_airplane_model.gltf" id="4_8ln24"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d3sd8vl6emo1f" path="res://shaders/sky_panorama.png" id="6_jk1qb"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="9_5dd4i"]
 [ext_resource type="Theme" uid="uid://bdep7d1wip201" path="res://themes/win_lose_label.tres" id="9_jk1qb"]
+[ext_resource type="PackedScene" uid="uid://bhir40ub3j7aa" path="res://scenes/loading_screen.tscn" id="9_lgwnu"]
 [ext_resource type="AudioStream" uid="uid://bj4rp3d31u6fj" path="res://audio/initial_game_song.wav" id="11_lgwnu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa1go"]
@@ -34,7 +35,7 @@ fog_mode = 1
 fog_light_energy = 0.0
 fog_density = 1.0
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("loadingScreen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbmy8")
+loadingScreen = NodePath("SubViewportContainer/SubViewport/LoadingScreen")
 
 [node name="FocusMainButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -250,6 +252,10 @@ light_energy = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_flqon")
+
+[node name="LoadingScreen" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_lgwnu")]
+visible = false
+z_index = 0
 
 [node name="InitialSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_lgwnu")

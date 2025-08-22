@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc5l88adhtvlc"]
+
+[ext_resource type="AudioStream" uid="uid://cvqtm4fdy2n0f" path="res://audio/missile_near.mp3" id="1_03hj1"]
+[ext_resource type="Script" uid="uid://dsk0hb54erqev" path="res://scripts/sound_effect.gd" id="2_ei8vw"]
+
+[node name="MissileNearSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_03hj1")
+script = ExtResource("2_ei8vw")

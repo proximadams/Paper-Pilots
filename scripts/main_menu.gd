@@ -1,5 +1,7 @@
 extends Control
 
+@export var loadingScreen: Control
+
 var started = false
 
 @onready var musicToggle: Button  = $SubViewportContainer/SubViewport/SettingsMenu/SettingsOptions/MusicToggle
@@ -23,11 +25,11 @@ func _try_start_music():
 
 func start_game() -> void:
 	_try_start_music()
-	get_tree().change_scene_to_file('res://scenes/level.tscn')
+	loadingScreen.load('res://scenes/level.tscn')
 
 func go_to_how_to_play() -> void:
 	_try_start_music()
-	get_tree().change_scene_to_file('res://scenes/how_to_play_level.tscn')
+	loadingScreen.load('res://scenes/how_to_play_level.tscn')
 
 func start_default_music() -> void:
 	if Global.settingsData.musicOn:
