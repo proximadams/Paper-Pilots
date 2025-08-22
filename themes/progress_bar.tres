@@ -10,6 +10,6 @@ border_color = Color(0.0588235, 0.203922, 0.129412, 0.588235)
 bg_color = Color(0.478516, 0.386925, 0, 1)
 
 [resource]
-ProgressBar/font_sizes/font_size = 50
+ProgressBar/font_sizes/font_size = 32
 ProgressBar/styles/background = SubResource("StyleBoxFlat_ep5rh")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_hprjd")
