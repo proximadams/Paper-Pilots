@@ -74,3 +74,4 @@ hframes = 3
 libraries = {
 &"": SubResource("AnimationLibrary_u542t")
 }
+autoplay = "wiggle"

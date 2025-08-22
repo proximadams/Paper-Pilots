@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cah6wwl13ljom"]
+[gd_scene load_steps=34 format=3 uid="uid://cah6wwl13ljom"]
 
 [ext_resource type="Script" uid="uid://d2vfon4ssiidg" path="res://scripts/level.gd" id="1_b0nsj"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="2_u542t"]
@@ -25,8 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://nwk24myqq2qb" path="res://icons/arrow fill.svg" id="19_sji21"]
 [ext_resource type="Theme" uid="uid://c51c64k3blcd0" path="res://themes/default_button.tres" id="20_6dkw6"]
 [ext_resource type="PackedScene" uid="uid://6ov83x1qx21t" path="res://scenes/1_key_press.tscn" id="21_cw5oy"]
+[ext_resource type="PackedScene" uid="uid://ct3x14e15emam" path="res://scenes/right_trigger_press.tscn" id="21_wbl37"]
 [ext_resource type="PackedScene" uid="uid://c4hsxuovn2exy" path="res://scenes/backtick_key_press.tscn" id="21_wq672"]
 [ext_resource type="PackedScene" uid="uid://ddupeyl6p8unp" path="res://scenes/period_key_press.tscn" id="22_cw5oy"]
+[ext_resource type="PackedScene" uid="uid://ca2gnmigxbynt" path="res://scenes/left_trigger_press.tscn" id="22_n8kar"]
 [ext_resource type="PackedScene" uid="uid://c4iol8o2bjvn0" path="res://scenes/slash_key_press.tscn" id="27_ibh5a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
@@ -352,7 +354,6 @@ grow_horizontal = 0
 [node name="UpDownKeyPress" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel/SpriteHolder2" instance=ExtResource("17_u542t")]
 
 [node name="i3_MovementHorizontal" type="Control" parent="HowToPlayUI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -376,8 +377,24 @@ text = "Moving the left stick left
 and right rotates your plane."
 horizontal_alignment = 1
 
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i3_MovementHorizontal/2controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="WiggleStick" parent="HowToPlayUI/i3_MovementHorizontal/2controllersLabel/SpriteHolder1" instance=ExtResource("16_b0nsj")]
+position = Vector2(-120, 224)
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i3_MovementHorizontal/2controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="WiggleStick" parent="HowToPlayUI/i3_MovementHorizontal/2controllersLabel/SpriteHolder2" instance=ExtResource("16_b0nsj")]
+position = Vector2(120, 224)
+
 [node name="1controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -393,7 +410,26 @@ right or pressing ← and → keys
 will rotate your plane."
 horizontal_alignment = 1
 
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="WiggleStick" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel/SpriteHolder1" instance=ExtResource("16_b0nsj")]
+position = Vector2(-120, 224)
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="LeftRightKeyPress" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel/SpriteHolder2" instance=ExtResource("19_cppkn")]
+offset_left = -16.0
+offset_right = -16.0
+
 [node name="0controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -462,7 +498,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="2controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -475,6 +510,23 @@ grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Shoot with your right trigger."
 horizontal_alignment = 1
+
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i5_Shoot1/2controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RightTriggerKeyPress" parent="HowToPlayUI/i5_Shoot1/2controllersLabel/SpriteHolder1" instance=ExtResource("21_wbl37")]
+offset_left = -88.0
+offset_right = -88.0
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i5_Shoot1/2controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="RightTriggerKeyPress" parent="HowToPlayUI/i5_Shoot1/2controllersLabel/SpriteHolder2" instance=ExtResource("21_wbl37")]
 
 [node name="1controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
 visible = false
@@ -492,7 +544,25 @@ text = "Shoot with the right trigger
 or the period \".\" key."
 horizontal_alignment = 1
 
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i5_Shoot1/1controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RightTriggerKeyPress" parent="HowToPlayUI/i5_Shoot1/1controllersLabel/SpriteHolder1" instance=ExtResource("21_wbl37")]
+offset_left = -88.0
+offset_right = -88.0
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i5_Shoot1/1controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="periodKeyPress" parent="HowToPlayUI/i5_Shoot1/1controllersLabel/SpriteHolder2" instance=ExtResource("22_cw5oy")]
+
 [node name="0controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -685,6 +755,7 @@ white, fly into it to get an item."
 horizontal_alignment = 1
 
 [node name="i11_Pillar3" type="Control" parent="HowToPlayUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -693,7 +764,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="2controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -706,6 +776,27 @@ grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Use an item by pressing your left trigger."
 horizontal_alignment = 1
+
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i11_Pillar3/2controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="LeftTriggerKeyPress" parent="HowToPlayUI/i11_Pillar3/2controllersLabel/SpriteHolder1" instance=ExtResource("22_n8kar")]
+offset_top = 300.0
+offset_bottom = 300.0
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i11_Pillar3/2controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="LeftTriggerKeyPress" parent="HowToPlayUI/i11_Pillar3/2controllersLabel/SpriteHolder2" instance=ExtResource("22_n8kar")]
+offset_left = -88.0
+offset_top = 300.0
+offset_right = -88.0
+offset_bottom = 300.0
 
 [node name="1controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
 visible = false
@@ -723,7 +814,29 @@ text = "Use an item by pressing your left trigger
 or by pressing the / key."
 horizontal_alignment = 1
 
+[node name="SpriteHolder1" type="Control" parent="HowToPlayUI/i11_Pillar3/1controllersLabel"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="LeftTriggerKeyPress" parent="HowToPlayUI/i11_Pillar3/1controllersLabel/SpriteHolder1" instance=ExtResource("22_n8kar")]
+offset_top = 300.0
+offset_bottom = 300.0
+
+[node name="SpriteHolder2" type="Control" parent="HowToPlayUI/i11_Pillar3/1controllersLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="SlashKeyPress" parent="HowToPlayUI/i11_Pillar3/1controllersLabel/SpriteHolder2" instance=ExtResource("27_ibh5a")]
+offset_left = -176.0
+offset_top = 300.0
+offset_right = -176.0
+offset_bottom = 300.0
+
 [node name="0controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
