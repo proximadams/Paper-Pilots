@@ -2,6 +2,7 @@ extends Node
 
 const SAVE_FILE_PATH = 'user://settings.json'
 
+var numDevicesConnected := 0
 var rng
 var settingsData = {
 	'musicOn': true,
@@ -12,6 +13,7 @@ func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	_load_settings()
+	var _res = Input.connect('joy_connection_changed', _on_joy_connection_changed)
 
 func _load_settings():
 	if not FileAccess.file_exists(SAVE_FILE_PATH):
@@ -38,3 +40,13 @@ func convert_volume_setting_to_db() -> float:
 	if result == -40.0:
 		result = -80.0
 	return result
+
+func _on_joy_connection_changed(_device: int, connected: bool) -> void:
+	if connected:
+		numDevicesConnected += 1
+	else:
+		numDevicesConnected -= 1
+
+	if numDevicesConnected < 0:
+		# should never be called but just to be safe...
+		numDevicesConnected = 0

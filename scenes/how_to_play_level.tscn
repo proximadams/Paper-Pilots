@@ -177,7 +177,7 @@ script = ExtResource("14_c86vc")
 player1 = NodePath("../Player1")
 player2 = NodePath("../Player2")
 
-[node name="HowToPlayUI" type="Control" parent="."]
+[node name="HowToPlayUI" type="Control" parent="." node_paths=PackedStringArray("controllerCountLabel", "visibleControllerCount2", "visibleControllerCount1", "visibleControllerCount0")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,6 +185,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_b0nsj")
+controllerCountLabel = NodePath("i1_RecommendController/BottomLabel")
+visibleControllerCount2 = [NodePath("i2_MovementVertical/2controllersLabel"), NodePath("i3_MovementHorizontal/2controllersLabel"), NodePath("i5_Shoot1/2controllersLabel"), NodePath("i11_Pillar3/2controllersLabel")]
+visibleControllerCount1 = [NodePath("i2_MovementVertical/1controllerLabel"), NodePath("i3_MovementHorizontal/1controllersLabel"), NodePath("i5_Shoot1/1controllersLabel"), NodePath("i11_Pillar3/1controllersLabel")]
+visibleControllerCount0 = [NodePath("i2_MovementVertical/0controllersLabel"), NodePath("i3_MovementHorizontal/0controllersLabel"), NodePath("i5_Shoot1/0controllersLabel"), NodePath("i11_Pillar3/0controllersLabel")]
 
 [node name="i1_RecommendController" type="Control" parent="HowToPlayUI"]
 layout_mode = 1
@@ -236,7 +240,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
+[node name="2controllersLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -247,7 +251,40 @@ offset_right = 876.5
 offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
-text = "Moving the left stick up or down
+text = "Moving the left stick up and down
+affects the tilt of your plane."
+horizontal_alignment = 1
+
+[node name="1controllerLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -876.5
+offset_top = 24.0
+offset_right = 876.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = " Moving the left stick up and down 
+ or pressing ↑ and ↓ keys affects 
+ the tilt of your plane. "
+horizontal_alignment = 1
+
+[node name="0controllersLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -782.5
+offset_top = 24.0
+offset_right = 782.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Pressing W and S or ↑ and ↓ keys
 affects the tilt of your plane."
 horizontal_alignment = 1
 
@@ -260,7 +297,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+[node name="2controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -272,7 +309,40 @@ offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Moving the left stick left
-or right rotates your plane."
+and right rotates your plane."
+horizontal_alignment = 1
+
+[node name="1controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -751.0
+offset_top = 24.0
+offset_right = 751.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Moving the left stick left and
+right or pressing ← and → keys
+will rotate your plane."
+horizontal_alignment = 1
+
+[node name="0controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -751.0
+offset_top = 24.0
+offset_right = 751.0
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Pressing A and D or ← and →
+keys will rotate your plane."
 horizontal_alignment = 1
 
 [node name="i4_Health" type="Control" parent="HowToPlayUI"]
@@ -309,7 +379,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
+[node name="2controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -321,6 +391,38 @@ offset_bottom = 161.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Shoot with your right trigger."
+horizontal_alignment = 1
+
+[node name="1controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -798.0
+offset_top = 24.0
+offset_right = 798.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Shoot with the right trigger
+or the period \".\" key."
+horizontal_alignment = 1
+
+[node name="0controllersLabel" type="Label" parent="HowToPlayUI/i5_Shoot1"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -596.5
+offset_top = 24.0
+offset_right = 596.5
+offset_bottom = 301.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Shoot with the 1 key
+or the period \".\" key."
 horizontal_alignment = 1
 
 [node name="i6_Shoot2" type="Control" parent="HowToPlayUI"]
@@ -412,11 +514,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 631.0
-offset_top = 230.0
-offset_right = 759.0
-offset_bottom = 358.0
+offset_left = 887.0
+offset_top = 486.0
+offset_right = 1015.0
+offset_bottom = 614.0
 grow_horizontal = 2
+rotation = 3.14159
 scale = Vector2(2, 2)
 texture = ExtResource("19_sji21")
 
@@ -425,11 +528,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 631.0
-offset_top = 230.0
-offset_right = 759.0
-offset_bottom = 358.0
+offset_left = 887.0
+offset_top = 486.0
+offset_right = 1015.0
+offset_bottom = 614.0
 grow_horizontal = 2
+rotation = 3.14159
 scale = Vector2(2, 2)
 texture = ExtResource("18_8wl8q")
 
@@ -490,7 +594,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
+[node name="2controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -501,7 +605,39 @@ offset_right = 849.0
 offset_bottom = 161.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
-text = "Use your item with your left trigger."
+text = "Use an item by pressing your left trigger."
+horizontal_alignment = 1
+
+[node name="1controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1079.0
+offset_top = 24.0
+offset_right = 1080.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Use an item by pressing your left trigger
+or by pressing the / key."
+horizontal_alignment = 1
+
+[node name="0controllersLabel" type="Label" parent="HowToPlayUI/i11_Pillar3"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -848.0
+offset_top = 24.0
+offset_right = 849.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme = ExtResource("16_8uvs1")
+text = "Use an item by pressing the ~` key
+or by pressing the / key."
 horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="HowToPlayUI"]

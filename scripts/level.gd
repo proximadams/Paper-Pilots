@@ -74,7 +74,7 @@ func go_to_main_menu() -> void:
 	get_tree().change_scene_to_file('res://scenes/main_menu.tscn')
 
 func _input(event: InputEvent) -> void:
-	if (event is InputEventJoypadMotion or event is InputEventKey) and event.pressed:
+	if event is InputEventJoypadMotion or (event is InputEventKey and event.pressed):
 		_try_handle_use_item(event, 1)
 		_try_handle_use_item(event, 2)
 
