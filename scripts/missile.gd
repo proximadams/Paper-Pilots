@@ -9,7 +9,7 @@ var speed := 0.0
 var sourcePlayer: CharacterBody3D
 var targetPlayer: CharacterBody3D
 
-@onready var model           : Node3D            = $Model
+@onready var model           : Node3D            = $MissileModel
 @onready var missileNearSound: AudioStreamPlayer = $MissileNearSound
 
 func _physics_process(delta: float) -> void:
