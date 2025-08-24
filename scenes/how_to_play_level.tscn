@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cah6wwl13ljom"]
+[gd_scene load_steps=38 format=3 uid="uid://cah6wwl13ljom"]
 
 [ext_resource type="Script" uid="uid://d2vfon4ssiidg" path="res://scripts/level.gd" id="1_b0nsj"]
 [ext_resource type="Shader" uid="uid://kcr4ogfia85d" path="res://shaders/sky.gdshader" id="2_u542t"]
@@ -19,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://bl8xuisdgewo1" path="res://icons/target_hitable.svg" id="17_ekrn6"]
 [ext_resource type="PackedScene" uid="uid://0f05yjhwk0jt" path="res://scenes/up_down_key_press.tscn" id="17_u542t"]
 [ext_resource type="Texture2D" uid="uid://bi8urb80j8llu" path="res://icons/arrow outline.svg" id="18_8wl8q"]
+[ext_resource type="Texture2D" uid="uid://bm2ktm7txejyp" path="res://icons/arrow_down.svg" id="18_lgrap"]
 [ext_resource type="PackedScene" uid="uid://ddayswybal58j" path="res://scenes/w_s_key_press.tscn" id="18_r26de"]
+[ext_resource type="Texture2D" uid="uid://c2kg0emkbuvg0" path="res://icons/arrow_up.svg" id="19_52h5x"]
 [ext_resource type="PackedScene" uid="uid://dj7nrgpbuowcn" path="res://scenes/left_right_key_press.tscn" id="19_cppkn"]
 [ext_resource type="PackedScene" uid="uid://clc8fj5suvjxx" path="res://scenes/a_d_key_press.tscn" id="19_dgavx"]
 [ext_resource type="Texture2D" uid="uid://nwk24myqq2qb" path="res://icons/arrow fill.svg" id="19_sji21"]
@@ -27,8 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://6ov83x1qx21t" path="res://scenes/1_key_press.tscn" id="21_cw5oy"]
 [ext_resource type="PackedScene" uid="uid://ct3x14e15emam" path="res://scenes/right_trigger_press.tscn" id="21_wbl37"]
 [ext_resource type="PackedScene" uid="uid://c4hsxuovn2exy" path="res://scenes/backtick_key_press.tscn" id="21_wq672"]
+[ext_resource type="Texture2D" uid="uid://cw24vgn7klage" path="res://icons/arrow_left.svg" id="22_c86vc"]
 [ext_resource type="PackedScene" uid="uid://ddupeyl6p8unp" path="res://scenes/period_key_press.tscn" id="22_cw5oy"]
 [ext_resource type="PackedScene" uid="uid://ca2gnmigxbynt" path="res://scenes/left_trigger_press.tscn" id="22_n8kar"]
+[ext_resource type="Texture2D" uid="uid://bcn31wx3frtur" path="res://icons/arrow_right.svg" id="23_dxmnp"]
 [ext_resource type="PackedScene" uid="uid://c4iol8o2bjvn0" path="res://scenes/slash_key_press.tscn" id="27_ibh5a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
@@ -253,6 +257,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="2controllersLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -299,7 +304,7 @@ offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = " Moving the left stick up and down 
- or pressing ↑ and ↓ keys affects 
+ or pressing     and     keys affects 
  the tilt of your plane. "
 horizontal_alignment = 1
 
@@ -320,8 +325,23 @@ grow_horizontal = 0
 
 [node name="UpDownKeyPress" parent="HowToPlayUI/i2_MovementVertical/1controllerLabel/SpriteHolder2" instance=ExtResource("17_u542t")]
 
+[node name="ArrowUp" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/1controllerLabel"]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 146.0
+offset_right = 836.0
+offset_bottom = 274.0
+texture = ExtResource("19_52h5x")
+
+[node name="ArrowDown" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/1controllerLabel"]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 146.0
+offset_right = 1144.0
+offset_bottom = 274.0
+texture = ExtResource("18_lgrap")
+
 [node name="0controllersLabel" type="Label" parent="HowToPlayUI/i2_MovementVertical"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -332,7 +352,7 @@ offset_right = 782.5
 offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
-text = "Pressing W and S or ↑ and ↓ keys
+text = "Pressing W and S or     and     keys
 affects the tilt of your plane."
 horizontal_alignment = 1
 
@@ -352,6 +372,20 @@ anchor_right = 1.0
 grow_horizontal = 0
 
 [node name="UpDownKeyPress" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel/SpriteHolder2" instance=ExtResource("17_u542t")]
+
+[node name="ArrowUp" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel"]
+offset_left = 1051.0
+offset_top = 6.0
+offset_right = 1179.0
+offset_bottom = 134.0
+texture = ExtResource("19_52h5x")
+
+[node name="ArrowDown" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel"]
+offset_left = 1363.0
+offset_top = 6.0
+offset_right = 1491.0
+offset_bottom = 134.0
+texture = ExtResource("18_lgrap")
 
 [node name="i3_MovementHorizontal" type="Control" parent="HowToPlayUI"]
 layout_mode = 1
@@ -395,6 +429,7 @@ grow_horizontal = 0
 position = Vector2(120, 224)
 
 [node name="1controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -406,7 +441,7 @@ offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
 text = "Moving the left stick left and
-right or pressing ← and → keys
+right or pressing     and     keys
 will rotate your plane."
 horizontal_alignment = 1
 
@@ -428,8 +463,21 @@ grow_horizontal = 0
 offset_left = -16.0
 offset_right = -16.0
 
+[node name="ArrowLeft" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+offset_left = 896.0
+offset_top = 146.0
+offset_right = 1024.0
+offset_bottom = 274.0
+texture = ExtResource("22_c86vc")
+
+[node name="ArrowRight" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+offset_left = 1207.0
+offset_top = 146.0
+offset_right = 1335.0
+offset_bottom = 274.0
+texture = ExtResource("23_dxmnp")
+
 [node name="0controllersLabel" type="Label" parent="HowToPlayUI/i3_MovementHorizontal"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -440,7 +488,7 @@ offset_right = 751.0
 offset_bottom = 301.0
 grow_horizontal = 2
 theme = ExtResource("16_8uvs1")
-text = "Pressing A and D or ← and →
+text = "Pressing A and D or     and    
 keys will rotate your plane."
 horizontal_alignment = 1
 
@@ -462,6 +510,20 @@ grow_horizontal = 0
 [node name="LeftRightKeyPress" parent="HowToPlayUI/i3_MovementHorizontal/0controllersLabel/SpriteHolder2" instance=ExtResource("19_cppkn")]
 offset_left = 8.0
 offset_right = 8.0
+
+[node name="ArrowLeft" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/0controllersLabel"]
+offset_left = 1040.0
+offset_top = 6.0
+offset_right = 1168.0
+offset_bottom = 134.0
+texture = ExtResource("22_c86vc")
+
+[node name="ArrowRight" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/0controllersLabel"]
+offset_left = 1352.0
+offset_top = 6.0
+offset_right = 1480.0
+offset_bottom = 134.0
+texture = ExtResource("23_dxmnp")
 
 [node name="i4_Health" type="Control" parent="HowToPlayUI"]
 visible = false
