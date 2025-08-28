@@ -14,11 +14,17 @@ var reticleOffset := Vector2(32.0, 32.0)
 func _ready() -> void:
 	followTarget.look_at(lookAtTarget.global_position)
 
+func _get_rotation_lerp(from: float, to:float, minWeight: float):
+	var weight = clamp(pow(abs(player.global_rotation.x), 2.0) + minWeight, minWeight, 1.0)
+	if player.playerID == 1:
+		print(weight)
+	return lerp_angle(from, to, weight)
+
 func _physics_process(_delta: float) -> void:
 	global_position = lerp(global_position, followTarget.global_position, 0.3)
-	global_rotation.x = lerp_angle(global_rotation.x, followTarget.global_rotation.x, 0.08)
-	global_rotation.y = lerp_angle(global_rotation.y, followTarget.global_rotation.y, 0.08)
-	global_rotation.z = lerp_angle(global_rotation.z, followTarget.global_rotation.z, 0.03)
+	global_rotation.x = _get_rotation_lerp(global_rotation.x, followTarget.global_rotation.x, 0.08)
+	global_rotation.y = _get_rotation_lerp(global_rotation.y, followTarget.global_rotation.y, 0.08)
+	global_rotation.z = _get_rotation_lerp(global_rotation.z, followTarget.global_rotation.z, 0.03)
 
 	if gameOver:
 		enemyOffscreen.visible = false
