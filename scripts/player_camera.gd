@@ -11,9 +11,15 @@ var reticleOffset := Vector2(32.0, 32.0)
 
 @onready var viewport = get_parent()
 
+func _ready() -> void:
+	followTarget.look_at(lookAtTarget.global_position)
+
 func _physics_process(_delta: float) -> void:
 	global_position = lerp(global_position, followTarget.global_position, 0.3)
-	look_at(lookAtTarget.global_position)
+	global_rotation.x = lerp_angle(global_rotation.x, followTarget.global_rotation.x, 0.08)
+	global_rotation.y = lerp_angle(global_rotation.y, followTarget.global_rotation.y, 0.08)
+	global_rotation.z = lerp_angle(global_rotation.z, followTarget.global_rotation.z, 0.03)
+
 	if gameOver:
 		enemyOffscreen.visible = false
 		enemyOnscreen.visible = false

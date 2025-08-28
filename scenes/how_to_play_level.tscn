@@ -374,6 +374,7 @@ grow_horizontal = 0
 [node name="UpDownKeyPress" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel/SpriteHolder2" instance=ExtResource("17_u542t")]
 
 [node name="ArrowUp" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel"]
+layout_mode = 0
 offset_left = 1051.0
 offset_top = 6.0
 offset_right = 1179.0
@@ -381,6 +382,7 @@ offset_bottom = 134.0
 texture = ExtResource("19_52h5x")
 
 [node name="ArrowDown" type="TextureRect" parent="HowToPlayUI/i2_MovementVertical/0controllersLabel"]
+layout_mode = 0
 offset_left = 1363.0
 offset_top = 6.0
 offset_right = 1491.0
@@ -464,6 +466,7 @@ offset_left = -16.0
 offset_right = -16.0
 
 [node name="ArrowLeft" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 146.0
 offset_right = 1024.0
@@ -471,6 +474,7 @@ offset_bottom = 274.0
 texture = ExtResource("22_c86vc")
 
 [node name="ArrowRight" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/1controllersLabel"]
+layout_mode = 0
 offset_left = 1207.0
 offset_top = 146.0
 offset_right = 1335.0
@@ -512,6 +516,7 @@ offset_left = 8.0
 offset_right = 8.0
 
 [node name="ArrowLeft" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/0controllersLabel"]
+layout_mode = 0
 offset_left = 1040.0
 offset_top = 6.0
 offset_right = 1168.0
@@ -519,6 +524,7 @@ offset_bottom = 134.0
 texture = ExtResource("22_c86vc")
 
 [node name="ArrowRight" type="TextureRect" parent="HowToPlayUI/i3_MovementHorizontal/0controllersLabel"]
+layout_mode = 0
 offset_left = 1352.0
 offset_top = 6.0
 offset_right = 1480.0
