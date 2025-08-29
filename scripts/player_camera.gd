@@ -16,8 +16,6 @@ func _ready() -> void:
 
 func _get_rotation_lerp(from: float, to:float, minWeight: float):
 	var weight = clamp(pow(abs(player.global_rotation.x), 2.0) + minWeight, minWeight, 1.0)
-	if player.playerID == 1:
-		print(weight)
 	return lerp_angle(from, to, weight)
 
 func _physics_process(_delta: float) -> void:
