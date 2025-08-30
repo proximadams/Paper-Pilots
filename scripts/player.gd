@@ -46,15 +46,16 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var invinsible: bool
 @export var playerID  : int
 
-var enemyHitableCount := 0
-var fallSpeed         := 0.0# negative is fall direction
-var health            := MAX_HEALTH
-var isHitable         := false
-var isInItemCylander  := false
-var propulsionSpeed   := INIT_PROPULSION_SPEED
-var propellorSpeed    := 0.0
-var shootCoolDownTime := 0.0
-var timeWithNoEngine  := 0.0
+var enemyHitableCount  := 0
+var fallSpeed          := 0.0# negative is fall direction
+var health             := MAX_HEALTH
+var isHitable          := false
+var isInItemCylander   := false
+var propulsionSpeed    := INIT_PROPULSION_SPEED
+var propulsionSpeedCap := MAX_PROPULSION_SPEED * 0.5
+var propellorSpeed     := 0.0
+var shootCoolDownTime  := 0.0
+var timeWithNoEngine   := 0.0
 
 var state := FIGHTING
 
@@ -159,7 +160,9 @@ func _handle_movement(delta: float) -> void:
 	var accdeccMult = _get_acceleration_decceleration_mult()
 	propulsionSpeed = max(0.0, propulsionSpeed + (accdeccMult * delta))
 	propulsionSpeed -= (global_basis.z.normalized().y - 0.5) * delta * 70.0
-	propulsionSpeed = min(MAX_PROPULSION_SPEED, max(0.0, propulsionSpeed))
+	propulsionSpeed = min(propulsionSpeedCap, max(0.0, propulsionSpeed))
+
+	propulsionSpeedCap = max(MAX_PROPULSION_SPEED * 0.5, propulsionSpeedCap - (delta * 1000.0))
 
 	if accdeccMult < 0.0:
 		timeWithNoEngine += delta
@@ -173,8 +176,8 @@ func _handle_movement(delta: float) -> void:
 	transform = transform.orthonormalized()
 
 func _handle_rotation(delta: float) -> void:
-	var speedMultX = 1.5 + (0.003 * (sqrt(propulsionSpeed)))
-	var speedMultY = 1.2 + (0.0008 * (sqrt(propulsionSpeed)))
+	var speedMultX = 1.9 + (0.003 * (sqrt(propulsionSpeed)))
+	var speedMultY = 1.4 + (0.0008 * (sqrt(propulsionSpeed)))
 	var inputDirection = get_input_direction()
 	if 0.0 < propulsionSpeed or rad_to_deg(rotation.x) < 80.0 or 100.0 < rad_to_deg(rotation.x):
 		rotate_object_local(Vector3.RIGHT, delta * inputDirection.y * speedMultY)
@@ -337,3 +340,4 @@ func use_item_shield() -> void:
 
 func use_item_speed() -> void:
 	propulsionSpeed = MAX_PROPULSION_SPEED
+	propulsionSpeedCap = MAX_PROPULSION_SPEED
