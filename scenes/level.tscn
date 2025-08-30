@@ -322,9 +322,10 @@ libraries = {
 autoplay = "grow"
 speed_scale = 4.0
 
-[node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
+[node name="Player1" parent="." node_paths=PackedStringArray("enemyPlayer", "itemDiamond") instance=ExtResource("1_2q6dc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 100)
 enemyPlayer = NodePath("../Player2")
+itemDiamond = NodePath("../GridContainer/p1SubViewportContainer/SubViewport/ItemDiamond")
 
 [node name="CameraFollow" type="Node3D" parent="Player1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
@@ -332,9 +333,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7.5)
 [node name="CameraLookAt" type="Node3D" parent="Player1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer") instance=ExtResource("1_2q6dc")]
+[node name="Player2" parent="." node_paths=PackedStringArray("enemyPlayer", "itemDiamond") instance=ExtResource("1_2q6dc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100, 0, 4.37114e-06)
 enemyPlayer = NodePath("../Player1")
+itemDiamond = NodePath("../GridContainer/p2SubViewportContainer/SubViewport/ItemDiamond")
 playerID = 2
 
 [node name="CameraFollow" type="Node3D" parent="Player2"]

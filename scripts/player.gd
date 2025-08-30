@@ -35,6 +35,7 @@ var explosionRes = preload('res://scenes/explosion.tscn')
 @export var materialUnsafe: Material
 
 @export var engineStartSound  : AudioStreamPlayer
+@export var itemDiamond       : ColorRect
 @export var propellor         : MeshInstance3D
 @export var planeModel        : Node3D
 @export var shield            : MeshInstance3D
@@ -315,6 +316,7 @@ func restart() -> void:
 	trailVerticalAdd._startColor.b   = 1.0
 	trailHorizontalSub._startColor.a = 0.0
 	trailVerticalSub._startColor.a   = 0.0
+	itemDiamond.discard_item()
 
 	trailHorizontalAdd.restart()
 	trailVerticalAdd.restart()
